@@ -38,6 +38,7 @@
 		0F8F96EF1A69858700E8F605 /* Weapons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96D71A69858700E8F605 /* Weapons.swift */; };
 		0F8F96F11A6985A700E8F605 /* MasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96F01A6985A700E8F605 /* MasterController.swift */; };
 		0F8F96F31A6985C000E8F605 /* Communications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96F21A6985C000E8F605 /* Communications.swift */; };
+		0FA948661A698FDB00EE88B5 /* SimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA948651A698FDB00EE88B5 /* SimViewController.swift */; };
 		0FC3ACAC1A6987C000A9F544 /* Engineering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACAB1A6987C000A9F544 /* Engineering.swift */; };
 		0FC3ACAE1A698A3300A9F544 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACAD1A698A3300A9F544 /* Helm.swift */; };
 		0FC3ACB01A698A4C00A9F544 /* Medical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACAF1A698A4C00A9F544 /* Medical.swift */; };
@@ -132,6 +133,7 @@
 		0FA948621A698F0900EE88B5 /* app512x512x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app512x512x2.png; sourceTree = "<group>"; };
 		0FA948631A698F0900EE88B5 /* app512x512x2.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = app512x512x2.xcf; sourceTree = "<group>"; };
 		0FA948641A698F0900EE88B5 /* Cover-squar.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cover-squar.xcf"; sourceTree = "<group>"; };
+		0FA948651A698FDB00EE88B5 /* SimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimViewController.swift; sourceTree = "<group>"; };
 		0FC3ACAB1A6987C000A9F544 /* Engineering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engineering.swift; sourceTree = "<group>"; };
 		0FC3ACAD1A698A3300A9F544 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helm.swift; sourceTree = "<group>"; };
 		0FC3ACAF1A698A4C00A9F544 /* Medical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medical.swift; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 		0F8F96BD1A697EA900E8F605 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0FA948651A698FDB00EE88B5 /* SimViewController.swift */,
 				0F8F96951A697CDF00E8F605 /* Main.storyboard */,
 			);
 			name = Common;
@@ -584,6 +587,7 @@
 				0F8F96E31A69858700E8F605 /* Name.swift in Sources */,
 				0F8F96D81A69858700E8F605 /* Cargo.swift in Sources */,
 				0F8F96EF1A69858700E8F605 /* Weapons.swift in Sources */,
+				0FA948661A698FDB00EE88B5 /* SimViewController.swift in Sources */,
 				0F8F96EC1A69858700E8F605 /* SystemStatus.swift in Sources */,
 				0F8F96DA1A69858700E8F605 /* Common.swift in Sources */,
 				0F8F96E81A69858700E8F605 /* ShuttleCraft.swift in Sources */,
