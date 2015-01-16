@@ -7,6 +7,10 @@
 //
 
 import Cocoa
+// import XCGLogger
+
+/// Global logger object
+let logger = XCGLogger()
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,26 +19,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        logger.setup(logLevel: .Debug, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
+        logger.info("Startup")
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+        logger.info("Bye, bye!")
     }
 
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "org.greybeard.StarshipSimulation" in the user's Application Support directory.
+        // The directory the application uses to store the Core Data store file. This code uses a directory named "org.greybeard.StarShipSimulation" in the user's Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
         let appSupportURL = urls[urls.count - 1] as NSURL
-        return appSupportURL.URLByAppendingPathComponent("org.greybeard.StarshipSimulation")
-    }()
+        return appSupportURL.URLByAppendingPathComponent("org.greybeard.StarShipSimulation")
+        }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("StarshipSimulation", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("StarShipSimulation", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
-    }()
+        }()
 
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. (The directory for the store is created, if necessary.) This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
@@ -54,17 +61,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             error = nil
             fileManager.createDirectoryAtPath(self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil, error: &error)
         }
-        
+
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator?
         if !shouldFail && (error == nil) {
             coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("StarshipSimulation.storedata")
+            let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("StarShipSimulation.storedata")
             if coordinator!.addPersistentStoreWithType(NSXMLStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
                 coordinator = nil
             }
         }
-        
+
         if shouldFail || (error != nil) {
             // Report any error we got.
             var dict = [String: AnyObject]()
@@ -79,7 +86,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             return coordinator
         }
-    }()
+        }()
 
     lazy var managedObjectContext: NSManagedObjectContext? = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
@@ -90,7 +97,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var managedObjectContext = NSManagedObjectContext()
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
-    }()
+        }()
 
     // MARK: - Core Data Saving and Undo support
 
@@ -118,17 +125,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminate(sender: NSApplication) -> NSApplicationTerminateReply {
         // Save changes in the application's managed object context before the application terminates.
-        
+
         if let moc = managedObjectContext {
             if !moc.commitEditing() {
                 NSLog("\(NSStringFromClass(self.dynamicType)) unable to commit editing to terminate")
                 return .TerminateCancel
             }
-            
+
             if !moc.hasChanges {
                 return .TerminateNow
             }
-            
+
             var error: NSError? = nil
             if !moc.save(&error) {
                 // Customize this code block to include application-specific recovery steps.
@@ -136,7 +143,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if (result) {
                     return .TerminateCancel
                 }
-                
+
                 let question = NSLocalizedString("Could not save changes while quitting. Quit anyway?", comment: "Quit without saves error question message")
                 let info = NSLocalizedString("Quitting now will lose any changes you have made since the last successful save", comment: "Quit without saves error question info");
                 let quitButton = NSLocalizedString("Quit anyway", comment: "Quit anyway button title")
@@ -146,7 +153,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 alert.informativeText = info
                 alert.addButtonWithTitle(quitButton)
                 alert.addButtonWithTitle(cancelButton)
-                
+
                 let answer = alert.runModal()
                 if answer == NSAlertFirstButtonReturn {
                     return .TerminateCancel
@@ -157,5 +164,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return .TerminateNow
     }
 
+    // Added methods -- WCW
+
+    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+        return true
+    }
+
+    /// Set new log level from menu selection
+    @IBAction func setLogger(sender: NSMenuItem) {
+        let decodeLevel: [String: XCGLogger.LogLevel] = [
+            "None":     .None,
+            "Verbose":  .Verbose,
+            "Debug":    .Debug,
+            "Info":     .Info,
+            "Warning":  .Warning,
+            "Error":    .Error,
+            "Severe":   .Severe]
+
+        println("New log level=\(sender.title)")
+
+        if let newLevel = decodeLevel[sender.title] {
+            logger.outputLogLevel = newLevel
+        } else {
+            logger.severe("Illegal log level: \(sender.title)")
+        }
+    }
 }
 

@@ -51,6 +51,7 @@
 		0FC3ACBE1A698C2D00A9F544 /* MedicalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACBD1A698C2D00A9F544 /* MedicalControl.swift */; };
 		0FC3ACC01A698C3700A9F544 /* NavControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACBF1A698C3700A9F544 /* NavControl.swift */; };
 		0FC3ACC21A698C4000A9F544 /* SciencesControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACC11A698C4000A9F544 /* SciencesControl.swift */; };
+		0FC3ACC71A698D9F00A9F544 /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACC61A698D9F00A9F544 /* XCGLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,9 @@
 		0FC3ACBD1A698C2D00A9F544 /* MedicalControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicalControl.swift; sourceTree = "<group>"; };
 		0FC3ACBF1A698C3700A9F544 /* NavControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavControl.swift; sourceTree = "<group>"; };
 		0FC3ACC11A698C4000A9F544 /* SciencesControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SciencesControl.swift; sourceTree = "<group>"; };
+		0FC3ACC41A698D0B00A9F544 /* Blog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Blog.md; sourceTree = "<group>"; };
+		0FC3ACC51A698D0B00A9F544 /* Development.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Development.md; sourceTree = "<group>"; };
+		0FC3ACC61A698D9F00A9F544 /* XCGLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCGLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,7 @@
 		0F8F96891A697CDF00E8F605 /* StarshipSimulation */ = {
 			isa = PBXGroup;
 			children = (
+				0FC3ACC31A698CC900A9F544 /* Docs */,
 				0F8F96BE1A69853D00E8F605 /* SSS Modules Diagrams.pdf */,
 				0F8F96BF1A69853D00E8F605 /* SSS Variables List.pdf */,
 				0F8F96AD1A697D3600E8F605 /* Model */,
@@ -171,6 +176,7 @@
 				0F8F96931A697CDF00E8F605 /* Images.xcassets */,
 				0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */,
 				0F8F968B1A697CDF00E8F605 /* Info.plist */,
+				0FC3ACC61A698D9F00A9F544 /* XCGLogger.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -374,6 +380,15 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		0FC3ACC31A698CC900A9F544 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				0FC3ACC41A698D0B00A9F544 /* Blog.md */,
+				0FC3ACC51A698D0B00A9F544 /* Development.md */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -482,6 +497,7 @@
 				0FC3ACB21A698A6000A9F544 /* Navigation.swift in Sources */,
 				0FC3ACAE1A698A3300A9F544 /* Helm.swift in Sources */,
 				0F8F96EA1A69858700E8F605 /* SpatialPosition.swift in Sources */,
+				0FC3ACC71A698D9F00A9F544 /* XCGLogger.swift in Sources */,
 				0F8F96E21A69858700E8F605 /* MasterData.swift in Sources */,
 				0F8F96F31A6985C000E8F605 /* Communications.swift in Sources */,
 				0FC3ACB61A698BF400A9F544 /* MasterTabView.swift in Sources */,
