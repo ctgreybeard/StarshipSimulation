@@ -31,15 +31,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "org.greybeard.StarShipSimulation" in the user's Application Support directory.
+        // The directory the application uses to store the Core Data store file. This code uses a directory named "org.greybeard.StarshipSimulation" in the user's Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
         let appSupportURL = urls[urls.count - 1] as NSURL
-        return appSupportURL.URLByAppendingPathComponent("org.greybeard.StarShipSimulation")
+        return appSupportURL.URLByAppendingPathComponent("org.greybeard.StarshipSimulation")
         }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("StarShipSimulation", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("StarshipSimulation", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
         }()
 
@@ -66,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var coordinator: NSPersistentStoreCoordinator?
         if !shouldFail && (error == nil) {
             coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("StarShipSimulation.storedata")
+            let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("StarshipSimulation.storedata")
             if coordinator!.addPersistentStoreWithType(NSXMLStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
                 coordinator = nil
             }
@@ -181,7 +181,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             "Error":    .Error,
             "Severe":   .Severe]
 
-        println("New log level=\(sender.title)")
+        logger.info("New log level=\(sender.title)")
 
         if let newLevel = decodeLevel[sender.title] {
             logger.outputLogLevel = newLevel

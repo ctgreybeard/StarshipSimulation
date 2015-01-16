@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F6BADD71A69C7A50018B475 /* MasterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6BADD61A69C7A50018B475 /* MasterControl.swift */; };
+		0F6BADD91A69C7EA0018B475 /* RunningStateControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6BADD81A69C7EA0018B475 /* RunningStateControl.swift */; };
+		0F6BADDB1A69C8500018B475 /* givennames.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0F6BADDA1A69C8500018B475 /* givennames.txt */; };
+		0F6BADDD1A69C8600018B475 /* surnames.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0F6BADDC1A69C8600018B475 /* surnames.txt */; };
 		0F8F968D1A697CDF00E8F605 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */; };
 		0F8F96921A697CDF00E8F605 /* StarshipSimulation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96901A697CDF00E8F605 /* StarshipSimulation.xcdatamodeld */; };
 		0F8F96941A697CDF00E8F605 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F8F96931A697CDF00E8F605 /* Images.xcassets */; };
@@ -65,43 +69,47 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F6BADD61A69C7A50018B475 /* MasterControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F6BADD81A69C7EA0018B475 /* RunningStateControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunningStateControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F6BADDA1A69C8500018B475 /* givennames.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = givennames.txt; sourceTree = "<group>"; };
+		0F6BADDC1A69C8600018B475 /* surnames.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = surnames.txt; sourceTree = "<group>"; };
 		0F8F96871A697CDF00E8F605 /* StarshipSimulation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarshipSimulation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8F968B1A697CDF00E8F605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0F8F96911A697CDF00E8F605 /* StarshipSimulation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StarshipSimulation.xcdatamodel; sourceTree = "<group>"; };
 		0F8F96931A697CDF00E8F605 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0F8F96961A697CDF00E8F605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F8F969C1A697CDF00E8F605 /* StarshipSimulationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarshipSimulationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8F96A11A697CDF00E8F605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0F8F96A21A697CDF00E8F605 /* StarshipSimulationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipSimulationTests.swift; sourceTree = "<group>"; };
+		0F8F96A21A697CDF00E8F605 /* StarshipSimulationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StarshipSimulationTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0F8F96BE1A69853D00E8F605 /* SSS Modules Diagrams.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "SSS Modules Diagrams.pdf"; sourceTree = "<group>"; };
 		0F8F96BF1A69853D00E8F605 /* SSS Variables List.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "SSS Variables List.pdf"; sourceTree = "<group>"; };
-		0F8F96C01A69858700E8F605 /* Cargo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cargo.swift; sourceTree = "<group>"; };
-		0F8F96C11A69858700E8F605 /* CelestialObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelestialObject.swift; sourceTree = "<group>"; };
-		0F8F96C21A69858700E8F605 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		0F8F96C31A69858700E8F605 /* CommonData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
-		0F8F96C41A69858700E8F605 /* CommunicationsStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsStation.swift; sourceTree = "<group>"; };
-		0F8F96C51A69858700E8F605 /* EnergyConnectionStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyConnectionStation.swift; sourceTree = "<group>"; };
-		0F8F96C61A69858700E8F605 /* FederationPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FederationPerson.swift; sourceTree = "<group>"; };
-		0F8F96C71A69858700E8F605 /* FleetShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleetShip.swift; sourceTree = "<group>"; };
-		0F8F96C81A69858700E8F605 /* LifeSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeSupport.swift; sourceTree = "<group>"; };
-		0F8F96C91A69858700E8F605 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		0F8F96CA1A69858700E8F605 /* MasterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterData.swift; sourceTree = "<group>"; };
-		0F8F96CB1A69858700E8F605 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
-		0F8F96CC1A69858700E8F605 /* PhotonTube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotonTube.swift; sourceTree = "<group>"; };
-		0F8F96CD1A69858700E8F605 /* Rank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
-		0F8F96CE1A69858700E8F605 /* RunningState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningState.swift; sourceTree = "<group>"; };
-		0F8F96CF1A69858700E8F605 /* Sensors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensors.swift; sourceTree = "<group>"; };
-		0F8F96D01A69858700E8F605 /* ShuttleCraft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuttleCraft.swift; sourceTree = "<group>"; };
-		0F8F96D11A69858700E8F605 /* SimController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimController.swift; sourceTree = "<group>"; };
-		0F8F96D21A69858700E8F605 /* SpatialPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpatialPosition.swift; sourceTree = "<group>"; };
-		0F8F96D31A69858700E8F605 /* SystemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemObject.swift; sourceTree = "<group>"; };
-		0F8F96D41A69858700E8F605 /* SystemStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemStatus.swift; sourceTree = "<group>"; };
-		0F8F96D51A69858700E8F605 /* TractorBeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TractorBeam.swift; sourceTree = "<group>"; };
-		0F8F96D61A69858700E8F605 /* TurboElevatorCar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurboElevatorCar.swift; sourceTree = "<group>"; };
-		0F8F96D71A69858700E8F605 /* Weapons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapons.swift; sourceTree = "<group>"; };
-		0F8F96F01A6985A700E8F605 /* MasterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterController.swift; sourceTree = "<group>"; };
-		0F8F96F21A6985C000E8F605 /* Communications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communications.swift; sourceTree = "<group>"; };
+		0F8F96C01A69858700E8F605 /* Cargo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Cargo.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96C11A69858700E8F605 /* CelestialObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CelestialObject.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96C21A69858700E8F605 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Common.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96C31A69858700E8F605 /* CommonData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CommonData.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96C41A69858700E8F605 /* CommunicationsStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CommunicationsStation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96C51A69858700E8F605 /* EnergyConnectionStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EnergyConnectionStation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96C61A69858700E8F605 /* FederationPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FederationPerson.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96C71A69858700E8F605 /* FleetShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FleetShip.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96C81A69858700E8F605 /* LifeSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LifeSupport.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96C91A69858700E8F605 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Location.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96CA1A69858700E8F605 /* MasterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterData.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96CB1A69858700E8F605 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Name.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96CC1A69858700E8F605 /* PhotonTube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PhotonTube.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96CD1A69858700E8F605 /* Rank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Rank.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96CE1A69858700E8F605 /* RunningState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunningState.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96CF1A69858700E8F605 /* Sensors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Sensors.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96D01A69858700E8F605 /* ShuttleCraft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ShuttleCraft.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96D11A69858700E8F605 /* SimController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SimController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96D21A69858700E8F605 /* SpatialPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SpatialPosition.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96D31A69858700E8F605 /* SystemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SystemObject.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96D41A69858700E8F605 /* SystemStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SystemStatus.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96D51A69858700E8F605 /* TractorBeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TractorBeam.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96D61A69858700E8F605 /* TurboElevatorCar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TurboElevatorCar.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96D71A69858700E8F605 /* Weapons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Weapons.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96F01A6985A700E8F605 /* MasterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0F8F96F21A6985C000E8F605 /* Communications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Communications.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0FA948461A698F0900EE88B5 /* app128x128x1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = app128x128x1.jpg; sourceTree = "<group>"; };
 		0FA948471A698F0900EE88B5 /* app128x128x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app128x128x1.png; sourceTree = "<group>"; };
 		0FA948481A698F0900EE88B5 /* app128x128x1.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = app128x128x1.xcf; sourceTree = "<group>"; };
@@ -133,19 +141,19 @@
 		0FA948621A698F0900EE88B5 /* app512x512x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app512x512x2.png; sourceTree = "<group>"; };
 		0FA948631A698F0900EE88B5 /* app512x512x2.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = app512x512x2.xcf; sourceTree = "<group>"; };
 		0FA948641A698F0900EE88B5 /* Cover-squar.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cover-squar.xcf"; sourceTree = "<group>"; };
-		0FA948651A698FDB00EE88B5 /* SimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimViewController.swift; sourceTree = "<group>"; };
-		0FC3ACAB1A6987C000A9F544 /* Engineering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engineering.swift; sourceTree = "<group>"; };
-		0FC3ACAD1A698A3300A9F544 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helm.swift; sourceTree = "<group>"; };
-		0FC3ACAF1A698A4C00A9F544 /* Medical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medical.swift; sourceTree = "<group>"; };
-		0FC3ACB11A698A6000A9F544 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
-		0FC3ACB31A698A7200A9F544 /* Sciences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sciences.swift; sourceTree = "<group>"; };
-		0FC3ACB51A698BF400A9F544 /* MasterTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTabView.swift; sourceTree = "<group>"; };
-		0FC3ACB71A698C0600A9F544 /* CommControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommControl.swift; sourceTree = "<group>"; };
-		0FC3ACB91A698C1200A9F544 /* EngControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngControl.swift; sourceTree = "<group>"; };
-		0FC3ACBB1A698C2000A9F544 /* HelmControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelmControl.swift; sourceTree = "<group>"; };
-		0FC3ACBD1A698C2D00A9F544 /* MedicalControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicalControl.swift; sourceTree = "<group>"; };
-		0FC3ACBF1A698C3700A9F544 /* NavControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavControl.swift; sourceTree = "<group>"; };
-		0FC3ACC11A698C4000A9F544 /* SciencesControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SciencesControl.swift; sourceTree = "<group>"; };
+		0FA948651A698FDB00EE88B5 /* SimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SimViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACAB1A6987C000A9F544 /* Engineering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Engineering.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACAD1A698A3300A9F544 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Helm.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACAF1A698A4C00A9F544 /* Medical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Medical.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACB11A698A6000A9F544 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Navigation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACB31A698A7200A9F544 /* Sciences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Sciences.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACB51A698BF400A9F544 /* MasterTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterTabView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACB71A698C0600A9F544 /* CommControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CommControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACB91A698C1200A9F544 /* EngControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EngControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACBB1A698C2000A9F544 /* HelmControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HelmControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACBD1A698C2D00A9F544 /* MedicalControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MedicalControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACBF1A698C3700A9F544 /* NavControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NavControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FC3ACC11A698C4000A9F544 /* SciencesControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SciencesControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0FC3ACC41A698D0B00A9F544 /* Blog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Blog.md; sourceTree = "<group>"; };
 		0FC3ACC51A698D0B00A9F544 /* Development.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Development.md; sourceTree = "<group>"; };
 		0FC3ACC61A698D9F00A9F544 /* XCGLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCGLogger.swift; sourceTree = "<group>"; };
@@ -205,6 +213,8 @@
 		0F8F968A1A697CDF00E8F605 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0F6BADDA1A69C8500018B475 /* givennames.txt */,
+				0F6BADDC1A69C8600018B475 /* surnames.txt */,
 				0F8F96931A697CDF00E8F605 /* Images.xcassets */,
 				0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */,
 				0F8F968B1A697CDF00E8F605 /* Info.plist */,
@@ -350,6 +360,7 @@
 		0F8F96B61A697E3900E8F605 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0F6BADD61A69C7A50018B475 /* MasterControl.swift */,
 				0FC3ACB51A698BF400A9F544 /* MasterTabView.swift */,
 			);
 			name = Main;
@@ -406,6 +417,7 @@
 		0F8F96BD1A697EA900E8F605 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0F6BADD81A69C7EA0018B475 /* RunningStateControl.swift */,
 				0FA948651A698FDB00EE88B5 /* SimViewController.swift */,
 				0F8F96951A697CDF00E8F605 /* Main.storyboard */,
 			);
@@ -540,7 +552,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F6BADDD1A69C8600018B475 /* surnames.txt in Resources */,
 				0F8F96941A697CDF00E8F605 /* Images.xcassets in Resources */,
+				0F6BADDB1A69C8500018B475 /* givennames.txt in Resources */,
 				0F8F96971A697CDF00E8F605 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,11 +608,13 @@
 				0FC3ACBA1A698C1200A9F544 /* EngControl.swift in Sources */,
 				0FC3ACB01A698A4C00A9F544 /* Medical.swift in Sources */,
 				0F8F96E61A69858700E8F605 /* RunningState.swift in Sources */,
+				0F6BADD91A69C7EA0018B475 /* RunningStateControl.swift in Sources */,
 				0F8F96E01A69858700E8F605 /* LifeSupport.swift in Sources */,
 				0F8F96E51A69858700E8F605 /* Rank.swift in Sources */,
 				0F8F96EB1A69858700E8F605 /* SystemObject.swift in Sources */,
 				0F8F96921A697CDF00E8F605 /* StarshipSimulation.xcdatamodeld in Sources */,
 				0F8F96E91A69858700E8F605 /* SimController.swift in Sources */,
+				0F6BADD71A69C7A50018B475 /* MasterControl.swift in Sources */,
 				0F8F96DE1A69858700E8F605 /* FederationPerson.swift in Sources */,
 				0F8F96ED1A69858700E8F605 /* TractorBeam.swift in Sources */,
 			);

@@ -1,6 +1,6 @@
 //
 //  SystemObject.swift
-//  StarShipSimulation
+//  StarshipSimulation
 //
 //  Created by William Waggoner on 1/13/15.
 //  Copyright (c) 2015 William C Waggoner. All rights reserved.
@@ -121,7 +121,7 @@ class SOID: NSObject, Printable, DebugPrintable, Equatable, Hashable, NSCopying 
         if numSO[tag] != nil {
             counter = ++numSO[tag]!
         } else {
-            println("No place to put \(tag.rawValue)")
+            logger.error("No place to put \(tag.rawValue)")
             counter = -1
         }
         super.init()

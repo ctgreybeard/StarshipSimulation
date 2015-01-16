@@ -1,6 +1,6 @@
 //
 //  ShuttleCraft.swift
-//  StarShipSimulation
+//  StarshipSimulation
 //
 //  Created by William Waggoner on 1/1/15.
 //  Copyright (c) 2015 William C Waggoner. All rights reserved.

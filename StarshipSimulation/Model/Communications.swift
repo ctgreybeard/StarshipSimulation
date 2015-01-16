@@ -1,6 +1,6 @@
 //
 //  Communications.swift
-//  StarShipSimulation
+//  StarshipSimulation
 //
 //  Created by William Waggoner on 12/8/14.
 //  Copyright (c) 2014 William C Waggoner. All rights reserved.

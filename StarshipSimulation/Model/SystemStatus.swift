@@ -1,6 +1,6 @@
 //
 //  SystemStatus.swift
-//  StarShipSimulation
+//  StarshipSimulation
 //
 //  Created by William Waggoner on 12/30/14.
 //  Copyright (c) 2014 William C Waggoner. All rights reserved.

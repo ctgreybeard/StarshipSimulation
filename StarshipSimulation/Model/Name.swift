@@ -1,6 +1,6 @@
 //
 //  Name.swift
-//  StarShipSimulation
+//  StarshipSimulation
 //
 //  Created by William Waggoner on 1/13/15.
 //  Copyright (c) 2015 William C Waggoner. All rights reserved.
@@ -32,12 +32,15 @@ class Name {
 
     class func loadFile(fileName file: String, inout into: [String]?) {
         let namefileURL = NSBundle.mainBundle().URLForResource(file, withExtension: "txt")
-        println(namefileURL)
         if let goodURL = namefileURL {
+            logger.info("Loading \(file) from \(goodURL)")
             let nameFile = NSString(contentsOfURL: goodURL, encoding: NSUTF8StringEncoding, error: nil)
             if let names = nameFile {
                 into = names.componentsSeparatedByString("\n") as? [String]
             }
+        } else {
+            logger.error("Unable to load \(file)")
+            into = ["NoName1", "NoName2", "NoName3"]
         }
     }
 

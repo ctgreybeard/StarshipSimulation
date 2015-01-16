@@ -10,11 +10,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="StarShipSimulation" id="1Xt-HY-uBw">
+                            <menuItem title="StarshipSimulation" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="StarShipSimulation" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="StarshipSimulation" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About StarShipSimulation" id="5kV-Vb-QxS">
+                                        <menuItem title="About StarshipSimulation" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -28,7 +28,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide StarShipSimulation" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide StarshipSimulation" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -46,7 +46,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit StarShipSimulation" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit StarshipSimulation" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -683,7 +683,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="StarShipSimulation Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="StarshipSimulation Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -697,7 +697,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="StarShipSimulation" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="StarshipSimulation" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -724,7 +724,7 @@
         <!--Master Tab View-->
         <scene sceneID="q0y-1b-QOT">
             <objects>
-                <tabViewController tabStyle="bottom" id="3UG-nv-bZn" customClass="MasterTabView" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController tabStyle="bottom" id="3UG-nv-bZn" customClass="MasterTabView" customModule="StarshipSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="nvq-it-1X7"/>
                         <tabViewItem identifier="" id="0I1-6I-uy3"/>
@@ -757,12 +757,12 @@
         <!--Master-->
         <scene sceneID="zyO-1t-3Ai">
             <objects>
-                <viewController title="Master" id="dAx-N9-anD" customClass="MasterControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Master" id="dAx-N9-anD" customClass="MasterControl" customModule="StarshipSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="EZz-OE-1Gb">
                         <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="CxC-fH-9RC" customClass="RunningStateControl" customModule="StarShipSimulation" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="CxC-fH-9RC" customClass="RunningStateControl" customModule="StarshipSimulation" customModuleProvider="target">
                                 <rect key="frame" x="368" y="500" width="164" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="164" id="5K2-lK-pcp"/>
@@ -793,7 +793,7 @@
         <!--Comm-->
         <scene sceneID="cFY-g7-Yqr">
             <objects>
-                <viewController title="Comm" id="xpK-Jn-vDn" customClass="CommControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Comm" id="xpK-Jn-vDn" customClass="CommControl" customModule="StarshipSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hfP-6d-W8n">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -806,7 +806,7 @@
         <!--Eng-->
         <scene sceneID="mDU-Tf-jF3">
             <objects>
-                <viewController title="Eng" id="vXs-lT-Ghx" customClass="EngControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Eng" id="vXs-lT-Ghx" customClass="EngControl" customModule="StarshipSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="a4s-KQ-FxJ">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -819,7 +819,7 @@
         <!--Helm-->
         <scene sceneID="7Jv-Nd-Gyx">
             <objects>
-                <viewController title="Helm" id="QR5-In-nbr" customClass="HelmControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Helm" id="QR5-In-nbr" customClass="HelmControl" customModule="StarshipSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="kz8-jL-x2f">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -832,7 +832,7 @@
         <!--Medical-->
         <scene sceneID="jae-HF-4yb">
             <objects>
-                <viewController title="Medical" id="GcG-gd-ew5" customClass="MedicalControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Medical" id="GcG-gd-ew5" customClass="MedicalControl" customModule="StarshipSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="kgh-CK-UR0">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -845,7 +845,7 @@
         <!--Navigation-->
         <scene sceneID="tf5-bB-PsN">
             <objects>
-                <viewController title="Navigation" id="79g-zM-vUH" customClass="NavControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Navigation" id="79g-zM-vUH" customClass="NavControl" customModule="StarshipSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="GJY-AR-qPX">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -858,7 +858,7 @@
         <!--Sciences-->
         <scene sceneID="EN2-58-PBh">
             <objects>
-                <viewController title="Sciences" id="644-Vm-kZ9" customClass="SciencesControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Sciences" id="644-Vm-kZ9" customClass="SciencesControl" customModule="StarshipSimulation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="2gc-nE-1ge">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
