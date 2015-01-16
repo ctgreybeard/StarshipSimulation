@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F8F968D1A697CDF00E8F605 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */; };
-		0F8F968F1A697CDF00E8F605 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F968E1A697CDF00E8F605 /* ViewController.swift */; };
 		0F8F96921A697CDF00E8F605 /* StarshipSimulation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96901A697CDF00E8F605 /* StarshipSimulation.xcdatamodeld */; };
 		0F8F96941A697CDF00E8F605 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F8F96931A697CDF00E8F605 /* Images.xcassets */; };
 		0F8F96971A697CDF00E8F605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F8F96951A697CDF00E8F605 /* Main.storyboard */; };
@@ -68,7 +67,6 @@
 		0F8F96871A697CDF00E8F605 /* StarshipSimulation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarshipSimulation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8F968B1A697CDF00E8F605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0F8F968E1A697CDF00E8F605 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0F8F96911A697CDF00E8F605 /* StarshipSimulation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StarshipSimulation.xcdatamodel; sourceTree = "<group>"; };
 		0F8F96931A697CDF00E8F605 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0F8F96961A697CDF00E8F605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -407,7 +405,6 @@
 			isa = PBXGroup;
 			children = (
 				0F8F96951A697CDF00E8F605 /* Main.storyboard */,
-				0F8F968E1A697CDF00E8F605 /* ViewController.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -559,7 +556,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F8F968F1A697CDF00E8F605 /* ViewController.swift in Sources */,
 				0FC3ACC01A698C3700A9F544 /* NavControl.swift in Sources */,
 				0FC3ACAC1A6987C000A9F544 /* Engineering.swift in Sources */,
 				0F8F96F11A6985A700E8F605 /* MasterController.swift in Sources */,
