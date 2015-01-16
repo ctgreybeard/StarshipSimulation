@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6198" systemVersion="14A297b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6724"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -10,11 +10,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="StarshipSimulation" id="1Xt-HY-uBw">
+                            <menuItem title="StarShipSimulation" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="StarshipSimulation" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="StarShipSimulation" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About StarshipSimulation" id="5kV-Vb-QxS">
+                                        <menuItem title="About StarShipSimulation" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -28,7 +28,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide StarshipSimulation" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide StarShipSimulation" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -46,7 +46,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit StarshipSimulation" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit StarShipSimulation" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -623,11 +623,67 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Debug" id="M7Q-MP-09O">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Debug" id="DPt-pA-AZt">
+                                    <items>
+                                        <menuItem title="Log Level" id="pam-dX-BZ0">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Log Level" id="RRY-ok-eXx">
+                                                <items>
+                                                    <menuItem title="Verbose" id="ROT-iI-33q">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="setLogger:" target="Voe-Tx-rLC" id="b2t-5V-qzA"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Debug" id="8N8-SH-Ig1">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="setLogger:" target="Voe-Tx-rLC" id="W5C-JW-cfy"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Info" id="HsB-FY-Wan">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="setLogger:" target="Voe-Tx-rLC" id="0Ij-Jx-JlU"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Warning" id="hyL-jz-mpO">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="setLogger:" target="Voe-Tx-rLC" id="sCg-8U-TLp"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Error" id="VaV-Qp-JfS">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="setLogger:" target="Voe-Tx-rLC" id="FKA-Vt-buQ"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Severe" id="8Km-zK-K9c">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="setLogger:" target="Voe-Tx-rLC" id="rc3-MG-eMV"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="None" id="u1B-Tt-7Z7">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="setLogger:" target="Voe-Tx-rLC" id="rXV-8f-erY"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Help" id="wpr-3q-Mcd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="StarshipSimulation Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="StarShipSimulation Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -641,41 +697,176 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="StarShipSimulation" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Window Controller - Window-->
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="200" y="240" width="900" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="900" height="600"/>
                     </window>
                     <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                        <segue destination="3UG-nv-bZn" kind="relationship" relationship="window.shadowedContentViewController" id="ERZ-x6-mEr"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="hIz-AP-VOD">
+        <!--Master Tab View-->
+        <scene sceneID="q0y-1b-QOT">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <tabViewController tabStyle="bottom" id="3UG-nv-bZn" customClass="MasterTabView" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="nvq-it-1X7"/>
+                        <tabViewItem identifier="" id="0I1-6I-uy3"/>
+                        <tabViewItem id="QPs-Sf-m8L"/>
+                        <tabViewItem id="nBu-vp-ctM"/>
+                        <tabViewItem id="Etd-en-Aa4"/>
+                        <tabViewItem id="igy-B5-IcM"/>
+                        <tabViewItem id="fap-qp-kSa"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="Ye2-F9-WhD">
+                        <rect key="frame" x="-4" y="0.0" width="1093" height="920"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="dAx-N9-anD" kind="relationship" relationship="tabItems" id="iKp-Kf-Zww"/>
+                        <segue destination="xpK-Jn-vDn" kind="relationship" relationship="tabItems" id="CMy-XT-YyI"/>
+                        <segue destination="vXs-lT-Ghx" kind="relationship" relationship="tabItems" id="WfU-FK-tWB"/>
+                        <segue destination="QR5-In-nbr" kind="relationship" relationship="tabItems" id="Wsz-iZ-Rv3"/>
+                        <segue destination="GcG-gd-ew5" kind="relationship" relationship="tabItems" id="2jY-hP-3ju"/>
+                        <segue destination="79g-zM-vUH" kind="relationship" relationship="tabItems" id="K4t-Us-19s"/>
+                        <segue destination="644-Vm-kZ9" kind="relationship" relationship="tabItems" id="vPm-6Q-O4Y"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="TLH-l6-R3V" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="74.5" y="1463"/>
+        </scene>
+        <!--Master-->
+        <scene sceneID="zyO-1t-3Ai">
+            <objects>
+                <viewController title="Master" id="dAx-N9-anD" customClass="MasterControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="EZz-OE-1Gb">
+                        <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="CxC-fH-9RC" customClass="RunningStateControl" customModule="StarShipSimulation" customModuleProvider="target">
+                                <rect key="frame" x="368" y="500" width="164" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="164" id="5K2-lK-pcp"/>
+                                    <constraint firstAttribute="height" constant="80" id="jNQ-eb-tTB"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="subsystemName" value="Master"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="subsystemState" value="Stopped"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="masterControl:" target="dAx-N9-anD" id="WGi-6i-834"/>
+                                </connections>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="CxC-fH-9RC" firstAttribute="top" secondItem="EZz-OE-1Gb" secondAttribute="top" constant="20" symbolic="YES" id="7oQ-G4-0gf"/>
+                            <constraint firstAttribute="centerX" secondItem="CxC-fH-9RC" secondAttribute="centerX" id="ata-N1-ooe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="runState" destination="CxC-fH-9RC" id="txW-ux-zJ2"/>
+                    </connections>
+                </viewController>
+                <customObject id="XmT-vH-riY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1218" y="177"/>
+        </scene>
+        <!--Comm-->
+        <scene sceneID="cFY-g7-Yqr">
+            <objects>
+                <viewController title="Comm" id="xpK-Jn-vDn" customClass="CommControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="hfP-6d-W8n">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="6tG-gM-DWP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="993" y="775"/>
+        </scene>
+        <!--Eng-->
+        <scene sceneID="mDU-Tf-jF3">
+            <objects>
+                <viewController title="Eng" id="vXs-lT-Ghx" customClass="EngControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="a4s-KQ-FxJ">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="rDq-Ph-0vu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="993" y="1177"/>
+        </scene>
+        <!--Helm-->
+        <scene sceneID="7Jv-Nd-Gyx">
+            <objects>
+                <viewController title="Helm" id="QR5-In-nbr" customClass="HelmControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="kz8-jL-x2f">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="iPQ-yP-zPa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="993" y="1572"/>
+        </scene>
+        <!--Medical-->
+        <scene sceneID="jae-HF-4yb">
+            <objects>
+                <viewController title="Medical" id="GcG-gd-ew5" customClass="MedicalControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="kgh-CK-UR0">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="8nc-No-f5D" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="993" y="1992"/>
+        </scene>
+        <!--Navigation-->
+        <scene sceneID="tf5-bB-PsN">
+            <objects>
+                <viewController title="Navigation" id="79g-zM-vUH" customClass="NavControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="GJY-AR-qPX">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="nJA-9q-fK1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="993" y="2374"/>
+        </scene>
+        <!--Sciences-->
+        <scene sceneID="EN2-58-PBh">
+            <objects>
+                <viewController title="Sciences" id="644-Vm-kZ9" customClass="SciencesControl" customModule="StarShipSimulation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="2gc-nE-1ge">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="biv-jF-dJR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="993" y="2779"/>
         </scene>
     </scenes>
 </document>
