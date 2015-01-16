@@ -77,10 +77,8 @@
 		0F8F96891A697CDF00E8F605 /* StarshipSimulation */ = {
 			isa = PBXGroup;
 			children = (
-				0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */,
-				0F8F968E1A697CDF00E8F605 /* ViewController.swift */,
-				0F8F96931A697CDF00E8F605 /* Images.xcassets */,
-				0F8F96951A697CDF00E8F605 /* Main.storyboard */,
+				0F8F96AD1A697D3600E8F605 /* Model */,
+				0F8F96AC1A697D2700E8F605 /* Views */,
 				0F8F96901A697CDF00E8F605 /* StarshipSimulation.xcdatamodeld */,
 				0F8F968A1A697CDF00E8F605 /* Supporting Files */,
 			);
@@ -90,6 +88,8 @@
 		0F8F968A1A697CDF00E8F605 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0F8F96931A697CDF00E8F605 /* Images.xcassets */,
+				0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */,
 				0F8F968B1A697CDF00E8F605 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -110,6 +110,150 @@
 				0F8F96A11A697CDF00E8F605 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0F8F96AC1A697D2700E8F605 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0F8F96BD1A697EA900E8F605 /* Common */,
+				0F8F96B61A697E3900E8F605 /* Main */,
+				0F8F96BB1A697E8A00E8F605 /* Communications */,
+				0F8F96B81A697E5900E8F605 /* Engineering */,
+				0F8F96BC1A697E9B00E8F605 /* Helm */,
+				0F8F96B71A697E5000E8F605 /* Medical */,
+				0F8F96BA1A697E8000E8F605 /* Navigation */,
+				0F8F96B91A697E6B00E8F605 /* Sciences */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		0F8F96AD1A697D3600E8F605 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0F8F96AE1A697D3F00E8F605 /* Common */,
+				0F8F96AF1A697D6000E8F605 /* Main */,
+				0F8F96B11A697DE400E8F605 /* Communications */,
+				0F8F96B41A697E0700E8F605 /* Engineering */,
+				0F8F96B01A697D6900E8F605 /* Helm */,
+				0F8F96B51A697E1200E8F605 /* Medical */,
+				0F8F96B21A697DF100E8F605 /* Navigation */,
+				0F8F96B31A697DFE00E8F605 /* Sciences */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0F8F96AE1A697D3F00E8F605 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		0F8F96AF1A697D6000E8F605 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		0F8F96B01A697D6900E8F605 /* Helm */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helm;
+			sourceTree = "<group>";
+		};
+		0F8F96B11A697DE400E8F605 /* Communications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Communications;
+			sourceTree = "<group>";
+		};
+		0F8F96B21A697DF100E8F605 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		0F8F96B31A697DFE00E8F605 /* Sciences */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sciences;
+			sourceTree = "<group>";
+		};
+		0F8F96B41A697E0700E8F605 /* Engineering */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Engineering;
+			sourceTree = "<group>";
+		};
+		0F8F96B51A697E1200E8F605 /* Medical */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Medical;
+			sourceTree = "<group>";
+		};
+		0F8F96B61A697E3900E8F605 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		0F8F96B71A697E5000E8F605 /* Medical */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Medical;
+			sourceTree = "<group>";
+		};
+		0F8F96B81A697E5900E8F605 /* Engineering */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Engineering;
+			sourceTree = "<group>";
+		};
+		0F8F96B91A697E6B00E8F605 /* Sciences */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sciences;
+			sourceTree = "<group>";
+		};
+		0F8F96BA1A697E8000E8F605 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		0F8F96BB1A697E8A00E8F605 /* Communications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Communications;
+			sourceTree = "<group>";
+		};
+		0F8F96BC1A697E9B00E8F605 /* Helm */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helm;
+			sourceTree = "<group>";
+		};
+		0F8F96BD1A697EA900E8F605 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0F8F96951A697CDF00E8F605 /* Main.storyboard */,
+				0F8F968E1A697CDF00E8F605 /* ViewController.swift */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +305,7 @@
 				TargetAttributes = {
 					0F8F96861A697CDF00E8F605 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 3CL8WYF3VH;
 					};
 					0F8F969B1A697CDF00E8F605 = {
 						CreatedOnToolsVersion = 6.2;
@@ -328,10 +473,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = StarshipSimulation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -339,10 +487,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = StarshipSimulation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
