@@ -10,6 +10,8 @@
 
 import Foundation
 
+let logger = XCGLogger()
+
 /// For holding really large numbers. A Double maybe? Or Float80 for REALLY big numbers
 typealias BigNum = Double
 

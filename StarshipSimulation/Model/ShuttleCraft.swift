@@ -21,8 +21,6 @@ enum ShuttleCraftMission: Int {
     case SeekShuttleBay
 }
 
-var numShuttlCraft = 0
-
 class ShuttleCraft: SystemArrayObject {
     var operationalStatus: ShuttleCraftOperationalStatus
     var DI: Int {

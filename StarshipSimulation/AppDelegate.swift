@@ -10,7 +10,7 @@ import Cocoa
 // import XCGLogger
 
 /// Global logger object
-let logger = XCGLogger()
+//let logger = XCGLogger()
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

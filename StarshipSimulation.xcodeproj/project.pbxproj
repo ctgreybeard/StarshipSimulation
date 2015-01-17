@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F594BF61A69EE7C00B10050 /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F594BF51A69EE7C00B10050 /* LocationTests.swift */; };
+		0F594BF71A69EE9500B10050 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96C91A69858700E8F605 /* Location.swift */; };
+		0F594BF81A69EEAD00B10050 /* SpatialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96D21A69858700E8F605 /* SpatialPosition.swift */; };
+		0F594BF91A69EEE900B10050 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96C21A69858700E8F605 /* Common.swift */; };
+		0F594BFA1A69EF3400B10050 /* FederationPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96C61A69858700E8F605 /* FederationPerson.swift */; };
+		0F594BFB1A69EF4D00B10050 /* SystemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96D31A69858700E8F605 /* SystemObject.swift */; };
+		0F594BFC1A69EF9000B10050 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96CD1A69858700E8F605 /* Rank.swift */; };
+		0F594BFD1A69EFD200B10050 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96CB1A69858700E8F605 /* Name.swift */; };
+		0F594BFE1A69F04C00B10050 /* XCGLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACC61A698D9F00A9F544 /* XCGLogger.swift */; };
 		0F6BADD71A69C7A50018B475 /* MasterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6BADD61A69C7A50018B475 /* MasterControl.swift */; };
 		0F6BADD91A69C7EA0018B475 /* RunningStateControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6BADD81A69C7EA0018B475 /* RunningStateControl.swift */; };
 		0F6BADDB1A69C8500018B475 /* givennames.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0F6BADDA1A69C8500018B475 /* givennames.txt */; };
@@ -69,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F594BF51A69EE7C00B10050 /* LocationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		0F6BADD61A69C7A50018B475 /* MasterControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0F6BADD81A69C7EA0018B475 /* RunningStateControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunningStateControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0F6BADDA1A69C8500018B475 /* givennames.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = givennames.txt; sourceTree = "<group>"; };
@@ -227,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				0F8F96A21A697CDF00E8F605 /* StarshipSimulationTests.swift */,
+				0F594BF51A69EE7C00B10050 /* LocationTests.swift */,
 				0F8F96A01A697CDF00E8F605 /* Supporting Files */,
 			);
 			path = StarshipSimulationTests;
@@ -624,7 +635,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F594BF61A69EE7C00B10050 /* LocationTests.swift in Sources */,
+				0F594BFC1A69EF9000B10050 /* Rank.swift in Sources */,
+				0F594BFA1A69EF3400B10050 /* FederationPerson.swift in Sources */,
+				0F594BF71A69EE9500B10050 /* Location.swift in Sources */,
 				0F8F96A31A697CDF00E8F605 /* StarshipSimulationTests.swift in Sources */,
+				0F594BFB1A69EF4D00B10050 /* SystemObject.swift in Sources */,
+				0F594BFE1A69F04C00B10050 /* XCGLogger.swift in Sources */,
+				0F594BFD1A69EFD200B10050 /* Name.swift in Sources */,
+				0F594BF91A69EEE900B10050 /* Common.swift in Sources */,
+				0F594BF81A69EEAD00B10050 /* SpatialPosition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
