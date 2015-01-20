@@ -8,8 +8,6 @@
 
 import Foundation
 
-var numSS = 0
-
 class SystemStatus: SystemArrayObject {
     dynamic var functionalStatus: FunctionalStatus
     dynamic var operationalStatus: OperationalStatus

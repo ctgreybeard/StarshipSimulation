@@ -8,9 +8,9 @@
 
 import Cocoa
 
-var _givenNames: [String]?
-var _surNames: [String]?
-var _used: [Name.UsedName: Bool] = [:] // Protects against reusing a name combination
+private var _givenNames: [String]?
+private var _surNames: [String]?
+private var _used: [Name.UsedName: Bool] = [:] // Protects against reusing a name combination
 
 class Name {
 

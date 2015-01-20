@@ -12,62 +12,16 @@ import Foundation
 class FederationPerson: SystemArrayObject {
 
     var name: String
-    var BL: String {
-        get {return name}
-        set {name = newValue}
-    }
     var rank: Rank
-    var BM: FederationRank {
-        get {return rank.rank}
-        set {rank.rank = newValue}
-    }
     var iq: Int
-    var BN: Int {
-        get {return iq}
-        set {iq = newValue}
-    }
     var location: Location
     var position: SpatialPosition? {
         get {return location.position}
         set {location.position = newValue}
     }
-    var BO: Int {
-        get {return location.num}
-        set {location.num = newValue}
-    }
-    var BP: Coordinate {
-        get {return position?.x ?? Coordinate(0.0)}
-        set {position = SpatialPosition(x: newValue, y: BQ, z: BR)}
-    }
-    var BQ: Coordinate {
-        get {return position?.y ?? Coordinate(0.0)}
-        set {position = SpatialPosition(x: BP, y: newValue, z: BR)}
-    }
-    var BR: Coordinate {
-        get {return position?.z ?? Coordinate(0.0)}
-        set {position = SpatialPosition(x: BP, y: BQ, z: newValue)}
-    }
     var destination: Location?
-    var BS: Int! {
-        get {return destination?.num ?? LocationCode.None.rawValue}
-        set {
-            if let newLoc = newValue {
-                destination = Location(newLoc)
-            } else {
-                destination = nil
-            }
-        }
-    }
     var functionalStatus: FunctionalStatus
-    var BT: FunctionalStatus {
-        get {return functionalStatus}
-        set {functionalStatus = newValue}
-    }
     var healthStatus: Int
-    var BU: Int {
-        get {return healthStatus}
-        set {healthStatus = newValue}
-    }
 
     required init() {
         name = Name()?.asString() ?? "No Name"
@@ -101,6 +55,68 @@ class FederationPerson: SystemArrayObject {
 }
 
 class EnterprisePerson: FederationPerson {
+    dynamic var BL: String {
+        get {return name}
+        set {name = newValue}
+    }
+
+    dynamic var BM: String {
+        get {return rank.rank.rawValue}
+        set {
+            if let newRank = FederationRank(rawValue: newValue) {
+                rank.rank = newRank
+            }
+        }
+    }
+
+    dynamic var BN: Int {
+        get {return iq}
+        set {iq = newValue}
+    }
+
+    dynamic var BO: Int {
+        get {return location.num}
+        set {location.num = newValue}
+    }
+    dynamic var BOd: String {return location.description}
+
+    dynamic var BP: Coordinate {
+        get {return position?.x ?? Coordinate(0.0)}
+        set {position = SpatialPosition(x: newValue, y: BQ, z: BR)}
+    }
+
+    dynamic var BQ: Coordinate {
+        get {return position?.y ?? Coordinate(0.0)}
+        set {position = SpatialPosition(x: BP, y: newValue, z: BR)}
+    }
+    dynamic var BR: Coordinate {
+        get {return position?.z ?? Coordinate(0.0)}
+        set {position = SpatialPosition(x: BP, y: BQ, z: newValue)}
+    }
+
+    dynamic var BS: Int {
+        get {return destination?.num ?? LocationCode.None.rawValue}
+        set {
+            if newValue == LocationCode.None.rawValue {
+                destination = nil
+            } else {
+                destination = Location(newValue)
+            }
+        }
+    }
+
+    dynamic var BSd: String {return destination?.description ?? ""}
+
+    dynamic var BT: FunctionalStatus {
+        get {return functionalStatus}
+        set {functionalStatus = newValue}
+    }
+
+    dynamic var BU: Int {
+        get {return healthStatus}
+        set {healthStatus = newValue}
+    }
+
     required init() {
         super.init()
         mkSOID(.EnterprisePerson)

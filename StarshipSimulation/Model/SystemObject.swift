@@ -194,6 +194,7 @@ class SystemArray: SystemObject {
         _array = array
         super.init()
         mkSOID(.SystemArray)
+        _array.addObserver
     }
 
     /// Treat a SystemArray like a regular array
@@ -226,6 +227,11 @@ class SystemArray: SystemObject {
             _array.removeAtIndex(index)
         }
         return temp
+    }
+
+    /// Respond to any updates in the array
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+
     }
 
 }

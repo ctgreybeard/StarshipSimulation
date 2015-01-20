@@ -12,9 +12,24 @@ class MasterControl: SimViewController {
 
     /// Various parameters to adjust for tuning
     let updateTimerInterval = 0.49
+    let updateCountersInterval = 0.1
 
     @IBOutlet weak var runState: RunningStateControl!
-    
+    @IBOutlet weak var cntPersonnel: NSTextField!
+    let cntPersonnelTag = "BK"
+    @IBOutlet weak var cntPhotonTubes: NSTextField!
+    let cntPhotonTubesTag = ""
+    @IBOutlet weak var cntPhaserStations: NSTextField!
+    let cntPhaserStationsTag = ""
+    @IBOutlet weak var cntDeflectorShields: NSTextField!
+    let cntDeflectorShieldsTag = ""
+    @IBOutlet weak var cntCloak: NSTextField!
+    let cntCloakTag = ""
+    @IBOutlet weak var cntWarpEngines: NSTextField!
+    let cntWarpEnginesTag = ""
+    @IBOutlet weak var cntImpulseEngines: NSTextField!
+    let cntImpulseEnginesTag = ""
+
     override func viewDidLoad() {
         logger.debug("Entry")
         super.viewDidLoad()
@@ -111,6 +126,7 @@ class MasterControl: SimViewController {
         logger.debug("Entry")
         if viewUpdateTimers.isEmpty {
             viewUpdateTimers.append(NSTimer(timeInterval: updateTimerInterval, target: self, selector: "updateElapsed:", userInfo: nil, repeats: true))
+            viewUpdateTimers.append(NSTimer(timeInterval: updateCountersInterval, target: self, selector: "updateCounts:", userInfo: nil, repeats: true))
         }
         super.createViewUpdateTimers()
     }
@@ -122,4 +138,11 @@ class MasterControl: SimViewController {
         }
     }
 
+    /// Updates equipment and personnel counts (currently only personnel might change)
+    func updateCounts(timer: NSTimer) {
+        cntPersonnel.stringValue = String(masterData.cd.valueForKey(cntPersonnelTag) as Int)
+    }
+
+    @IBAction func showEquipemnt(sender: NSButton) {
+    }
 }

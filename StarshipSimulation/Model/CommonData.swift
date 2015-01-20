@@ -100,16 +100,18 @@ class CommonData: NSObject {
 
         // Enterprise Personnel
         let defaultNumEnterprisePersons = 43 + 387
-        enterprisePersonnel = SystemArray(num: defaultNumEnterprisePersons, withType: FederationPerson.self)
+        enterprisePersonnel = SystemArray(num: defaultNumEnterprisePersons, withType: EnterprisePerson.self)
 
         BL = SystemArrayAccess(source: enterprisePersonnel, member: "BL")
         BM = SystemArrayAccess(source: enterprisePersonnel, member: "BM")
         BN = SystemArrayAccess(source: enterprisePersonnel, member: "BN")
         BO = SystemArrayAccess(source: enterprisePersonnel, member: "BO")
+        BOd = SystemArrayAccess(source: enterprisePersonnel, member: "BOd")
         BP = SystemArrayAccess(source: enterprisePersonnel, member: "BP")
         BQ = SystemArrayAccess(source: enterprisePersonnel, member: "BQ")
         BR = SystemArrayAccess(source: enterprisePersonnel, member: "BR")
         BS = SystemArrayAccess(source: enterprisePersonnel, member: "BS")
+        BSd = SystemArrayAccess(source: enterprisePersonnel, member: "BSd")
         BT = SystemArrayAccess(source: enterprisePersonnel, member: "BT")   // functionalstatus
         BU = SystemArrayAccess(source: enterprisePersonnel, member: "BU")
         enterprisePersonsArrayAccessList = [BL, BM, BN, BO, BP, BQ, BR, BS, BT, BU]
@@ -730,32 +732,34 @@ class CommonData: NSObject {
         }
     }
     var BK: Int {return enterprisePersonnel.count}
-    let BL: SystemArrayAccess
+    dynamic var BL: SystemArrayAccess
     let BM: SystemArrayAccess
     let BN: SystemArrayAccess
     let BO: SystemArrayAccess
+    let BOd: SystemArrayAccess
     let BP: SystemArrayAccess
     let BQ: SystemArrayAccess
     let BR: SystemArrayAccess
     let BS: SystemArrayAccess
+    let BSd: SystemArrayAccess
     let BT: SystemArrayAccess
     let BU: SystemArrayAccess
     let enterprisePersonsArrayAccessList: [SystemArrayAccess]
 
     var foodConsumption: Float      // kg/hr
-    var BV: Float {
+    dynamic var BV: Float {
         get {return foodConsumption}
         set {foodConsumption = newValue}
     }
 
     var waterConsumption: Float     // l/hr
-    var BW: Float {
+    dynamic var BW: Float {
         get {return waterConsumption}
         set {waterConsumption = newValue}
     }
 
     var oxygenConsumption: Float    // l/hr
-    var BX: Float {
+    dynamic var BX: Float {
         get {return oxygenConsumption}
         set {oxygenConsumption = newValue}
     }

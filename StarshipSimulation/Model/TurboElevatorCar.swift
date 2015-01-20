@@ -8,8 +8,6 @@
 
 import Foundation
 
-private var numTECar = 0
-
 class TurboElevatorCar: SystemStatus {
     var location: Location
     var destination: Location
