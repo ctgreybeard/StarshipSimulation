@@ -11,6 +11,9 @@ import Foundation
 /// An officer or crew member
 class FederationPerson: SystemArrayObject {
 
+    var personInfo: String {
+        return "\(name)|\(rank)|\(iq)|\(location)|\(destination)|\(functionalStatus)|\(healthStatus)"
+    }
     var name: String
     var rank: Rank
     var iq: Int
@@ -23,6 +26,10 @@ class FederationPerson: SystemArrayObject {
     var functionalStatus: FunctionalStatus
     var healthStatus: Int
 
+    func keyPathsForValuesAffectingPersonInfo() -> NSSet {
+        return NSSet(array: ["name","rank","iq","location","destination","functionalStatus","healthStatus"])
+    }
+    
     required init() {
         name = Name()?.asString() ?? "No Name"
         let hRank = Rank.randomRank()

@@ -171,8 +171,9 @@ class SystemObject: NSObject, Printable {
 
 /// An accessable array of any SystemArrayObject instances
 class SystemArray: SystemObject {
-    private var _array: [SystemArrayObject]
+    private var _array: NSMutableArray
     var count: Int {return _array.count}
+    var array: NSArray {return NSArray(array: _array)}
 
     /// Primary initializer, used most frequently to init a SystemArray
     convenience init(num: Int, withType with: SystemArrayObject.Type)  {
@@ -191,31 +192,35 @@ class SystemArray: SystemObject {
 
     /// Create a new SystemArray with supplied array
     init(with array: [SystemArrayObject]) {
-        _array = array
+        _array = NSMutableArray(array: array)
         super.init()
         mkSOID(.SystemArray)
-        _array.addObserver
+
     }
 
     /// Treat a SystemArray like a regular array
     subscript(i: Int) -> SystemArrayObject? {
         get {
             if i >= 0 && i < _array.count {
-                return _array[i]
+                return _array[i] as? SystemArrayObject
             } else {
                 return nil
             }
         }
         set {
             if i >= 0 && i < _array.count {
+                willChange(.Replacement, valuesAtIndexes: NSIndexSet(index: i), forKey: "array")
                 _array[i] = newValue!
+                didChange(.Replacement, valuesAtIndexes: NSIndexSet(index: i), forKey: "array")
             }
         }
     }
 
     /// Appends item to the end of the arrsy and returns the index
     func append(new1: SystemArrayObject) -> Int {
-        _array.append(new1)
+        willChange(.Insertion, valuesAtIndexes: NSIndexSet(index: _array.count), forKey: "array")
+        _array.addObject(new1)
+        didChange(.Insertion, valuesAtIndexes: NSIndexSet(index: _array.count - 1), forKey: "array")
         return _array.count - 1
     }
 
@@ -223,17 +228,13 @@ class SystemArray: SystemObject {
     func removeAtIndex(index: Int) -> SystemArrayObject? {
         var temp: SystemArrayObject?
         if index >= 0 && index < _array.count {
-            temp = _array[index]
-            _array.removeAtIndex(index)
+            temp = _array[index] as? SystemArrayObject
+            willChange(.Removal, valuesAtIndexes: NSIndexSet(index: index), forKey: "array")
+            _array.removeObjectAtIndex(index)
+            didChange(.Removal, valuesAtIndexes: NSIndexSet(index: index), forKey: "array")
         }
         return temp
     }
-
-    /// Respond to any updates in the array
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-
-    }
-
 }
 
 /// Contents of SyatemArray, subclasses must implement copyWithZone
