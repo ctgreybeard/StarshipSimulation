@@ -56,6 +56,7 @@
 		0F8F96F31A6985C000E8F605 /* Communications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96F21A6985C000E8F605 /* Communications.swift */; };
 		0FA948661A698FDB00EE88B5 /* SimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA948651A698FDB00EE88B5 /* SimViewController.swift */; };
 		0FAB8E501A6C315300E784B2 /* EnterprisePresonnelControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB8E4F1A6C315300E784B2 /* EnterprisePresonnelControl.swift */; };
+		0FB0742E1A715DD2006F3CA5 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0742D1A715DD2006F3CA5 /* DataTests.swift */; };
 		0FC3ACAC1A6987C000A9F544 /* Engineering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACAB1A6987C000A9F544 /* Engineering.swift */; };
 		0FC3ACAE1A698A3300A9F544 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACAD1A698A3300A9F544 /* Helm.swift */; };
 		0FC3ACB01A698A4C00A9F544 /* Medical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACAF1A698A4C00A9F544 /* Medical.swift */; };
@@ -158,6 +159,7 @@
 		0FA948641A698F0900EE88B5 /* Cover-squar.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cover-squar.xcf"; sourceTree = "<group>"; };
 		0FA948651A698FDB00EE88B5 /* SimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SimViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0FAB8E4F1A6C315300E784B2 /* EnterprisePresonnelControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterprisePresonnelControl.swift; sourceTree = "<group>"; };
+		0FB0742D1A715DD2006F3CA5 /* DataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
 		0FC3ACAB1A6987C000A9F544 /* Engineering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Engineering.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0FC3ACAD1A698A3300A9F544 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Helm.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0FC3ACAF1A698A4C00A9F544 /* Medical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Medical.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -233,6 +235,7 @@
 				0F6BADDC1A69C8600018B475 /* surnames.txt */,
 				0F8F96931A697CDF00E8F605 /* Images.xcassets */,
 				0F8F968C1A697CDF00E8F605 /* AppDelegate.swift */,
+				0FB0742D1A715DD2006F3CA5 /* DataTests.swift */,
 				0F8F968B1A697CDF00E8F605 /* Info.plist */,
 				0FC3ACC61A698D9F00A9F544 /* XCGLogger.swift */,
 			);
@@ -599,6 +602,7 @@
 				0FC3ACB21A698A6000A9F544 /* Navigation.swift in Sources */,
 				0FC3ACAE1A698A3300A9F544 /* Helm.swift in Sources */,
 				0F8F96EA1A69858700E8F605 /* SpatialPosition.swift in Sources */,
+				0FB0742E1A715DD2006F3CA5 /* DataTests.swift in Sources */,
 				0FC3ACC71A698D9F00A9F544 /* XCGLogger.swift in Sources */,
 				0F8F96E21A69858700E8F605 /* MasterData.swift in Sources */,
 				0F8F96F31A6985C000E8F605 /* Communications.swift in Sources */,

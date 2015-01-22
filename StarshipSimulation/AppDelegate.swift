@@ -190,21 +190,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    @IBAction func dataTests(sender: NSMenuItem) {
+    lazy var dataTests = DataTests()
+
+    /// Data tests for Enterprise Person
+    @IBAction func dataTestsEP(sender: NSMenuItem) {
         logger.debug("Entry: \(sender.title)")
-        switch sender.title {
-            case "Ent Pers":
-                if let cd = masterData?.cd {
-                    if cd.BK > 0 {
-                        let pick1 = random() % min(10, cd.BK)   // In the first ten if there are more than ten
-                        let funcStat = random() % 98    //  Less than 100%
-                        logger.info("Setting \(cd.BLid[pick1]!).BT=\(funcStat)")
-                        cd.BT[pick1] = funcStat
-                    }
-            }
-        default:
-            logger.error("Unknown Data Test request: \(sender.title)")
-        }
+        dataTests.dataTestsEP(action: sender.title)
     }
 }
 

@@ -169,6 +169,7 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
 
         if let colID = tableColumn?.identifier {
             if let myCell = tableView.makeViewWithIdentifier(colID, owner: self) as? NSTableCellView {
+                result = myCell
                 if colID == "Num" {
                     myCell.textField?.integerValue = row
                 } else {
@@ -183,7 +184,6 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
                         logger.error("Personnel view asking for \(colID) but I don't know what that is.")
                     }
                 }
-                result = myCell
             } else {
                 logger.error("Personnel view unable to find cell")
             }

@@ -36,13 +36,13 @@
                                     <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" tag="14623" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="DKt-u2-Pyh" viewBased="YES" id="Ck8-3I-fOP">
+                                        <tableView verticalHuggingPriority="750" tag="14623" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Hjh-1u-jPc" viewBased="YES" id="Ck8-3I-fOP">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="Num" width="40" minWidth="40" maxWidth="40" id="UMC-vY-bza">
+                                                <tableColumn identifier="Num" editable="NO" width="40" minWidth="40" maxWidth="40" hidden="YES" id="UMC-vY-bza">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="#">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -74,7 +74,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="BLid" width="70" minWidth="10" maxWidth="80" id="VRg-r5-Ldr">
+                                                <tableColumn identifier="BLid" editable="NO" width="70" minWidth="10" maxWidth="80" id="VRg-r5-Ldr">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="ID">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -106,7 +106,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="BL" width="120" minWidth="40" maxWidth="240" id="eg7-pE-U6d">
+                                                <tableColumn identifier="BL" editable="NO" width="120" minWidth="40" maxWidth="240" id="eg7-pE-U6d">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Name">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -143,7 +143,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="BM" width="138" minWidth="60" maxWidth="140" id="ZYn-m6-D3k">
+                                                <tableColumn identifier="BM" editable="NO" width="138" minWidth="60" maxWidth="140" id="ZYn-m6-D3k">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Rank">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -181,7 +181,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="BN" width="30" minWidth="30" maxWidth="40" id="L8L-I0-DcI">
+                                                <tableColumn identifier="BN" editable="NO" width="30" minWidth="30" maxWidth="40" id="L8L-I0-DcI">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IQ">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -219,7 +219,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="BO" width="166" minWidth="80" maxWidth="240" id="84D-PH-xqt">
+                                                <tableColumn identifier="BO" editable="NO" width="166" minWidth="80" maxWidth="240" id="84D-PH-xqt">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Loc">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -257,7 +257,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="BS" width="166" minWidth="80" maxWidth="240" id="RBx-7x-s7l">
+                                                <tableColumn identifier="BS" editable="NO" width="166" minWidth="80" maxWidth="240" id="RBx-7x-s7l">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Dest">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -295,7 +295,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="BT" width="50" minWidth="40" maxWidth="50" id="jAR-U2-1ix">
+                                                <tableColumn identifier="BT" editable="NO" width="50" minWidth="40" maxWidth="50" id="jAR-U2-1ix">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Func">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -333,7 +333,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="BU" width="50" minWidth="40" maxWidth="50" id="YCZ-3w-hpp">
+                                                <tableColumn identifier="BU" editable="NO" width="50" minWidth="40" maxWidth="50" id="YCZ-3w-hpp">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Health">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -388,8 +388,8 @@
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="DKt-u2-Pyh">
-                                    <rect key="frame" x="0.0" y="0.0" width="238" height="17"/>
+                                <tableHeaderView key="headerView" id="Hjh-1u-jPc">
+                                    <rect key="frame" x="0.0" y="0.0" width="10000" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -404,7 +404,7 @@
                             <textField identifier="foodConsumption" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bpU-iB-TTL">
                                 <rect key="frame" x="265" y="0.0" width="40" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="lBe-ip-7Rd"/>
+                                    <constraint firstAttribute="width" constant="40" id="s8P-Sb-i6S"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="FoodPerHr" drawsBackground="YES" id="hIm-bi-nbE">
                                     <font key="font" metaFont="system"/>
@@ -426,7 +426,7 @@
                             <textField identifier="waterConsumption" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Ki-rq-z5n">
                                 <rect key="frame" x="396" y="0.0" width="40" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="4FS-wh-DqA"/>
+                                    <constraint firstAttribute="width" constant="40" id="50O-XR-UIr"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="WaterPerHour" drawsBackground="YES" id="oIm-kw-WmG">
                                     <font key="font" metaFont="system"/>
@@ -448,7 +448,7 @@
                             <textField identifier="oxygenConsumption" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9T5-Z2-qP7">
                                 <rect key="frame" x="531" y="0.0" width="40" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="hDn-m5-VNn"/>
+                                    <constraint firstAttribute="width" constant="40" id="RHm-ep-DNy"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="O2PerHr" drawsBackground="YES" id="YNF-ab-T1p">
                                     <font key="font" metaFont="system"/>
@@ -469,24 +469,24 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="tH9-nZ-R2w" firstAttribute="leading" secondItem="5Ki-rq-z5n" secondAttribute="trailing" constant="8" symbolic="YES" id="1eQ-jS-xR8"/>
-                            <constraint firstAttribute="trailing" secondItem="hl8-om-mJF" secondAttribute="trailing" id="3le-69-oFr"/>
-                            <constraint firstItem="9T5-Z2-qP7" firstAttribute="leading" secondItem="tH9-nZ-R2w" secondAttribute="trailing" constant="8" symbolic="YES" id="CFW-7V-rPa"/>
-                            <constraint firstItem="5Ki-rq-z5n" firstAttribute="baseline" secondItem="bpU-iB-TTL" secondAttribute="baseline" id="CzQ-vg-X9y"/>
-                            <constraint firstItem="D7A-X6-VNL" firstAttribute="leading" secondItem="4lt-J2-7B3" secondAttribute="leading" constant="20" symbolic="YES" id="H20-uc-THP"/>
-                            <constraint firstItem="5Ki-rq-z5n" firstAttribute="leading" secondItem="KSC-mk-SyZ" secondAttribute="trailing" constant="8" symbolic="YES" id="JEk-IV-Isv"/>
-                            <constraint firstItem="KSC-mk-SyZ" firstAttribute="leading" secondItem="bpU-iB-TTL" secondAttribute="trailing" constant="8" symbolic="YES" id="M3a-aA-Kbl"/>
-                            <constraint firstItem="tH9-nZ-R2w" firstAttribute="baseline" secondItem="KSC-mk-SyZ" secondAttribute="baseline" id="Omh-RT-iJd"/>
-                            <constraint firstItem="rq2-Hr-DhN" firstAttribute="baseline" secondItem="tH9-nZ-R2w" secondAttribute="baseline" id="UTX-Gh-lOe"/>
-                            <constraint firstItem="KSC-mk-SyZ" firstAttribute="baseline" secondItem="D7A-X6-VNL" secondAttribute="baseline" id="WJ1-nG-ZEg"/>
-                            <constraint firstItem="rq2-Hr-DhN" firstAttribute="leading" secondItem="9T5-Z2-qP7" secondAttribute="trailing" constant="8" symbolic="YES" id="WhR-n6-WK7"/>
-                            <constraint firstItem="rq2-Hr-DhN" firstAttribute="bottom" secondItem="9T5-Z2-qP7" secondAttribute="bottom" id="bev-m1-FMU"/>
-                            <constraint firstAttribute="bottom" secondItem="D7A-X6-VNL" secondAttribute="bottom" id="flq-LD-zBY"/>
-                            <constraint firstItem="5Ki-rq-z5n" firstAttribute="baseline" secondItem="9T5-Z2-qP7" secondAttribute="baseline" id="gKN-V8-BLK"/>
-                            <constraint firstItem="bpU-iB-TTL" firstAttribute="top" secondItem="hl8-om-mJF" secondAttribute="bottom" constant="1" id="iDT-nW-iSG"/>
-                            <constraint firstItem="hl8-om-mJF" firstAttribute="top" secondItem="4lt-J2-7B3" secondAttribute="top" id="mDE-Um-ook"/>
-                            <constraint firstItem="bpU-iB-TTL" firstAttribute="leading" secondItem="D7A-X6-VNL" secondAttribute="trailing" constant="8" symbolic="YES" id="vVd-aa-cyA"/>
-                            <constraint firstItem="hl8-om-mJF" firstAttribute="leading" secondItem="4lt-J2-7B3" secondAttribute="leading" id="viy-zP-4Ms"/>
+                            <constraint firstItem="tH9-nZ-R2w" firstAttribute="leading" secondItem="5Ki-rq-z5n" secondAttribute="trailing" constant="8" symbolic="YES" id="4EL-7I-lhK"/>
+                            <constraint firstItem="D7A-X6-VNL" firstAttribute="leading" secondItem="4lt-J2-7B3" secondAttribute="leading" constant="20" id="61q-eN-67Z"/>
+                            <constraint firstItem="tH9-nZ-R2w" firstAttribute="baseline" secondItem="KSC-mk-SyZ" secondAttribute="baseline" id="7iv-Hg-ias"/>
+                            <constraint firstItem="tH9-nZ-R2w" firstAttribute="baseline" secondItem="rq2-Hr-DhN" secondAttribute="baseline" id="8LS-st-1dU"/>
+                            <constraint firstItem="hl8-om-mJF" firstAttribute="leading" secondItem="4lt-J2-7B3" secondAttribute="leading" id="BpK-TE-F5U"/>
+                            <constraint firstItem="rq2-Hr-DhN" firstAttribute="leading" secondItem="9T5-Z2-qP7" secondAttribute="trailing" constant="8" symbolic="YES" id="Hpc-VX-BLw"/>
+                            <constraint firstItem="9T5-Z2-qP7" firstAttribute="leading" secondItem="tH9-nZ-R2w" secondAttribute="trailing" constant="8" symbolic="YES" id="IC8-Rt-Ip2"/>
+                            <constraint firstItem="bpU-iB-TTL" firstAttribute="baseline" secondItem="5Ki-rq-z5n" secondAttribute="baseline" id="MR2-ba-Igy"/>
+                            <constraint firstAttribute="trailing" secondItem="hl8-om-mJF" secondAttribute="trailing" id="Q2b-B2-Mpr"/>
+                            <constraint firstItem="bpU-iB-TTL" firstAttribute="top" secondItem="hl8-om-mJF" secondAttribute="bottom" constant="1" id="SRA-pU-UE3"/>
+                            <constraint firstItem="9T5-Z2-qP7" firstAttribute="baseline" secondItem="5Ki-rq-z5n" secondAttribute="baseline" id="Tqp-S5-8Cy"/>
+                            <constraint firstItem="hl8-om-mJF" firstAttribute="top" secondItem="4lt-J2-7B3" secondAttribute="top" id="Ws7-cO-NtO"/>
+                            <constraint firstItem="KSC-mk-SyZ" firstAttribute="leading" secondItem="bpU-iB-TTL" secondAttribute="trailing" constant="8" symbolic="YES" id="ZSm-5z-heQ"/>
+                            <constraint firstAttribute="bottom" secondItem="9T5-Z2-qP7" secondAttribute="bottom" id="hFF-xC-gwt"/>
+                            <constraint firstItem="bpU-iB-TTL" firstAttribute="leading" secondItem="D7A-X6-VNL" secondAttribute="trailing" constant="8" symbolic="YES" id="rlF-hX-ToM"/>
+                            <constraint firstItem="5Ki-rq-z5n" firstAttribute="leading" secondItem="KSC-mk-SyZ" secondAttribute="trailing" constant="8" symbolic="YES" id="sYd-H9-mld"/>
+                            <constraint firstItem="D7A-X6-VNL" firstAttribute="baseline" secondItem="KSC-mk-SyZ" secondAttribute="baseline" id="w1S-wc-KAw"/>
+                            <constraint firstItem="9T5-Z2-qP7" firstAttribute="bottom" secondItem="rq2-Hr-DhN" secondAttribute="bottom" id="wco-43-e9D"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1176,11 +1176,36 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Data Tests" id="Yiw-TY-EPs">
                                                 <items>
-                                                    <menuItem title="Ent Pers" id="ry5-Na-J4c">
+                                                    <menuItem title="Enterprise Person" id="gEk-fJ-OeM">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="dataTests:" target="Voe-Tx-rLC" id="lDb-EV-ZX7"/>
-                                                        </connections>
+                                                        <menu key="submenu" title="Enterprise Person" id="KS6-cY-Wyw">
+                                                            <items>
+                                                                <menuItem title="Update" id="ry5-Na-J4c">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="dataTestsEP:" target="Voe-Tx-rLC" id="ryD-hM-t4i"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Insert" id="yht-Vj-lAX">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="dataTestsEP:" target="Voe-Tx-rLC" id="2U4-GY-fz5"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Remove" id="gTi-Pg-CoP">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="dataTestsEP:" target="Voe-Tx-rLC" id="HH6-v3-k2w"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Replace" id="cOD-pT-chi">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="dataTestsEP:" target="Voe-Tx-rLC" id="HIj-Z4-HY1"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                            </items>
+                                                        </menu>
                                                     </menuItem>
                                                 </items>
                                             </menu>

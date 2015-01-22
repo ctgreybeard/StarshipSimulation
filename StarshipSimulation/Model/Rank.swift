@@ -13,14 +13,14 @@ enum FederationRank: String {
     ScienceOfficer = "Science Officer",
     EngineeringOfficer = "Engineering Officer",
     MedicalOfficer = "Medical Officer",
-    ChiefMedicalOfficer = "Chief Medical Officer",
+    SeniorMedicalOfficer = "Senior Medical Officer",
     SecurityOfficer = "Security Officer",
     MaintenanceCrew = "Maintenance Crew",
     GeneralCrew = "General Crew",
     RedShirt = "Red Shirt"
 }
 
-private let officers: [FederationRank] = [.ScienceOfficer, .EngineeringOfficer, .MedicalOfficer, .ChiefMedicalOfficer, .SecurityOfficer]
+private let officers: [FederationRank] = [.ScienceOfficer, .EngineeringOfficer, .MedicalOfficer, .SeniorMedicalOfficer, .SecurityOfficer]
 private let crew: [FederationRank] = [.MaintenanceCrew, .GeneralCrew, .RedShirt]
 
 let numEnterpriseOfficers = 43

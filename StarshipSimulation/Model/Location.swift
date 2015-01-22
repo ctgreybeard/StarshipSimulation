@@ -58,7 +58,7 @@ private let hintLocation: [FederationRank: [LocationCode]] =
 [.ScienceOfficer: [.Bridge, .SciencesLaboratory, .MedicalResearchLaboratory],
     .EngineeringOfficer: [.Bridge, .Engineering, .TurboElevatorComputer, .TractorBeam, .OxygenDistributionAndRecycling, .WaterDistributionAndRecycling, .EnergySupply],
     .MedicalOfficer: [.MedicalResearchLaboratory, .MedicalComputer, .IntensiveCareUnit],
-    .ChiefMedicalOfficer: [.Bridge, .MedicalResearchLaboratory, .MedicalComputer, .IntensiveCareUnit],
+    .SeniorMedicalOfficer: [.Bridge, .MedicalResearchLaboratory, .MedicalComputer, .IntensiveCareUnit],
     .SecurityOfficer: [.Brig, .Security, .Shuttlebay],
     .MaintenanceCrew: [.Engineering, .TractorBeam, .FoodProcessingPlant, .OxygenDistributionAndRecycling, .WaterDistributionAndRecycling, .EnergySupply, .PhaserStationPort, .PhaserStationStarboard, .PhaserStationTop, .PhaserStationBottom, .PhaserStationFore, .PhaserStationAft, .Shuttlebay, .SensorStations],
     .GeneralCrew: [.Bridge, .Brig, .EnergySupply, .Engineering, .FoodProcessingPlant, .MedicalResearchLaboratory, .OxygenDistributionAndRecycling, .PhaserStationAft, .PhaserStationBottom, .PhaserStationFore, .PhaserStationPort, .PhaserStationStarboard, .PhaserStationTop, .SciencesLaboratory, .Security, .SensorStations, .Shuttlebay, .TractorBeam, .TurboElevatorComputer, .WaterDistributionAndRecycling],
