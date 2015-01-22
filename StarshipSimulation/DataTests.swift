@@ -14,7 +14,7 @@ class DataTests: NSObject {
     func dataTestsEP(#action: String) {
         logger.debug("Entry: \(action)")
         if let cd = masterData?.cd {
-            let pick1 = random() % min(10, cd.BK)   // In the first ten if there are more than ten
+            let pick1 = random() % min(20, cd.BK)   // In the first twenty if there are more than twenty
             switch action {
             case "Update":
                 if cd.BK > 0 {
@@ -23,11 +23,16 @@ class DataTests: NSObject {
                     cd.BT[pick1] = funcStat
                 }
             case "Remove":
-                break
+                logger.debug("Removing \(cd.BLid[pick1]) at \(pick1)")
+                cd.enterprisePersonnel.removeAtIndex(pick1)
             case "Insert":
-                break
+                let newOne = EnterprisePerson()
+                logger.debug("Inserting \(newOne.BLid) at \(pick1)")
+                cd.enterprisePersonnel.insertObject(newOne, atIndex: pick1)
             case "Replace":
-                break
+                let newOne = EnterprisePerson()
+                logger.debug("Replacing \(cd.BLid[pick1]) with \(newOne.BLid) at \(pick1)")
+                cd.enterprisePersonnel[pick1] = newOne
             default:
                 logger.error("Unknown Data Test request: \(action)")
             }

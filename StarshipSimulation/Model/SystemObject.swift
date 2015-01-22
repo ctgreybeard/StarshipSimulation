@@ -235,13 +235,22 @@ class SystemArray: SystemObject {
         }
         return temp
     }
+
+    /// Insert the item at index
+    func insertObject(newOne: SystemArrayObject, atIndex index: Int) {
+        if index >= 0 && index < _array.count {
+            willChange(.Insertion, valuesAtIndexes: NSIndexSet(index: index), forKey: "array")
+            _array.insertObject(newOne, atIndex: index)
+            didChange(.Insertion, valuesAtIndexes: NSIndexSet(index: index), forKey: "array")
+        }
+    }
 }
 
-/// Contents of SyatemArray, subclasses must implement copyWithZone
+/// Contents of SystemArray, subclasses must implement copyWithZone
 class SystemArrayObject: SystemObject, NSCopying {
 
     func copyWithZone(zone: NSZone) -> AnyObject {
-        /// MARK:        logIt(doLog, "Copying SAO \(saoID)")
+        logger.verbose("Copying SAO \(soID)")
         return SystemArrayObject()
     }
 

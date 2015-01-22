@@ -37,7 +37,7 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
         masterData?.cd.addObserver(self, forKeyPath: "foodConsumption", options: .New, context: ourContext)
         masterData?.cd.addObserver(self, forKeyPath: "waterConsumption", options: .New, context: ourContext)
         masterData?.cd.addObserver(self, forKeyPath: "oxygenConsumption", options: .New, context: ourContext)
-        masterData?.cd.addObserver(self, forKeyPath: "enterprisePersonnel", options: .New | .Prior, context: ourContext)
+        masterData?.cd.addObserver(self, forKeyPath: "enterprisePersonnel.array", options: .New | .Prior, context: ourContext)
     }
 
     override func viewWillDisappear() {
@@ -45,8 +45,8 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
         masterData?.cd.removeObserver(self, forKeyPath: "foodConsumption")
         masterData?.cd.removeObserver(self, forKeyPath: "waterConsumption")
         masterData?.cd.removeObserver(self, forKeyPath: "oxygenConsumption")
-        masterData?.cd.removeObserver(self, forKeyPath: "enterprisePersonnel")
-        redoObservers() // Remove our observers
+        masterData?.cd.removeObserver(self, forKeyPath: "enterprisePersonnel.array")
+        dropObservers() // Remove our observers
         floatFormatter = nil
         super.viewWillDisappear()
     }
@@ -55,82 +55,89 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
         return masterData?.cd.BK ?? 0
     }
 
-    /// MARK - This probably won't work if the array has already changed length
-    func redoObservers() {
-        for n in 0..<observers.count {
-            if let person = observers[n] {
-                person.removeObserver(self, forKeyPath: "personInfo")
-                observers[n] = nil
-            }
-        }
+    // MARK - This probably won't work if the array has already changed length
+
+    /// Drop all obervers and nil the array. It will be rebuilt the next time it is needed.
+    func dropObservers() {
+        dropObservers(atIndexes: NSIndexSet(indexesInRange: NSMakeRange(0, observers.count)))
         observers = nil
     }
 
-    func dropObservers(indexes: NSIndexSet?, remove: Bool) {
+    /// Drop the observers (usually only one) at index(es)
+    func dropObservers(atIndexes indexes: NSIndexSet?) {
         for var n = indexes!.firstIndex; n < NSNotFound; n = indexes!.indexGreaterThanIndex(n) {
             if let object = observers[n] {
                 object.removeObserver(self, forKeyPath: "personInfo")
             }
             observers[n] = nil
-            if remove {observers.removeAtIndex(n)}
         }
     }
 
+    /// Return a string describing the NSKeyValueChangeKind (for logging)
+    private func kindStr(kind: NSKeyValueChange) -> String {
+        let kindString: [NSKeyValueChange: String] = [
+            .Replacement: ".Replacement",
+            .Insertion: ".Insertion",
+            .Removal: ".Removal",
+            .Setting: ".Setting"]
+        return kindString[kind] ?? ".???"
+    }
+
+    /// Notified when observed values will be or have been changed.
+    /// This is cool but a little complex.
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
         logger.debug("Entry: key: \(keyPath)")
         if context == ourContext {
             var fld: NSTextField?
             let cd = masterData?.cd
+            let ourView = view.viewWithTag(myTag) as? NSTableView
+            let cdict = change as [NSString: AnyObject]
+            let kind = NSKeyValueChange(rawValue: UInt(cdict[NSKeyValueChangeKindKey] as NSNumber))!
+            let prior = (cdict[NSKeyValueChangeNotificationIsPriorKey] as? NSNumber) == NSNumber(bool: true)
+            let indexes = cdict[NSKeyValueChangeIndexesKey] as? NSIndexSet
+            logger.debug("key: \(keyPath), kind: \(kindStr(kind)), prior: \(prior), indexes: \(indexes)")
 
             if observers == nil {observers = [EnterprisePerson?](count: masterData!.cd.BK, repeatedValue: nil)}
             else if observers.count != masterData!.cd.BK {
-                logger.severe("observers array not same length as cd.BK! (observers: \(observers.count) vs BK: \(masterData!.cd.BK)")
-                redoObservers()
+                logger.severe("observers array not same length as cd.BK! (observers: \(observers.count) vs BK: \(masterData!.cd.BK))")
+                dropObservers()
             }
 
-            if keyPath == "personInfo" {
+            /// Something changed ... what was it?
+            if keyPath == "personInfo" {    // Personal data
                 // Iterate through the observers array to find a matching object; that index is the table row number
                 for n in 0..<observers.count {
                     if let observed = observers[n] {
                         if observed === object {
                             logger.debug("Found observed person for row \(n)")
-                            if let ourView = view.viewWithTag(myTag) as? NSTableView {
-                                ourView.reloadDataForRowIndexes(NSIndexSet(index: n), columnIndexes: NSIndexSet(indexesInRange: NSMakeRange(0, ourView.numberOfColumns)))   // Reload th entire row
-                            } else {
-                                logger.error("Cannot access NSTableView!")
-                            }
+                            ourView?.reloadDataForRowIndexes(NSIndexSet(index: n), columnIndexes: NSIndexSet(indexesInRange: NSMakeRange(0, ourView!.numberOfColumns)))   // Reload th entire row
                             break   // We are done ...
                         }
                     }
                 }
-            } else if keyPath == "enterprisePersonnel" {
-                let cdict = change as [NSString: AnyObject]
-                let kind = cdict[NSKeyValueChangeKindKey] as NSNumber
-                let prior = cdict[NSKeyValueChangeNotificationIsPriorKey] as? NSNumber
-                let indexes = cdict[NSKeyValueChangeIndexesKey] as? NSIndexSet
-                logger.debug("kind: \(kind), prior: \(prior), indexes: \(indexes)")
-                switch UInt(kind.unsignedIntValue) {
-                case NSKeyValueChange.Removal.rawValue:
-                    logger.debug(".Removal")
-                    if prior != nil {
-                        dropObservers(indexes, remove: true)
-                    }
-                case NSKeyValueChange.Replacement.rawValue:
-                    logger.debug(".Replacement")
-                    if prior != nil {dropObservers(indexes, remove: false)}
-                case NSKeyValueChange.Insertion.rawValue:
-                    logger.debug(".Insertion")
-                    if prior == nil {
-                        for var n = indexes!.firstIndex; n < observers.count; n = indexes!.indexGreaterThanIndex(n) {
-                            observers.insert(nil, atIndex: n)   // Will this work for more than one element?
+            } else if keyPath == "enterprisePersonnel.array" {  // An element in the array containing all Entrprise Personnel changed
+                switch kind {
+                case .Replacement:
+                    if prior {
+                        dropObservers(atIndexes: indexes)
+                    } else {
+                        if let updIndex = indexes {
+                            ourView?.reloadDataForRowIndexes(updIndex, columnIndexes: NSIndexSet(indexesInRange: NSMakeRange(0, ourView!.numberOfColumns)))   // Reload the row
+                        } else {
+                            logger.severe("No indexes found for .Replacemnt request")
                         }
                     }
-                case NSKeyValueChange.Setting.rawValue:
-                    logger.debug(".Setting")
-                default:
-                    logger.error("Unknown Change Kind: \(kind)")
+                case .Insertion, .Removal:
+                    //  The following line crashes the SourcKit AND the Swift compiler
+                    //logger.debug(kind == .Insertion ? ".Insertion" : ".Removal")
+                    if prior {   // Before the insert/removal
+                        dropObservers() // Drop all of our observers
+                    } else {            // After the insert
+                        ourView?.reloadData()   // Rebuild the display
+                    }
+                case .Setting:  // This shouldn't occur, show an error
+                    logger.error("Unhandled change request: .Setting")
                 }
-                logger.debug("")
             } else {
                 switch keyPath {
                 case "foodConsumption":
@@ -143,11 +150,17 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
                     logger.error("Unknown key: \(keyPath)")
                 }
 
-                if let tval = change[NSKeyValueChangeNewKey] as? Float {
-                    logger.debug("Setting \(keyPath) to \(tval)")
-                    fld?.floatValue = tval
-                } else {
-                    logger.error("Error setting \(keyPath) using \(change[NSKeyValueChangeNewKey])")
+                if let setFld = fld {
+                    if let tval = change[NSKeyValueChangeNewKey] as? Float {
+                        if tval != setFld.floatValue {
+                            logger.debug("Setting \(keyPath) to \(tval)")
+                            setFld.floatValue = tval
+                        } else {
+                            logger.debug("No change in \(keyPath)")
+                        }
+                    } else {
+                        logger.error("Error setting \(keyPath) using \(change[NSKeyValueChangeNewKey])")
+                    }
                 }
             }
         } else {
@@ -192,8 +205,13 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
         }
         return result
     }
+
     @IBAction func updateConsumption(sender: NSTextField) {
-        logger.debug("Setting value \(sender.stringValue) for \(sender.identifier)")
-        masterData?.cd.setValue(sender.floatValue, forKey: sender.identifier)
+        if sender.floatValue != masterData.cd.valueForKey(sender.identifier) as? Float {
+            logger.debug("Setting value \(sender.stringValue) for \(sender.identifier)")
+            masterData?.cd.setValue(sender.floatValue, forKey: sender.identifier)
+        } else {
+            logger.debug("No change for \(sender.identifier)")
+        }
     }
 }

@@ -21,7 +21,7 @@ enum FederationRank: String {
 }
 
 private let officers: [FederationRank] = [.ScienceOfficer, .EngineeringOfficer, .MedicalOfficer, .SeniorMedicalOfficer, .SecurityOfficer]
-private let crew: [FederationRank] = [.MaintenanceCrew, .GeneralCrew, .RedShirt]
+private let crew: [FederationRank] = [.MaintenanceCrew, .GeneralCrew]
 
 let numEnterpriseOfficers = 43
 let numEnterpriseCrew = 387
@@ -67,6 +67,11 @@ class Rank: SystemObject, Printable, NSCopying, Hashable, Equatable {
         var pickRank: FederationRank
 
         pickRank = crew[pick1]
+
+        // 10% of crew are "RedShirts" and doomed on any away mission!
+        if random() % 10 == 0 {
+            pickRank = .RedShirt
+        }
 
         return Rank(rank: pickRank)
     }
