@@ -8,6 +8,8 @@
 
 import Foundation
 
+private let infoArrayFP = ["name","rank","iq","location","position","destination","functionalStatus","healthStatus"]
+
 /// An officer or crew member
 class FederationPerson: SystemArrayObject {
 
@@ -26,8 +28,9 @@ class FederationPerson: SystemArrayObject {
     var functionalStatus: FunctionalStatus
     var healthStatus: Int
 
-    func keyPathsForValuesAffectingPersonInfo() -> NSSet {
-        return NSSet(array: ["name","rank","iq","location","destination","functionalStatus","healthStatus"])
+    class func keyPathsForValuesAffectingPersonInfo() -> NSSet {
+        logger.debug("Entry")
+        return NSSet(array: infoArrayFP)
     }
     
     required init() {
@@ -61,7 +64,14 @@ class FederationPerson: SystemArrayObject {
     }
 }
 
+private let infoArrayEP = ["BL","BLid","BM","BN","BO","BOd","BP","BQ","BR","BS","BSd","BT","BU"]
+
 class EnterprisePerson: FederationPerson {
+
+    class override func keyPathsForValuesAffectingPersonInfo() -> NSSet {
+        logger.debug("Entry")
+        return super.keyPathsForValuesAffectingPersonInfo().setByAddingObjectsFromArray(infoArrayEP)
+    }
     dynamic var BL: String {
         get {return name}
         set {name = newValue}

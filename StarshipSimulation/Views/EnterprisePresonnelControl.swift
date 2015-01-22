@@ -20,6 +20,8 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
     var observers: [EnterprisePerson?]!
     var floatFormatter: NSNumberFormatter!
 
+    let myTag = 14623   // Tag set in Storyboard for NSTableView
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -87,12 +89,17 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
             }
 
             if keyPath == "personInfo" {
+                // Iterate through the observers array to find a matching object; that index is the table row number
                 for n in 0..<observers.count {
                     if let observed = observers[n] {
                         if observed === object {
-                            logger.verbose("Found observed person for row \(n)")
-                            let ourView = view as NSTableView
-                            ourView.reloadDataForRowIndexes(NSIndexSet(index: n), columnIndexes: NSIndexSet(indexesInRange: NSMakeRange(0, ourView.numberOfColumns)))
+                            logger.debug("Found observed person for row \(n)")
+                            if let ourView = view.viewWithTag(myTag) as? NSTableView {
+                                ourView.reloadDataForRowIndexes(NSIndexSet(index: n), columnIndexes: NSIndexSet(indexesInRange: NSMakeRange(0, ourView.numberOfColumns)))   // Reload th entire row
+                            } else {
+                                logger.error("Cannot access NSTableView!")
+                            }
+                            break   // We are done ...
                         }
                     }
                 }

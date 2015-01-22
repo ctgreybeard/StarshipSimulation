@@ -36,7 +36,7 @@
                                     <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="DKt-u2-Pyh" viewBased="YES" id="Ck8-3I-fOP">
+                                        <tableView verticalHuggingPriority="750" tag="14623" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="DKt-u2-Pyh" viewBased="YES" id="Ck8-3I-fOP">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1167,6 +1167,19 @@
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="setLogger:" target="Voe-Tx-rLC" id="rXV-8f-erY"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem title="Data Tests" id="YZD-oz-WrS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Data Tests" id="Yiw-TY-EPs">
+                                                <items>
+                                                    <menuItem title="Ent Pers" id="ry5-Na-J4c">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="dataTests:" target="Voe-Tx-rLC" id="lDb-EV-ZX7"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
