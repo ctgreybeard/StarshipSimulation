@@ -102,16 +102,17 @@ class CommonData: NSObject {
         let defaultNumEnterprisePersons = 43 + 387
         enterprisePersonnel = SystemArray(num: defaultNumEnterprisePersons, withType: EnterprisePerson.self)
 
-        BL = SystemArrayAccess(source: enterprisePersonnel, member: "BL")
-        BM = SystemArrayAccess(source: enterprisePersonnel, member: "BM")
-        BN = SystemArrayAccess(source: enterprisePersonnel, member: "BN")
-        BO = SystemArrayAccess(source: enterprisePersonnel, member: "BO")
-        BOd = SystemArrayAccess(source: enterprisePersonnel, member: "BOd")
-        BP = SystemArrayAccess(source: enterprisePersonnel, member: "BP")
-        BQ = SystemArrayAccess(source: enterprisePersonnel, member: "BQ")
-        BR = SystemArrayAccess(source: enterprisePersonnel, member: "BR")
-        BS = SystemArrayAccess(source: enterprisePersonnel, member: "BS")
-        BSd = SystemArrayAccess(source: enterprisePersonnel, member: "BSd")
+        BL = SystemArrayAccess(source: enterprisePersonnel, member: "BL")   // Name
+        BLid = SystemArrayAccess(source: enterprisePersonnel, member: "BLid", readOnly: true)   // soID.description
+        BM = SystemArrayAccess(source: enterprisePersonnel, member: "BM")   // Rank
+        BN = SystemArrayAccess(source: enterprisePersonnel, member: "BN")   // IQ
+        BO = SystemArrayAccess(source: enterprisePersonnel, member: "BO")   // Location
+        BOd = SystemArrayAccess(source: enterprisePersonnel, member: "BOd") // Location description
+        BP = SystemArrayAccess(source: enterprisePersonnel, member: "BP")   // X-coordinate
+        BQ = SystemArrayAccess(source: enterprisePersonnel, member: "BQ")   // Y-coordinate
+        BR = SystemArrayAccess(source: enterprisePersonnel, member: "BR")   // Z-coordinate
+        BS = SystemArrayAccess(source: enterprisePersonnel, member: "BS")   // Destination
+        BSd = SystemArrayAccess(source: enterprisePersonnel, member: "BSd") // Destination description
         BT = SystemArrayAccess(source: enterprisePersonnel, member: "BT")   // functionalstatus
         BU = SystemArrayAccess(source: enterprisePersonnel, member: "BU")
         enterprisePersonsArrayAccessList = [BL, BM, BN, BO, BP, BQ, BR, BS, BT, BU]
@@ -732,7 +733,8 @@ class CommonData: NSObject {
         }
     }
     var BK: Int {return enterprisePersonnel.count}
-    dynamic var BL: SystemArrayAccess
+    var BL: SystemArrayAccess
+    var BLid: SystemArrayAccess
     let BM: SystemArrayAccess
     let BN: SystemArrayAccess
     let BO: SystemArrayAccess

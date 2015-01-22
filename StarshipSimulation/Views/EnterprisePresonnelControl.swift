@@ -18,12 +18,13 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
     @IBOutlet weak var fldO2Consumption: NSTextField!
     //    weak var cd: CommonData?
     var observers: [EnterprisePerson?]!
+    var floatFormatter: NSNumberFormatter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         logger.debug("Entry")
-        let floatFormatter = NSNumberFormatter()
+        floatFormatter = NSNumberFormatter()
         floatFormatter.format = "#0.0"
         fldFoodConsumption.formatter = floatFormatter
         fldFoodConsumption?.floatValue = masterData?.cd.foodConsumption ?? 0.0
@@ -44,6 +45,7 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
         masterData?.cd.removeObserver(self, forKeyPath: "oxygenConsumption")
         masterData?.cd.removeObserver(self, forKeyPath: "enterprisePersonnel")
         redoObservers() // Remove our observers
+        floatFormatter = nil
         super.viewWillDisappear()
     }
 
@@ -164,10 +166,8 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
                     myCell.textField?.integerValue = row
                 } else {
                     switch colID {
-                    case "BL", "BM":
+                    case "BL", "BM", "BLid":
                         myCell.textField?.stringValue = (masterData.cd.valueForKey(colID) as SystemArrayAccess)[row] as String
-                    case "BV", "BW", "BX":
-                        myCell.textField?.floatValue = masterData.cd.valueForKey(colID) as Float
                     case "BO", "BS":    // Location and Destination
                         myCell.textField?.stringValue = (masterData.cd.valueForKey(colID + "d") as SystemArrayAccess)[row] as String
                     case "BN", "BT", "BU":

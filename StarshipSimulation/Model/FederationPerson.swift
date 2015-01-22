@@ -67,6 +67,8 @@ class EnterprisePerson: FederationPerson {
         set {name = newValue}
     }
 
+    dynamic var BLid: String {return soID.description}
+
     dynamic var BM: String {
         get {return rank.rank.rawValue}
         set {
