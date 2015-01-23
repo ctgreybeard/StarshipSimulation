@@ -77,8 +77,8 @@ class Name {
         let gCount = _givenNames?.count ?? 1
         let sCount = _surNames?.count ?? 1
         do {
-            gIndex = random() % gCount
-            sIndex = random() % sCount
+            gIndex = ssRandom(gCount)
+            sIndex = ssRandom(sCount)
             trialUsed = UsedName(g: gIndex, s: sIndex)
         } while _used[trialUsed] != nil && _used[trialUsed] == true
 

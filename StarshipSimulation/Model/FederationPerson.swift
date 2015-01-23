@@ -32,16 +32,16 @@ class FederationPerson: SystemArrayObject {
         logger.debug("Entry")
         return NSSet(array: infoArrayFP)
     }
-    
+
     required init() {
         name = Name()?.asString() ?? "No Name"
         let hRank = Rank.randomRank()
         rank = hRank
-        iq = 100
+        iq = Int(ssRandomSND(130.0, 15.0))
         location = Location(hint: hRank)    // Make a logical choice based on their Rank
         destination = nil  // No destination
-        functionalStatus = FunctionalStatus(100)
-        healthStatus = 10
+        functionalStatus = FunctionalStatus(min(100, Int(104.0 - ssRandomSND(8.0, 4.0))))    // Everybody is raring to go!
+        healthStatus = max(1, min(10, Int(14.0 - ssRandomSND(3.0, 2.0))))                    // And mostly healthy
         super.init()
         mkSOID(.FederationPerson)
     }

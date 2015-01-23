@@ -50,3 +50,19 @@ enum AlertStatus: Int {
     case Red
 }
 
+/// Returns an Int in 0..<limit
+func ssRandom(limit: Int) -> Int {
+    return Int(arc4random_uniform(UInt32(limit)))
+}
+
+/// Returns a Double in 0..<1.0
+func ssRandom() -> Double {
+    let divisor = 1000000000
+    return Double(ssRandom(divisor)) / Double(divisor)
+}
+
+/// Returns a Double with the requested mean and Std Dev
+func ssRandomSND(mean: Double, stdDev: Double) -> Double {
+    return (ssRandom() * 2 + ssRandom() * 2 + ssRandom() * 2 - 3 ) * stdDev + mean
+}
+

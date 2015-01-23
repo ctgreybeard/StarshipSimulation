@@ -8,8 +8,6 @@
 
 import Cocoa
 
-private var ourContext = UnsafeMutablePointer<Void>(bitPattern: Int(NSDate.timeIntervalSinceReferenceDate()))
-
 class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate {
 
     @IBOutlet weak var tvEPers: NSTableView!
@@ -22,6 +20,8 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
 
     let myTag = 14623   // Tag set in Storyboard for NSTableView
 
+    private var ourContext = UnsafeMutablePointer<Void>(bitPattern: Int(NSDate.timeIntervalSinceReferenceDate() * 1000.0))  // milliseconds
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -74,13 +74,14 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
     }
 
     /// Return a string describing the NSKeyValueChangeKind (for logging)
-    private func kindStr(kind: NSKeyValueChange) -> String {
+    private func kindDecode(kindInt: UInt) -> (NSKeyValueChange, String) {
         let kindString: [NSKeyValueChange: String] = [
             .Replacement: ".Replacement",
             .Insertion: ".Insertion",
             .Removal: ".Removal",
             .Setting: ".Setting"]
-        return kindString[kind] ?? ".???"
+        let kind = NSKeyValueChange(rawValue: kindInt)!
+        return (kind, kindString[kind] ?? ".???")
     }
 
     /// Notified when observed values will be or have been changed.
@@ -92,10 +93,10 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
             let cd = masterData?.cd
             let ourView = view.viewWithTag(myTag) as? NSTableView
             let cdict = change as [NSString: AnyObject]
-            let kind = NSKeyValueChange(rawValue: UInt(cdict[NSKeyValueChangeKindKey] as NSNumber))!
+            let (kind, kindStr) = kindDecode(UInt(cdict[NSKeyValueChangeKindKey] as NSNumber))
             let prior = (cdict[NSKeyValueChangeNotificationIsPriorKey] as? NSNumber) == NSNumber(bool: true)
             let indexes = cdict[NSKeyValueChangeIndexesKey] as? NSIndexSet
-            logger.debug("key: \(keyPath), kind: \(kindStr(kind)), prior: \(prior), indexes: \(indexes)")
+            logger.debug("key: \(keyPath), kind: \(kindStr), prior: \(prior), indexes: \(indexes)")
 
             if observers == nil {observers = [EnterprisePerson?](count: masterData!.cd.BK, repeatedValue: nil)}
             else if observers.count != masterData!.cd.BK {
@@ -104,7 +105,7 @@ class EnterprisePersonnelControl: NSViewController, NSTableViewDataSource, NSTab
             }
 
             /// Something changed ... what was it?
-            if keyPath == "personInfo" {    // Personal data
+            if keyPath == "personInfo" {    // Person data
                 // Iterate through the observers array to find a matching object; that index is the table row number
                 for n in 0..<observers.count {
                     if let observed = observers[n] {

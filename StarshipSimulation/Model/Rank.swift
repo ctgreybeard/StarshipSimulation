@@ -41,7 +41,7 @@ class Rank: SystemObject, Printable, NSCopying, Hashable, Equatable {
     }
 
     class func randomRank() -> Rank {
-        let pick1 = random() % (numEnterpriseCrew + numEnterpriseOfficers)
+        let pick1 = ssRandom(numEnterpriseCrew + numEnterpriseOfficers)
         var pickRank: Rank
 
         if pick1 < numEnterpriseOfficers {
@@ -54,7 +54,7 @@ class Rank: SystemObject, Printable, NSCopying, Hashable, Equatable {
     }
 
     class func randomOfficerRank() -> Rank {
-        let pick1 = random()  % officers.count
+        let pick1 = ssRandom(officers.count)
         var pickRank: FederationRank
 
         pickRank = officers[pick1]
@@ -63,13 +63,13 @@ class Rank: SystemObject, Printable, NSCopying, Hashable, Equatable {
     }
 
     class func randomCrewRank() -> Rank {
-        let pick1 = random() % crew.count
+        let pick1 = ssRandom(crew.count)
         var pickRank: FederationRank
 
         pickRank = crew[pick1]
 
         // 10% of crew are "RedShirts" and doomed on any away mission!
-        if random() % 10 == 0 {
+        if ssRandom(10) == 0 {
             pickRank = .RedShirt
         }
 

@@ -35,7 +35,7 @@ class SystemArrayTests: XCTestCase {
             charset.append(c)
         }
         for _ in 0..<length {
-            let i = random() % charset.count
+            let i = ssRandom(charset.count)
             newName.append(charset[i])
         }
         return newName
@@ -70,8 +70,8 @@ class SystemArrayTests: XCTestCase {
         BU = SystemArrayAccess(source: enterprisePersonnel, member: "BU")
 
         // Pick two random test people
-        let tp1 = random() % enterprisePersonnel.count
-        let tp2 = random() % enterprisePersonnel.count
+        let tp1 = ssRandom(enterprisePersonnel.count)
+        let tp2 = ssRandom(enterprisePersonnel.count)
 
         println("Test person 1: \(tp1), person 2: \(tp2)")
 
@@ -180,12 +180,12 @@ class SystemArrayTests: XCTestCase {
         let B3 = SystemArrayAccess(source: photonTubes, members: ["torpedos", "location.num"])
         let B4 = SystemArrayAccess(source: photonTubes, members: ["torpedos", "destination.num"])
 
-        let testTube = random() % numPhotonTubes    // Pick a test tube
+        let testTube = ssRandom(numPhotonTubes)    // Pick a test tube
         var t: Int
         var n = 0
         do  {
             if n++ > 20 {abort()}           // Don't get hung up too long
-            t = random() % numPhotonTubes   // And another
+            t = ssRandom(numPhotonTubes)    // And another
         } while t == testTube
         let testTube2 = t   //  Assure we don't pick two the same
         let testTubes = [testTube, testTube2]

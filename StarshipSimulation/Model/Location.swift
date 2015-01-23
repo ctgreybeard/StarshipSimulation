@@ -188,9 +188,9 @@ class Location: SystemArrayObject, Equatable, Printable {
     }
 
     convenience init(hint: Rank) {
-        if random() % 4 == 0 {      // 1 in 4 chance that they are at work
+        if ssRandom(4) == 0 {      // 1 in 4 chance that they are at work
             if let possibles = hintLocation[hint.rank] {
-                self.init(code: possibles[random() % possibles.count], craft: -1, position: nil)
+                self.init(code: possibles[ssRandom(possibles.count)], craft: -1, position: nil)
             } else {
                 self.init(code: .CrewsQuarters, craft: -1, position: nil)   // We don't know who they are so they are probably sleeping
             }

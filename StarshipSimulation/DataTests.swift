@@ -14,11 +14,11 @@ class DataTests: NSObject {
     func dataTestsEP(#action: String) {
         logger.debug("Entry: \(action)")
         if let cd = masterData?.cd {
-            let pick1 = random() % min(20, cd.BK)   // In the first twenty if there are more than twenty
+            let pick1 = ssRandom(min(20, cd.BK))   // In the first twenty if there are more than twenty
             switch action {
             case "Update":
                 if cd.BK > 0 {
-                    let funcStat = random() % 98    //  Less than 100%
+                    let funcStat = ssRandom(98)    //  Less than 100%
                     logger.info("Setting \(cd.BLid[pick1]!).BT=\(funcStat)")
                     cd.BT[pick1] = funcStat
                 }
