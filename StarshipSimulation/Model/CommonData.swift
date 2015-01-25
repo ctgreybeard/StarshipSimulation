@@ -43,6 +43,7 @@ class CommonData: NSObject {
 
     /// Designated initializer. The work happens here
     init(max: Coordinate) {
+        logger.debug("Entry")
         // It's a cubical world ...
         xMax = max
         xMin = -xMax
@@ -51,71 +52,77 @@ class CommonData: NSObject {
         zMax = xMax
         zMin = xMin
 
+        logger.debug("Init Celestial Objects")
         // Things Celestial
-        celestialObjects = SystemArray()
+        _celestialObjects = SystemArray()
+        celestialObjects = SystemArrayAccess(source: _celestialObjects)
 
-        AH = SystemArrayAccess(source: celestialObjects, member: "AH")  // classification enum 7
-        AI = SystemArrayAccess(source: celestialObjects, member: "AI")  // name
-        JV = SystemArrayAccess(source: celestialObjects, member: "JV")  // charted bool
+        AH = SystemArrayAccess(source: _celestialObjects, member: "AH")  // classification enum 7
+        AI = SystemArrayAccess(source: _celestialObjects, member: "AI")  // name
+        JV = SystemArrayAccess(source: _celestialObjects, member: "JV")  // charted bool
         // Location
-        AJ = SystemArrayAccess(source: celestialObjects, member: "AJ")  // coordinate
-        AK = SystemArrayAccess(source: celestialObjects, member: "AK")  // coordinate
-        AL = SystemArrayAccess(source: celestialObjects, member: "AL")  // coordinate
+        AJ = SystemArrayAccess(source: _celestialObjects, member: "AJ")  // coordinate
+        AK = SystemArrayAccess(source: _celestialObjects, member: "AK")  // coordinate
+        AL = SystemArrayAccess(source: _celestialObjects, member: "AL")  // coordinate
         // Velocity
-        AM = SystemArrayAccess(source: celestialObjects, member: "AM")  // direction
-        AN = SystemArrayAccess(source: celestialObjects, member: "AN")  // direction
-        AO = SystemArrayAccess(source: celestialObjects, member: "AO")  // speed
-        AP = SystemArrayAccess(source: celestialObjects, member: "AP")  // radius
+        AM = SystemArrayAccess(source: _celestialObjects, member: "AM")  // direction
+        AN = SystemArrayAccess(source: _celestialObjects, member: "AN")  // direction
+        AO = SystemArrayAccess(source: _celestialObjects, member: "AO")  // speed
+        AP = SystemArrayAccess(source: _celestialObjects, member: "AP")  // radius
         // Radiation
-        AQ = SystemArrayAccess(source: celestialObjects, member: "AQ")  // radiationtype enum 2
-        AR = SystemArrayAccess(source: celestialObjects, member: "AR")  // radiationintensity int
-        AS = SystemArrayAccess(source: celestialObjects, member: "AS")  // mass
+        AQ = SystemArrayAccess(source: _celestialObjects, member: "AQ")  // radiationtype enum 2
+        AR = SystemArrayAccess(source: _celestialObjects, member: "AR")  // radiationintensity int
+        AS = SystemArrayAccess(source: _celestialObjects, member: "AS")  // mass
         // Life Forms
-        AT = SystemArrayAccess(source: celestialObjects, member: "AT")  // quantity int
-        AU = SystemArrayAccess(source: celestialObjects, member: "AU")  // lifeformclassification enum 4
-        AV = SystemArrayAccess(source: celestialObjects, member: "AV")  // iq int
+        AT = SystemArrayAccess(source: _celestialObjects, member: "AT")  // quantity int
+        AU = SystemArrayAccess(source: _celestialObjects, member: "AU")  // lifeformclassification enum 4
+        AV = SystemArrayAccess(source: _celestialObjects, member: "AV")  // iq int
         // Defensive Weapons
-        AW = SystemArrayAccess(source: celestialObjects, member: "AW", readOnly: true) // quantity int
-        AX = SystemArrayAccess(source: celestialObjects, members: ["defensiveWeapons", "AX"])   // weapontype enum 1
-        AY = SystemArrayAccess(source: celestialObjects, members: ["defensiveWeapons", "AY"])   // functionalstatus
-        AZ = SystemArrayAccess(source: celestialObjects, members: ["defensiveWeapons", "AZ"])   // operationalstatus
-        A1 = SystemArrayAccess(source: celestialObjects, members: ["defensiveWeapons", "A1"])   // reliabilityfactor
-        A2 = SystemArrayAccess(source: celestialObjects, members: ["defensiveWeapons", "A2"])   // energyrequirement
+        AW = SystemArrayAccess(source: _celestialObjects, member: "AW", readOnly: true) // quantity int
+        AX = SystemArrayAccess(source: _celestialObjects, members: ["defensiveWeapons", "AX"])   // weapontype enum 1
+        AY = SystemArrayAccess(source: _celestialObjects, members: ["defensiveWeapons", "AY"])   // functionalstatus
+        AZ = SystemArrayAccess(source: _celestialObjects, members: ["defensiveWeapons", "AZ"])   // operationalstatus
+        A1 = SystemArrayAccess(source: _celestialObjects, members: ["defensiveWeapons", "A1"])   // reliabilityfactor
+        A2 = SystemArrayAccess(source: _celestialObjects, members: ["defensiveWeapons", "A2"])   // energyrequirement
         // Offensive Weapons
-        A3 = SystemArrayAccess(source: celestialObjects, member: "A3", readOnly: true) // quantity int
-        A4 = SystemArrayAccess(source: celestialObjects, members: ["offensiveWeapons", "A4"])   // weapontype enum 4
-        A5 = SystemArrayAccess(source: celestialObjects, members: ["offensiveWeapons", "A5"])   // functionalstatus
-        A6 = SystemArrayAccess(source: celestialObjects, members: ["offensiveWeapons", "A6"])   // operationalstatus
-        A7 = SystemArrayAccess(source: celestialObjects, members: ["offensiveWeapons", "A7"])   // reliabilityfactor
-        A8 = SystemArrayAccess(source: celestialObjects, members: ["offensiveWeapons", "A8"])   // energyrequirement
-        A9 = SystemArrayAccess(source: celestialObjects, member: "A9")
-        BA = SystemArrayAccess(source: celestialObjects, member: "BA")
-        BB = SystemArrayAccess(source: celestialObjects, member: "BB")
+        A3 = SystemArrayAccess(source: _celestialObjects, member: "A3", readOnly: true) // quantity int
+        A4 = SystemArrayAccess(source: _celestialObjects, members: ["offensiveWeapons", "A4"])   // weapontype enum 4
+        A5 = SystemArrayAccess(source: _celestialObjects, members: ["offensiveWeapons", "A5"])   // functionalstatus
+        A6 = SystemArrayAccess(source: _celestialObjects, members: ["offensiveWeapons", "A6"])   // operationalstatus
+        A7 = SystemArrayAccess(source: _celestialObjects, members: ["offensiveWeapons", "A7"])   // reliabilityfactor
+        A8 = SystemArrayAccess(source: _celestialObjects, members: ["offensiveWeapons", "A8"])   // energyrequirement
+        A9 = SystemArrayAccess(source: _celestialObjects, member: "A9")
+        BA = SystemArrayAccess(source: _celestialObjects, member: "BA")
+        BB = SystemArrayAccess(source: _celestialObjects, member: "BB")
+        celestialObjectsAccessList = [celestialObjects, AH, AI, JV, AJ, AK, AL, AM, AN, AO, AP, AQ, AR, AS, AT, AU, AV, AW, AX, AY, AZ, A1, A2, A3, A4, A5, A6, A7, A8, A9, BA, BB]
 
+        logger.debug("Init Empire Locations")
         // Empire locations
         romulanEmpire = SpatialVolume()
         klingonEmpire = SpatialVolume()
 
         // Enterprise Data
 
+        logger.debug("Init Enterprise Personnel")
         // Enterprise Personnel
         let defaultNumEnterprisePersons = 43 + 387
-        enterprisePersonnel = SystemArray(num: defaultNumEnterprisePersons, withType: EnterprisePerson.self)
+        _enterprisePersonnel = SSMakeSystemArray(count: defaultNumEnterprisePersons, withType: EnterprisePerson.self)
+        enterprisePersonnel = SystemArrayAccess(source: _enterprisePersonnel, readOnly: false)
 
-        BL = SystemArrayAccess(source: enterprisePersonnel, member: "BL")   // Name
-        BLid = SystemArrayAccess(source: enterprisePersonnel, member: "BLid", readOnly: true)   // soID.description
-        BM = SystemArrayAccess(source: enterprisePersonnel, member: "BM")   // Rank
-        BN = SystemArrayAccess(source: enterprisePersonnel, member: "BN")   // IQ
-        BO = SystemArrayAccess(source: enterprisePersonnel, member: "BO")   // Location
-        BOd = SystemArrayAccess(source: enterprisePersonnel, member: "BOd") // Location description
-        BP = SystemArrayAccess(source: enterprisePersonnel, member: "BP")   // X-coordinate
-        BQ = SystemArrayAccess(source: enterprisePersonnel, member: "BQ")   // Y-coordinate
-        BR = SystemArrayAccess(source: enterprisePersonnel, member: "BR")   // Z-coordinate
-        BS = SystemArrayAccess(source: enterprisePersonnel, member: "BS")   // Destination
-        BSd = SystemArrayAccess(source: enterprisePersonnel, member: "BSd") // Destination description
-        BT = SystemArrayAccess(source: enterprisePersonnel, member: "BT")   // functionalstatus
-        BU = SystemArrayAccess(source: enterprisePersonnel, member: "BU")
-        enterprisePersonsArrayAccessList = [BL, BM, BN, BO, BP, BQ, BR, BS, BT, BU]
+        BL = SystemArrayAccess(source: _enterprisePersonnel, member: "BL")   // Name
+        BLid = SystemArrayAccess(source: _enterprisePersonnel, member: "BLid", readOnly: true)   // soID.description
+        BM = SystemArrayAccess(source: _enterprisePersonnel, member: "BM")   // Rank
+        BN = SystemArrayAccess(source: _enterprisePersonnel, member: "BN")   // IQ
+        BO = SystemArrayAccess(source: _enterprisePersonnel, member: "BO")   // Location
+        BOd = SystemArrayAccess(source: _enterprisePersonnel, member: "BOd") // Location description
+        BP = SystemArrayAccess(source: _enterprisePersonnel, member: "BP")   // X-coordinate
+        BQ = SystemArrayAccess(source: _enterprisePersonnel, member: "BQ")   // Y-coordinate
+        BR = SystemArrayAccess(source: _enterprisePersonnel, member: "BR")   // Z-coordinate
+        BS = SystemArrayAccess(source: _enterprisePersonnel, member: "BS")   // Destination
+        BSd = SystemArrayAccess(source: _enterprisePersonnel, member: "BSd") // Destination description
+        BT = SystemArrayAccess(source: _enterprisePersonnel, member: "BT")   // functionalstatus
+        BU = SystemArrayAccess(source: _enterprisePersonnel, member: "BU")
+        enterprisePersonsArrayAccessList = [enterprisePersonnel, BL, BM, BN, BO, BP, BQ, BR, BS, BT, BU]
 
         foodConsumption = 1.0       // kg/hr
         waterConsumption = 1.0      // l/hr
@@ -123,10 +130,11 @@ class CommonData: NSObject {
 
         // Enterprise Offensive Weapons Data
 
+        logger.debug("Init Photon Tubes")
         // Photon Tubes
         let defaultNumPhotonTubes = 6
-        photonTubes = SystemArray(num: defaultNumPhotonTubes, withType: PhotonTube.self)
-
+        _photonTubes = SSMakeSystemArray(count: defaultNumPhotonTubes, withType: PhotonTube.self)
+        photonTubes = SystemArrayAccess(source: _photonTubes)
         // Set the torpedo locations
         let numTorps = (photonTubes[0] as PhotonTube).torpedos.count
         for p in 0..<photonTubes.count {
@@ -135,59 +143,69 @@ class CommonData: NSObject {
                 tube.B3[t] = LocationCode.PhotonTorpedoTubeStation.rawValue + p
             }
         }
-        BY = SystemArrayAccess(source: photonTubes, member: "BY")   // functionalstatus
-        BZ = SystemArrayAccess(source: photonTubes, member: "BZ")   // reliabilityfactor
-        B1 = SystemArrayAccess(source: photonTubes, member: "B1")   // energyrequirement
-        B2 = SystemArrayAccess(source: photonTubes, member: "B2", readOnly: true)
-        B3 = SystemArrayAccess(source: photonTubes, members: ["torpedos", "B3"])
-        B4 = SystemArrayAccess(source: photonTubes, members: ["torpedos", "B4"])
-        photonTubesArrayAccessList = [BY, BZ, B1, B2, B3, B4]
+        BY = SystemArrayAccess(source: _photonTubes, member: "BY")   // functionalstatus
+        BZ = SystemArrayAccess(source: _photonTubes, member: "BZ")   // reliabilityfactor
+        B1 = SystemArrayAccess(source: _photonTubes, member: "B1")   // energyrequirement
+        B2 = SystemArrayAccess(source: _photonTubes, member: "B2", readOnly: true)
+        B3 = SystemArrayAccess(source: _photonTubes, members: ["torpedos", "B3"])
+        B4 = SystemArrayAccess(source: _photonTubes, members: ["torpedos", "B4"])
+        photonTubesArrayAccessList = [photonTubes, BY, BZ, B1, B2, B3, B4]
 
+        logger.debug("Init Phaser Stations")
         // Phaser Stations
         let defaultNumPhaserStations = 6
-        phaserStations = SystemArray(num: defaultNumPhaserStations, withType: PhaserStation.self)
-        B5 = SystemArrayAccess(source: photonTubes, member: "B5")   // functionalstatus
-        B6 = SystemArrayAccess(source: photonTubes, member: "B6")   // operationalstatus
-        B7 = SystemArrayAccess(source: photonTubes, member: "B7")   // reliabilityfactor
-        B8 = SystemArrayAccess(source: photonTubes, member: "B8")   // energyrequirement
-        phaserStationsArrayAccessList = [B5, B6, B7, B8]
+        _phaserStations = SSMakeSystemArray(count: defaultNumPhaserStations, withType: PhaserStation.self)
+        phaserStations = SystemArrayAccess(source: _phaserStations)
+        B5 = SystemArrayAccess(source: _phaserStations, member: "B5")   // functionalstatus
+        B6 = SystemArrayAccess(source: _phaserStations, member: "B6")   // operationalstatus
+        B7 = SystemArrayAccess(source: _phaserStations, member: "B7")   // reliabilityfactor
+        B8 = SystemArrayAccess(source: _phaserStations, member: "B8")   // energyrequirement
+        phaserStationsArrayAccessList = [phaserStations, B5, B6, B7, B8]
 
         // Enterprise Defensive Weapons Data
 
+        logger.debug("Init Deflector Shields")
         // Deflector Shields
         let defaultNumDeflectorShields = 6
-        deflectorShields = SystemArray(num: defaultNumDeflectorShields, withType: DeflectorShield.self)
-        B9 = SystemArrayAccess(source: deflectorShields, member: "B9")   // functionalstatus
-        CA = SystemArrayAccess(source: deflectorShields, member: "CA")   // operationalstatus
-        CB = SystemArrayAccess(source: deflectorShields, member: "CB")   // reliabilityfactor
-        CD = SystemArrayAccess(source: deflectorShields, member: "CD")   // energyrequirement
-        deflectorShieldsArrayAccessList = [B9, CA, CB, CD]
+        _deflectorShields = SSMakeSystemArray(count: defaultNumDeflectorShields, withType: DeflectorShield.self)
+        deflectorShields = SystemArrayAccess(source: _deflectorShields)
+        B9 = SystemArrayAccess(source: _deflectorShields, member: "B9")   // functionalstatus
+        CA = SystemArrayAccess(source: _deflectorShields, member: "CA")   // operationalstatus
+        CB = SystemArrayAccess(source: _deflectorShields, member: "CB")   // reliabilityfactor
+        CD = SystemArrayAccess(source: _deflectorShields, member: "CD")   // energyrequirement
+        deflectorShieldsArrayAccessList = [deflectorShields, B9, CA, CB, CD]
 
+        logger.debug("Init Cloaking Device")
         // Cloaking Device
         cloakingDevice = CloakingDevice()
 
         // Enterprise Propulsion Data
 
+        logger.debug("Init Warp Engines")
         // Warp Engines
         let defaultNumWarpEngines = 2
-        warpEngines = SystemArray(num: defaultNumWarpEngines, withType: WarpEngine.self)
-        CH = SystemArrayAccess(source: warpEngines, member: "CH")   // functionalstatus
-        CI = SystemArrayAccess(source: warpEngines, member: "CI")   // operationalstatus
-        CJ = SystemArrayAccess(source: warpEngines, member: "CJ")   // reliabilityfactor
-        CK = SystemArrayAccess(source: warpEngines, member: "CK")   // energyrequirement
-        warpEnginesArrayAccessList = [CH, CI, CJ, CK]
+        _warpEngines = SSMakeSystemArray(count: defaultNumWarpEngines, withType: WarpEngine.self)
+        warpEngines = SystemArrayAccess(source: _warpEngines)
+        CH = SystemArrayAccess(source: _warpEngines, member: "CH")   // functionalstatus
+        CI = SystemArrayAccess(source: _warpEngines, member: "CI")   // operationalstatus
+        CJ = SystemArrayAccess(source: _warpEngines, member: "CJ")   // reliabilityfactor
+        CK = SystemArrayAccess(source: _warpEngines, member: "CK")   // energyrequirement
+        warpEnginesArrayAccessList = [warpEngines, CH, CI, CJ, CK]
 
+        logger.debug("Init Impulse Engines")
         // Impulse Engines
         let defaultNumImpulseEngines = 2
-        impulseEngines = SystemArray(num: defaultNumImpulseEngines, withType: ImpulseEngine.self)
-        CL = SystemArrayAccess(source: impulseEngines, member: "CL")   // functionalstatus
-        CM = SystemArrayAccess(source: impulseEngines, member: "CM")   // operationalstatus
-        CN = SystemArrayAccess(source: impulseEngines, member: "CN")   // reliabilityfactor
-        CO = SystemArrayAccess(source: impulseEngines, member: "CO")   // energyrequirement
-        impulseEnginesArrayAccessList = [CL, CM, CN, CO]
+        _impulseEngines = SSMakeSystemArray(count: defaultNumImpulseEngines, withType: ImpulseEngine.self)
+        impulseEngines = SystemArrayAccess(source: _impulseEngines)
+        CL = SystemArrayAccess(source: _impulseEngines, member: "CL")   // functionalstatus
+        CM = SystemArrayAccess(source: _impulseEngines, member: "CM")   // operationalstatus
+        CN = SystemArrayAccess(source: _impulseEngines, member: "CN")   // reliabilityfactor
+        CO = SystemArrayAccess(source: _impulseEngines, member: "CO")   // energyrequirement
+        impulseEnginesArrayAccessList = [impulseEngines, CL, CM, CN, CO]
 
         // Enterprise Navigation Data
 
+        logger.debug("Init Enterprise Navigation Data")
         // Location
         enterprisePosition = SpatialPosition()
 
@@ -197,6 +215,7 @@ class CommonData: NSObject {
         // Destination
         enterpriseDestination = Location()
 
+        logger.debug("Init Enterprise Computer Systems")
         // Navigation Computer
         navigationComputer = NavigationComputer()
 
@@ -216,119 +235,132 @@ class CommonData: NSObject {
 
         // Enterprise ShuttleCraft Data
 
+        logger.debug("Init Shuttlecraft")
         let defaultNumShuttleCraft = 6
-        shuttleCraft = SystemArray(num: defaultNumShuttleCraft, withType: ShuttleCraft.self)
-        DI = SystemArrayAccess(source: shuttleCraft, member: "DI")
+        _shuttleCraft = SSMakeSystemArray(count: defaultNumShuttleCraft, withType: ShuttleCraft.self)
+        shuttleCraft = SystemArrayAccess(source: _shuttleCraft)
+        DI = SystemArrayAccess(source: _shuttleCraft, member: "DI")
 
         // Location
-        DJ = SystemArrayAccess(source: shuttleCraft, member: "DJ")
-        DK = SystemArrayAccess(source: shuttleCraft, member: "DK")
-        DL = SystemArrayAccess(source: shuttleCraft, member: "DL")
+        DJ = SystemArrayAccess(source: _shuttleCraft, member: "DJ")
+        DK = SystemArrayAccess(source: _shuttleCraft, member: "DK")
+        DL = SystemArrayAccess(source: _shuttleCraft, member: "DL")
 
         // Velocity
-        DM = SystemArrayAccess(source: shuttleCraft, member: "DM")
-        DN = SystemArrayAccess(source: shuttleCraft, member: "DN")
-        DO = SystemArrayAccess(source: shuttleCraft, member: "DO")
+        DM = SystemArrayAccess(source: _shuttleCraft, member: "DM")
+        DN = SystemArrayAccess(source: _shuttleCraft, member: "DN")
+        DO = SystemArrayAccess(source: _shuttleCraft, member: "DO")
 
         // Mission
-        DP = SystemArrayAccess(source: shuttleCraft, member: "DP")
+        DP = SystemArrayAccess(source: _shuttleCraft, member: "DP")
 
         // Destination
-        DQ = SystemArrayAccess(source: shuttleCraft, member: "DQ")
+        DQ = SystemArrayAccess(source: _shuttleCraft, member: "DQ")
 
         // Propulsion Tubes
-        DR = SystemArrayAccess(source: shuttleCraft, members: ["propulsionTubes", "DR"])   // functionalstatus
-        DS = SystemArrayAccess(source: shuttleCraft, members: ["propulsionTubes", "DS"])   // operationalstatus
-        DT = SystemArrayAccess(source: shuttleCraft, members: ["propulsionTubes", "DT"])   // reliabilityfactor
-        DU = SystemArrayAccess(source: shuttleCraft, members: ["propulsionTubes", "DU"])   // energyrequirement
+        DR = SystemArrayAccess(source: _shuttleCraft, members: ["propulsionTubes", "DR"])   // functionalstatus
+        DS = SystemArrayAccess(source: _shuttleCraft, members: ["propulsionTubes", "DS"])   // operationalstatus
+        DT = SystemArrayAccess(source: _shuttleCraft, members: ["propulsionTubes", "DT"])   // reliabilityfactor
+        DU = SystemArrayAccess(source: _shuttleCraft, members: ["propulsionTubes", "DU"])   // energyrequirement
 
         // Cargo
-        DV = SystemArrayAccess(source: shuttleCraft, member: "DV")
+        DV = SystemArrayAccess(source: _shuttleCraft, member: "DV")
 
         // Sensor Array
-        DW = SystemArrayAccess(source: shuttleCraft, member: "DW")   // functionalstatus
-        DX = SystemArrayAccess(source: shuttleCraft, member: "DX")   // operationalstatus
-        DY = SystemArrayAccess(source: shuttleCraft, member: "DY")   // reliabilityfactor
-        DZ = SystemArrayAccess(source: shuttleCraft, member: "DZ")   // energyrequirement
+        DW = SystemArrayAccess(source: _shuttleCraft, member: "DW")   // functionalstatus
+        DX = SystemArrayAccess(source: _shuttleCraft, member: "DX")   // operationalstatus
+        DY = SystemArrayAccess(source: _shuttleCraft, member: "DY")   // reliabilityfactor
+        DZ = SystemArrayAccess(source: _shuttleCraft, member: "DZ")   // energyrequirement
 
         // Defensive Weapons
 
         // Shield
-        D1 = SystemArrayAccess(source: shuttleCraft, member: "D1")   // functionalstatus
-        D2 = SystemArrayAccess(source: shuttleCraft, member: "D2")   // operationalstatus
-        D3 = SystemArrayAccess(source: shuttleCraft, member: "D3")   // reliabilityfactor
-        D4 = SystemArrayAccess(source: shuttleCraft, member: "D4")   // energyrequirement
+        D1 = SystemArrayAccess(source: _shuttleCraft, member: "D1")   // functionalstatus
+        D2 = SystemArrayAccess(source: _shuttleCraft, member: "D2")   // operationalstatus
+        D3 = SystemArrayAccess(source: _shuttleCraft, member: "D3")   // reliabilityfactor
+        D4 = SystemArrayAccess(source: _shuttleCraft, member: "D4")   // energyrequirement
 
         // Offensive Weapons
 
         // Phaser
-        D5 = SystemArrayAccess(source: shuttleCraft, member: "D5")   // functionalstatus
-        D6 = SystemArrayAccess(source: shuttleCraft, member: "D6")   // operationalstatus
-        D7 = SystemArrayAccess(source: shuttleCraft, member: "D7")   // reliabilityfactor
-        D8 = SystemArrayAccess(source: shuttleCraft, member: "D8")   // energyrequirement
-        shuttleCraftArrayAccessList = [DI, DJ, DK, DL, DM, DN, DO, DP, DQ, DR, DS, DT, DU, DV, DW, DX, DY, DZ, D1, D2, D3, D4, D5, D6, D7, D8]
+        D5 = SystemArrayAccess(source: _shuttleCraft, member: "D5")   // functionalstatus
+        D6 = SystemArrayAccess(source: _shuttleCraft, member: "D6")   // operationalstatus
+        D7 = SystemArrayAccess(source: _shuttleCraft, member: "D7")   // reliabilityfactor
+        D8 = SystemArrayAccess(source: _shuttleCraft, member: "D8")   // energyrequirement
+        shuttleCraftArrayAccessList = [shuttleCraft, DI, DJ, DK, DL, DM, DN, DO, DP, DQ, DR, DS, DT, DU, DV, DW, DX, DY, DZ, D1, D2, D3, D4, D5, D6, D7, D8]
 
         // Enterprise Intra-ship Transportation Data
 
+        logger.debug("Init Turbo-Elevator Systems")
         // Turbo-Elevator Stations
         let defaultNumTurboElevatorStations = 10
-        turboElevatorStations = SystemArray(num: defaultNumTurboElevatorStations, withType: TurboElevatorStation.self)
-        D9 = SystemArrayAccess(source: turboElevatorStations, member: "D9")   // functionalstatus
-        EA = SystemArrayAccess(source: turboElevatorStations, member: "EA")   // operationalstatus
-        EB = SystemArrayAccess(source: turboElevatorStations, member: "EB")   // reliabilityfactor
-        turboElevatorStationsArrayAccessList = [D9, EA, EB]
+        _turboElevatorStations = SSMakeSystemArray(count: defaultNumTurboElevatorStations, withType: TurboElevatorStation.self)
+        turboElevatorStations = SystemArrayAccess(source: _turboElevatorStations)
+        D9 = SystemArrayAccess(source: _turboElevatorStations, member: "D9")   // functionalstatus
+        EA = SystemArrayAccess(source: _turboElevatorStations, member: "EA")   // operationalstatus
+        EB = SystemArrayAccess(source: _turboElevatorStations, member: "EB")   // reliabilityfactor
+        turboElevatorStationsArrayAccessList = [turboElevatorStations, D9, EA, EB]
 
         // Turbo-elevator Cars
         let defaultNumTurboElevatorCars = 6
-        turboElevatorCars = SystemArray(num: defaultNumTurboElevatorCars, withType: TurboElevatorCar.self)
-        EC = SystemArrayAccess(source: turboElevatorCars, member: "EC")   // functionalstatus
-        ED = SystemArrayAccess(source: turboElevatorCars, member: "ED")
-        EF = SystemArrayAccess(source: turboElevatorCars, member: "EF")
-        EG = SystemArrayAccess(source: turboElevatorCars, member: "EG")
-        turboElevatorCarsArrayAccessList = [EC, ED, EF, EG]
+        _turboElevatorCars = SSMakeSystemArray(count: defaultNumTurboElevatorCars, withType: TurboElevatorCar.self)
+        turboElevatorCars = SystemArrayAccess(source: _turboElevatorCars)
+        EC = SystemArrayAccess(source: _turboElevatorCars, member: "EC")   // functionalstatus
+        ED = SystemArrayAccess(source: _turboElevatorCars, member: "ED")
+        EF = SystemArrayAccess(source: _turboElevatorCars, member: "EF")
+        EG = SystemArrayAccess(source: _turboElevatorCars, member: "EG")
+        turboElevatorCarsArrayAccessList = [turboElevatorCars, EC, ED, EF, EG]
 
         // Turbo-Elevator Computer
         turboElevatorComputer = TurboElevatorComputer()
 
         // Enterprise Transporter Data
 
+        logger.debug("Init Transporter Systems")
         // Transporter Stations
         let defaultNumTransporterStations = 10
-        transporterStations = SystemArray(num: defaultNumTransporterStations, withType: TransporterStation.self)
-        EL = SystemArrayAccess(source: transporterStations, member: "EL")   // functionalstatus
-        EM = SystemArrayAccess(source: transporterStations, member: "EM")   // operationalstatus
-        EN = SystemArrayAccess(source: transporterStations, member: "EN")   // reliabilityfactor
-        EO = SystemArrayAccess(source: transporterStations, member: "EO")   // energyrequirement
-        transporterStationsArrayAccessList = [EL, EM, EN, EO]
+        _transporterStations = SSMakeSystemArray(count: defaultNumTransporterStations, withType: TransporterStation.self)
+        transporterStations = SystemArrayAccess(source: _transporterStations)
+        EL = SystemArrayAccess(source: _transporterStations, member: "EL")   // functionalstatus
+        EM = SystemArrayAccess(source: _transporterStations, member: "EM")   // operationalstatus
+        EN = SystemArrayAccess(source: _transporterStations, member: "EN")   // reliabilityfactor
+        EO = SystemArrayAccess(source: _transporterStations, member: "EO")   // energyrequirement
+        transporterStationsArrayAccessList = [transporterStations, EL, EM, EN, EO]
 
+        logger.debug("Init Tractor Beam")
         // Enterprise Tractor Beam Data
 
         tractorBeam = TractorBeam()
 
+        logger.debug("Init Life Support")
         lifeSupportSystem = LifeSupport()
 
         // Enterprise Communication Data
 
         // Intra- and Inter-Ship Communications Data
 
+        logger.debug("Init Communications Systems")
         // Messages
         let defaultNumCommunicationsStations = 10
-        communicationsStations = SystemArray(num: defaultNumCommunicationsStations, withType: CommunicationsStation.self)
-        FQ = SystemArrayAccess(source: communicationsStations, member: "FQ")
-        FR = SystemArrayAccess(source: communicationsStations, member: "FR")
-        hasMessages = SystemArrayAccess(source: communicationsStations, member: "hasMessages")
-        communicationsStationsArrayAccessList = [FQ, FR, hasMessages]
+        _communicationsStations = SSMakeSystemArray(count: defaultNumCommunicationsStations, withType: CommunicationsStation.self)
+        communicationsStations = SystemArrayAccess(source: _communicationsStations)
+        FQ = SystemArrayAccess(source: _communicationsStations, member: "FQ")
+        FR = SystemArrayAccess(source: _communicationsStations, member: "FR")
+        hasMessages = SystemArrayAccess(source: _communicationsStations, member: "hasMessages")
+        communicationsStationsArrayAccessList = [communicationsStations, FQ, FR, hasMessages]
 
         // Inter-celestial Communications Data
         communicationsComputer = CommunicationsComputer()
 
         // Enterprise Security Data
 
+        logger.debug("Init Security Systems")
         // Detention Cell
         detentionCell = DetentionCell()
 
         // Enterprise Energy Supply Data
 
+        logger.debug("Init Energy Systems")
         // Energy
         let defaultEnergyQuantity = 20000000000
         maximumEnergyQuantity = defaultEnergyQuantity * 2
@@ -341,15 +373,17 @@ class CommonData: NSObject {
         for n in 1...defaultNumEnergyConnectionSystems {
             initArray.append(EnergyConnectionStation(system: EnergyConnectionSystem(rawValue: n)!, energySupply: energyQuantity / defaultNumEnergyConnectionSystems))
         }
-        energyStations = SystemArray(with: initArray)
-        F4 = SystemArrayAccess(source: energyStations, member: "F4")   // functionalstatus
-        F5 = SystemArrayAccess(source: energyStations, member: "F5")   // operationalstatus
-        F6 = SystemArrayAccess(source: energyStations, member: "F6")   // reliabilityfactor
-        F7 = SystemArrayAccess(source: energyStations, member: "F7")    // energysupply
-        energyStationsArrayAccessList = [F4, F5, F6, F7]
+        _energyStations = SSMakeSystemArray(withArray: initArray)
+        energyStations = SystemArrayAccess(source: _energyStations)
+        F4 = SystemArrayAccess(source: _energyStations, member: "F4")   // functionalstatus
+        F5 = SystemArrayAccess(source: _energyStations, member: "F5")   // operationalstatus
+        F6 = SystemArrayAccess(source: _energyStations, member: "F6")   // reliabilityfactor
+        F7 = SystemArrayAccess(source: _energyStations, member: "F7")    // energysupply
+        energyStationsArrayAccessList = [energyStations, F4, F5, F6, F7]
 
         // Enterprise Sensor Array Data
 
+        logger.debug("Init Sensor Systems")
         // Radiation Sensor
         radiationSensor = RadiationSensor()
 
@@ -364,11 +398,13 @@ class CommonData: NSObject {
 
         // Enterprise Cargo Data
 
-        cargo = SystemArray()
-        GP = SystemArrayAccess(source: cargo, member: "GP") // cargotype enum 4
-        GQ = SystemArrayAccess(source: cargo, member: "GQ") // quantity int
-        GR = SystemArrayAccess(source: cargo, member: "GR") // location enum 4000
-        cargoArrayAccessList = [GP, GQ, GR]
+        logger.debug("Init Cargo")
+        _cargo = SystemArray()
+        cargo = SystemArrayAccess(source: _cargo)
+        GP = SystemArrayAccess(source: _cargo, member: "GP") // cargotype enum 4
+        GQ = SystemArrayAccess(source: _cargo, member: "GQ") // quantity int
+        GR = SystemArrayAccess(source: _cargo, member: "GR") // location enum 4000
+        cargoArrayAccessList = [cargo, GP, GQ, GR]
 
         // Enterprise General Data
         alertStatus = AlertStatus.Normal
@@ -376,170 +412,176 @@ class CommonData: NSObject {
         // Data Associated with Enemy Ships
 
 
-        enemyShips = SystemArray()
-        GU = SystemArrayAccess(source: enemyShips, member: "GU")    // name string
-        GV = SystemArrayAccess(source: enemyShips, member: "GV")    // existnce bool
+        logger.debug("Init Enemy Ships")
+        _enemyShips = SystemArray()
+        enemyShips = SystemArrayAccess(source: _enemyShips)
+        GU = SystemArrayAccess(source: _enemyShips, member: "GU")    // name string
+        GV = SystemArrayAccess(source: _enemyShips, member: "GV")    // existnce bool
 
         // Weapons Data
 
         // Defensive Weapons
-        GW = SystemArrayAccess(source: enemyShips, member: "GW")
-        GX = SystemArrayAccess(source: enemyShips, member: "GX")
-        GY = SystemArrayAccess(source: enemyShips, member: "GY")   // functionalstatus
-        GZ = SystemArrayAccess(source: enemyShips, member: "GZ")   // operationalstatus
-        G1 = SystemArrayAccess(source: enemyShips, member: "G1")   // reliabilityfactor
-        G2 = SystemArrayAccess(source: enemyShips, member: "G2")   // energyrequirement
+        GW = SystemArrayAccess(source: _enemyShips, member: "GW")
+        GX = SystemArrayAccess(source: _enemyShips, member: "GX")
+        GY = SystemArrayAccess(source: _enemyShips, member: "GY")   // functionalstatus
+        GZ = SystemArrayAccess(source: _enemyShips, member: "GZ")   // operationalstatus
+        G1 = SystemArrayAccess(source: _enemyShips, member: "G1")   // reliabilityfactor
+        G2 = SystemArrayAccess(source: _enemyShips, member: "G2")   // energyrequirement
 
         // Offensive Weapons
-        G3 = SystemArrayAccess(source: enemyShips, member: "G3")
-        G4 = SystemArrayAccess(source: enemyShips, member: "G4")
-        G5 = SystemArrayAccess(source: enemyShips, member: "G5")   // functionalstatus
-        G6 = SystemArrayAccess(source: enemyShips, member: "G6")   // operationalstatus
-        G7 = SystemArrayAccess(source: enemyShips, member: "G7")   // reliabilityfactor
-        G8 = SystemArrayAccess(source: enemyShips, member: "G8")   // energyrequirement
-        G9 = SystemArrayAccess(source: enemyShips, member: "G9")
+        G3 = SystemArrayAccess(source: _enemyShips, member: "G3")
+        G4 = SystemArrayAccess(source: _enemyShips, member: "G4")
+        G5 = SystemArrayAccess(source: _enemyShips, member: "G5")   // functionalstatus
+        G6 = SystemArrayAccess(source: _enemyShips, member: "G6")   // operationalstatus
+        G7 = SystemArrayAccess(source: _enemyShips, member: "G7")   // reliabilityfactor
+        G8 = SystemArrayAccess(source: _enemyShips, member: "G8")   // energyrequirement
+        G9 = SystemArrayAccess(source: _enemyShips, member: "G9")
 
         // Life Forms Data
-        HA = SystemArrayAccess(source: enemyShips, member: "HA")
-        HB = SystemArrayAccess(source: enemyShips, member: "HB")
-        HC = SystemArrayAccess(source: enemyShips, member: "HC")
-        HD = SystemArrayAccess(source: enemyShips, member: "HD")   // functionalstatus
-        HE = SystemArrayAccess(source: enemyShips, member: "HE")   // operationalstatus
-        HF = SystemArrayAccess(source: enemyShips, member: "HF")   // reliabilityfactor
-        HG = SystemArrayAccess(source: enemyShips, member: "HG")
+        HA = SystemArrayAccess(source: _enemyShips, member: "HA")
+        HB = SystemArrayAccess(source: _enemyShips, member: "HB")
+        HC = SystemArrayAccess(source: _enemyShips, member: "HC")
+        HD = SystemArrayAccess(source: _enemyShips, member: "HD")   // functionalstatus
+        HE = SystemArrayAccess(source: _enemyShips, member: "HE")   // operationalstatus
+        HF = SystemArrayAccess(source: _enemyShips, member: "HF")   // reliabilityfactor
+        HG = SystemArrayAccess(source: _enemyShips, member: "HG")
 
         // Enemy Ships Navigation Data
 
         // Location
-        HH = SystemArrayAccess(source: enemyShips, member: "HH")
-        HI = SystemArrayAccess(source: enemyShips, member: "HI")
-        HJ = SystemArrayAccess(source: enemyShips, member: "HJ")
+        HH = SystemArrayAccess(source: _enemyShips, member: "HH")
+        HI = SystemArrayAccess(source: _enemyShips, member: "HI")
+        HJ = SystemArrayAccess(source: _enemyShips, member: "HJ")
 
         // Velocity
-        HK = SystemArrayAccess(source: enemyShips, member: "HK")
-        HL = SystemArrayAccess(source: enemyShips, member: "HL")
-        HM = SystemArrayAccess(source: enemyShips, member: "HM")
-        HN = SystemArrayAccess(source: enemyShips, member: "HN")
+        HK = SystemArrayAccess(source: _enemyShips, member: "HK")
+        HL = SystemArrayAccess(source: _enemyShips, member: "HL")
+        HM = SystemArrayAccess(source: _enemyShips, member: "HM")
+        HN = SystemArrayAccess(source: _enemyShips, member: "HN")
 
         // Destination
-        HO = SystemArrayAccess(source: enemyShips, member: "HO")
-        HP = SystemArrayAccess(source: enemyShips, member: "HP")
-        HQ = SystemArrayAccess(source: enemyShips, member: "HQ")
-        HR = SystemArrayAccess(source: enemyShips, member: "HR")
+        HO = SystemArrayAccess(source: _enemyShips, member: "HO")
+        HP = SystemArrayAccess(source: _enemyShips, member: "HP")
+        HQ = SystemArrayAccess(source: _enemyShips, member: "HQ")
+        HR = SystemArrayAccess(source: _enemyShips, member: "HR")
 
         // Navigation Computer
-        HS = SystemArrayAccess(source: enemyShips, member: "HS")   // functionalstatus
-        HT = SystemArrayAccess(source: enemyShips, member: "HT")   // operationalstatus
-        HU = SystemArrayAccess(source: enemyShips, member: "HU")   // reliabilityfactor
-        HV = SystemArrayAccess(source: enemyShips, member: "HV")   // energyrequirement
+        HS = SystemArrayAccess(source: _enemyShips, member: "HS")   // functionalstatus
+        HT = SystemArrayAccess(source: _enemyShips, member: "HT")   // operationalstatus
+        HU = SystemArrayAccess(source: _enemyShips, member: "HU")   // reliabilityfactor
+        HV = SystemArrayAccess(source: _enemyShips, member: "HV")   // energyrequirement
 
         // Mission
-        HW = SystemArrayAccess(source: enemyShips, member: "HW")
+        HW = SystemArrayAccess(source: _enemyShips, member: "HW")
 
         // Cargo
-        HX = SystemArrayAccess(source: enemyShips, member: "HX")
-        HY = SystemArrayAccess(source: enemyShips, member: "HY")
-        HZ = SystemArrayAccess(source: enemyShips, member: "HZ")
-        H1 = SystemArrayAccess(source: enemyShips, member: "H1")
-        H2 = SystemArrayAccess(source: enemyShips, member: "H2")
-        H3 = SystemArrayAccess(source: enemyShips, member: "H3")
-        H4 = SystemArrayAccess(source: enemyShips, member: "H4")
+        HX = SystemArrayAccess(source: _enemyShips, member: "HX")
+        HY = SystemArrayAccess(source: _enemyShips, member: "HY")
+        HZ = SystemArrayAccess(source: _enemyShips, member: "HZ")
+        H1 = SystemArrayAccess(source: _enemyShips, member: "H1")
+        H2 = SystemArrayAccess(source: _enemyShips, member: "H2")
+        H3 = SystemArrayAccess(source: _enemyShips, member: "H3")
+        H4 = SystemArrayAccess(source: _enemyShips, member: "H4")
 
         // Peace Treaty Offered
-        H5 = SystemArrayAccess(source: enemyShips, member: "H5")
+        H5 = SystemArrayAccess(source: _enemyShips, member: "H5")
 
         // Peace Treaty Request
-        H6 = SystemArrayAccess(source: enemyShips, member: "H6")
+        H6 = SystemArrayAccess(source: _enemyShips, member: "H6")
 
         // Enemy Ship Energy Supply
-        H7 = SystemArrayAccess(source: enemyShips, member: "H7")
+        H7 = SystemArrayAccess(source: _enemyShips, member: "H7")
 
         // Fired Upon Flag
-        H8 = SystemArrayAccess(source: enemyShips, member: "H8")
+        H8 = SystemArrayAccess(source: _enemyShips, member: "H8")
+        enemyShipsAccessList = [enemyShips, GU, GV, GW, GX, GY, GZ, G1, G2, G3, G4, G5, G6, G7, G8, G9, HA, HB, HC, HD, HE, HF, HG, HH, HI, HJ, HK, HL, HM, HN, HO, HP, HQ, HR, HS, HT, HU, HV, HW, HX, HY, HZ, H1, H2, H3, H4, H5, H6, H7, H8]
 
         // Data Associated with Federation Ships
 
-        federationShips = SystemArray()
-        IA = SystemArrayAccess(source: federationShips, member: "IA")   // name string
-        IB = SystemArrayAccess(source: federationShips, member: "IB")   // existence bool
+        logger.debug("Init Federation Ships")
+        _federationShips = SystemArray()
+        federationShips = SystemArrayAccess(source: _federationShips)
+        IA = SystemArrayAccess(source: _federationShips, member: "IA")   // name string
+        IB = SystemArrayAccess(source: _federationShips, member: "IB")   // existence bool
 
         // Federation Ships Weapons Data
 
         // Defensive Weapons
-        IC = SystemArrayAccess(source: federationShips, member: "IC")   // quantity int
-        ID = SystemArrayAccess(source: federationShips, member: "ID")   // type enum 2
-        IE = SystemArrayAccess(source: federationShips, member: "IE")   // functionalstatus
-        IF = SystemArrayAccess(source: federationShips, member: "IF")   // operationalstatus
-        IG = SystemArrayAccess(source: federationShips, member: "IG")   // reliabilityfactor
-        IH = SystemArrayAccess(source: federationShips, member: "IH")   // energyrequirement
+        IC = SystemArrayAccess(source: _federationShips, member: "IC")   // quantity int
+        ID = SystemArrayAccess(source: _federationShips, member: "ID")   // type enum 2
+        IE = SystemArrayAccess(source: _federationShips, member: "IE")   // functionalstatus
+        IF = SystemArrayAccess(source: _federationShips, member: "IF")   // operationalstatus
+        IG = SystemArrayAccess(source: _federationShips, member: "IG")   // reliabilityfactor
+        IH = SystemArrayAccess(source: _federationShips, member: "IH")   // energyrequirement
 
         // Offensive Weapons
-        IJ = SystemArrayAccess(source: federationShips, member: "IJ")
-        IK = SystemArrayAccess(source: federationShips, member: "IK")
-        IL = SystemArrayAccess(source: federationShips, member: "IL")   // functionalstatus
-        IM = SystemArrayAccess(source: federationShips, member: "IM")   // operationalstatus
-        IN = SystemArrayAccess(source: federationShips, member: "IN")   // reliabilityfactor
-        IO = SystemArrayAccess(source: federationShips, member: "IO")   // energyrequirement
+        IJ = SystemArrayAccess(source: _federationShips, member: "IJ")
+        IK = SystemArrayAccess(source: _federationShips, member: "IK")
+        IL = SystemArrayAccess(source: _federationShips, member: "IL")   // functionalstatus
+        IM = SystemArrayAccess(source: _federationShips, member: "IM")   // operationalstatus
+        IN = SystemArrayAccess(source: _federationShips, member: "IN")   // reliabilityfactor
+        IO = SystemArrayAccess(source: _federationShips, member: "IO")   // energyrequirement
 
         // Federation Ships Life Forms Data
 
-        IP = SystemArrayAccess(source: federationShips, member: "IP")   // number int
-        IQ = SystemArrayAccess(source: federationShips, member: "IQ")   // iq int
-        IR = SystemArrayAccess(source: federationShips, member: "IR")
-        IS = SystemArrayAccess(source: federationShips, member: "IS")   // operationalstatus
-        IT = SystemArrayAccess(source: federationShips, member: "IT")   // reliabilityfactor
-        IU = SystemArrayAccess(source: federationShips, member: "IU")   // haalthstatus
+        IP = SystemArrayAccess(source: _federationShips, member: "IP")   // number int
+        IQ = SystemArrayAccess(source: _federationShips, member: "IQ")   // iq int
+        IR = SystemArrayAccess(source: _federationShips, member: "IR")
+        IS = SystemArrayAccess(source: _federationShips, member: "IS")   // operationalstatus
+        IT = SystemArrayAccess(source: _federationShips, member: "IT")   // reliabilityfactor
+        IU = SystemArrayAccess(source: _federationShips, member: "IU")   // haalthstatus
 
         // Federation Ships Navigation Data
 
         // Location
-        IV = SystemArrayAccess(source: federationShips, member: "IV")
-        IW = SystemArrayAccess(source: federationShips, member: "IW")
-        IX = SystemArrayAccess(source: federationShips, member: "IX")
+        IV = SystemArrayAccess(source: _federationShips, member: "IV")
+        IW = SystemArrayAccess(source: _federationShips, member: "IW")
+        IX = SystemArrayAccess(source: _federationShips, member: "IX")
 
         // Velocity
-        IY = SystemArrayAccess(source: federationShips, member: "IY")
-        IZ = SystemArrayAccess(source: federationShips, member: "IZ")
-        I1 = SystemArrayAccess(source: federationShips, member: "I1")
-        I2 = SystemArrayAccess(source: federationShips, member: "I2")
+        IY = SystemArrayAccess(source: _federationShips, member: "IY")
+        IZ = SystemArrayAccess(source: _federationShips, member: "IZ")
+        I1 = SystemArrayAccess(source: _federationShips, member: "I1")
+        I2 = SystemArrayAccess(source: _federationShips, member: "I2")
 
         // Destination
-        I3 = SystemArrayAccess(source: federationShips, member: "I3")
-        I4 = SystemArrayAccess(source: federationShips, member: "I4")
-        I5 = SystemArrayAccess(source: federationShips, member: "I5")
-        I6 = SystemArrayAccess(source: federationShips, member: "I6")
+        I3 = SystemArrayAccess(source: _federationShips, member: "I3")
+        I4 = SystemArrayAccess(source: _federationShips, member: "I4")
+        I5 = SystemArrayAccess(source: _federationShips, member: "I5")
+        I6 = SystemArrayAccess(source: _federationShips, member: "I6")
 
         // Navigation Computer
-        I7 = SystemArrayAccess(source: federationShips, member: "I7")   // functionalstatus
-        I8 = SystemArrayAccess(source: federationShips, member: "I8")   // operationalstatus
-        I9 = SystemArrayAccess(source: federationShips, member: "I9")   // reliabilityfactor
-        JA = SystemArrayAccess(source: federationShips, member: "JA")   // energyrequirement
+        I7 = SystemArrayAccess(source: _federationShips, member: "I7")   // functionalstatus
+        I8 = SystemArrayAccess(source: _federationShips, member: "I8")   // operationalstatus
+        I9 = SystemArrayAccess(source: _federationShips, member: "I9")   // reliabilityfactor
+        JA = SystemArrayAccess(source: _federationShips, member: "JA")   // energyrequirement
 
         // Mission
-        JB = SystemArrayAccess(source: federationShips, member: "JB")
+        JB = SystemArrayAccess(source: _federationShips, member: "JB")
 
         // Cargo
-        JC = SystemArrayAccess(source: federationShips, member: "JC")
-        JD = SystemArrayAccess(source: federationShips, member: "JD")
-        JE = SystemArrayAccess(source: federationShips, member: "JE")
-        JI = SystemArrayAccess(source: federationShips, member: "JI")
-        JK = SystemArrayAccess(source: federationShips, member: "JK")
-        JL = SystemArrayAccess(source: federationShips, member: "JL")
-        JM = SystemArrayAccess(source: federationShips, member: "JM")
+        JC = SystemArrayAccess(source: _federationShips, member: "JC")
+        JD = SystemArrayAccess(source: _federationShips, member: "JD")
+        JE = SystemArrayAccess(source: _federationShips, member: "JE")
+        JI = SystemArrayAccess(source: _federationShips, member: "JI")
+        JK = SystemArrayAccess(source: _federationShips, member: "JK")
+        JL = SystemArrayAccess(source: _federationShips, member: "JL")
+        JM = SystemArrayAccess(source: _federationShips, member: "JM")
 
         // Peace Treaty Offer
-        JN = SystemArrayAccess(source: federationShips, member: "JN")
+        JN = SystemArrayAccess(source: _federationShips, member: "JN")
 
         // Peace Treaty Request
-        JO = SystemArrayAccess(source: federationShips, member: "JO")
+        JO = SystemArrayAccess(source: _federationShips, member: "JO")
 
         // Federation Ship Power Supply
 
         // Energy
-        JP = SystemArrayAccess(source: federationShips, member: "JP")   // quantity double
+        JP = SystemArrayAccess(source: _federationShips, member: "JP")   // quantity double
 
         // Fired Upon Flag
-        JQ = SystemArrayAccess(source: federationShips, member: "JQ")
+        JQ = SystemArrayAccess(source: _federationShips, member: "JQ")
+        federationShipsAccessList = [federationShips, IA, IB, IC, ID, IE, IF, IG, IH, IJ, IK, IL, IM, IN, IO, IP, IQ, IR, IS, IT, IU, IV, IW, IX, IY, IZ, I1, I2, I3, I4, I5, I6, I7, I8, I9, JA, JB, JC, JD, JE, JI, JK, JL, JM, JN, JO, JP, JQ]
 
         // The epoch is the number of seconds from Jan 1, 2001 to Jan 1, 2201
         epoch2201 = 6311347200.0
@@ -611,10 +653,15 @@ class CommonData: NSObject {
 
     /// Celestial Objects
 
-    dynamic var celestialObjects: SystemArray
+    var _celestialObjects: SystemArray {
+        didSet {
+            setSystemArrayAccessFor(array: _celestialObjects, accessList: celestialObjectsAccessList)
+        }
+    }
 
     var AG: Int {return celestialObjects.count}
 
+    let celestialObjects: SystemArrayAccess
     let AH: SystemArrayAccess
     let AI: SystemArrayAccess
     let JV: SystemArrayAccess
@@ -646,6 +693,8 @@ class CommonData: NSObject {
     let A9: SystemArrayAccess
     let BA: SystemArrayAccess
     let BB: SystemArrayAccess
+    let celestialObjectsAccessList: SystemArrayAccessList
+
 
 
     /// Romulan Empire Location
@@ -726,15 +775,16 @@ class CommonData: NSObject {
 
     /// Enterprise personnel
 
-    var numEnterprisePersons: Int {return enterprisePersonnel.count}
-    var enterprisePersonnel: SystemArray {
+    var numEnterprisePersons: Int {return _enterprisePersonnel.count}
+    var _enterprisePersonnel: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: enterprisePersonnel, accessList: enterprisePersonsArrayAccessList)
+            setSystemArrayAccessFor(array: _enterprisePersonnel, accessList: enterprisePersonsArrayAccessList)
         }
     }
-    var BK: Int {return enterprisePersonnel.count}
-    var BL: SystemArrayAccess
-    var BLid: SystemArrayAccess
+    let enterprisePersonnel: SystemArrayAccess
+    var BK: Int {return _enterprisePersonnel.count}
+    let BL: SystemArrayAccess
+    let BLid: SystemArrayAccess
     let BM: SystemArrayAccess
     let BN: SystemArrayAccess
     let BO: SystemArrayAccess
@@ -772,48 +822,51 @@ class CommonData: NSObject {
 
     // Photon torpedo tubes (6)
     var numPhotonTubes: Int {return photonTubes.count}
-    var photonTubes: SystemArray {
+    var _photonTubes: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: photonTubes, accessList: photonTubesArrayAccessList)
+            setSystemArrayAccessFor(array: _photonTubes, accessList: photonTubesArrayAccessList)
         }
     }
 
+    let photonTubes: SystemArrayAccess
     let BY: SystemArrayAccess
     let BZ: SystemArrayAccess
     let B1: SystemArrayAccess
     let B2: SystemArrayAccess
     let B3: SystemArrayAccess
     let B4: SystemArrayAccess
-    let photonTubesArrayAccessList: [SystemArrayAccess]
+    let photonTubesArrayAccessList: SystemArrayAccessList
 
     // Phaser Stations (status only)
     var numPhaserStations: Int {return phaserStations.count}
-    var phaserStations: SystemArray {
+    var _phaserStations: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: phaserStations, accessList: phaserStationsArrayAccessList)
+            setSystemArrayAccessFor(array: _phaserStations, accessList: phaserStationsArrayAccessList)
         }
     }
+    let phaserStations: SystemArrayAccess
     let B5: SystemArrayAccess
     let B6: SystemArrayAccess
     let B7: SystemArrayAccess
     let B8: SystemArrayAccess
-    let phaserStationsArrayAccessList: [SystemArrayAccess]
+    let phaserStationsArrayAccessList: SystemArrayAccessList
 
     /// Defensive Weapons
 
     // Deflector Shields
     var numDeflectorShields: Int {return deflectorShields.count}
-    var deflectorShields: SystemArray {
+    var _deflectorShields: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: deflectorShields, accessList: deflectorShieldsArrayAccessList)
+            setSystemArrayAccessFor(array: _deflectorShields, accessList: deflectorShieldsArrayAccessList)
         }
     }
+    let deflectorShields: SystemArrayAccess
     let B9: SystemArrayAccess
     let CA: SystemArrayAccess
     let CB: SystemArrayAccess
     // CC unaccounted for in the book?
     let CD: SystemArrayAccess
-    let deflectorShieldsArrayAccessList: [SystemArrayAccess]
+    let deflectorShieldsArrayAccessList: SystemArrayAccessList
 
     // Cloaking Device
     let cloakingDevice: CloakingDevice
@@ -834,29 +887,31 @@ class CommonData: NSObject {
 
     // Space/Warp engine
     var numWarpEngines: Int {return warpEngines.count}
-    var warpEngines: SystemArray {
+    var _warpEngines: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: warpEngines, accessList: warpEnginesArrayAccessList)
+            setSystemArrayAccessFor(array: _warpEngines, accessList: warpEnginesArrayAccessList)
         }
     }
+    var warpEngines: SystemArrayAccess
     let CH: SystemArrayAccess
     let CI: SystemArrayAccess
     let CJ: SystemArrayAccess
     let CK: SystemArrayAccess
-    let warpEnginesArrayAccessList: [SystemArrayAccess]
+    let warpEnginesArrayAccessList: SystemArrayAccessList
 
     // Impulse Engines
     var numImpulseEngines: Int {return impulseEngines.count}
-    var impulseEngines: SystemArray {
+    var _impulseEngines: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: impulseEngines, accessList: impulseEnginesArrayAccessList)
+            setSystemArrayAccessFor(array: _impulseEngines, accessList: impulseEnginesArrayAccessList)
         }
     }
+    let impulseEngines: SystemArrayAccess
     let CL: SystemArrayAccess
     let CM: SystemArrayAccess
     let CN: SystemArrayAccess
     let CO: SystemArrayAccess
-    let impulseEnginesArrayAccessList: [SystemArrayAccess]
+    let impulseEnginesArrayAccessList: SystemArrayAccessList
 
     /// Enterprise location and velocity
     var enterprisePosition: SpatialPosition
@@ -980,11 +1035,12 @@ class CommonData: NSObject {
     }
 
     // ShuttleCraft
-    var shuttleCraft: SystemArray {
+    var _shuttleCraft: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: shuttleCraft, accessList: shuttleCraftArrayAccessList)
+            setSystemArrayAccessFor(array: _shuttleCraft, accessList: shuttleCraftArrayAccessList)
         }
     }
+    let shuttleCraft: SystemArrayAccess
     let DI: SystemArrayAccess   // Operational Status[n]
     let DJ: SystemArrayAccess   // X-coordinate[n]
     let DK: SystemArrayAccess   // Y-coordinate[n]
@@ -1011,29 +1067,31 @@ class CommonData: NSObject {
     let D6: SystemArrayAccess   // Phaser Operational Status[n]
     let D7: SystemArrayAccess   // Phaser Reliability Factor[n]
     let D8: SystemArrayAccess   // Phaser Energy Requirement[n]
-    let shuttleCraftArrayAccessList: [SystemArrayAccess]
+    let shuttleCraftArrayAccessList: SystemArrayAccessList
 
     // Enterprise intra-ship transportation system
 
     // Turbo Elevator Stations
 
-    var turboElevatorStations: SystemArray {
+    var _turboElevatorStations: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: turboElevatorStations, accessList: turboElevatorStationsArrayAccessList)
+            setSystemArrayAccessFor(array: _turboElevatorStations, accessList: turboElevatorStationsArrayAccessList)
         }
     }
+    let turboElevatorStations: SystemArrayAccess
     let D9: SystemArrayAccess   // Functional Status[n]
     let EA: SystemArrayAccess   // Operational Status[n]
     let EB: SystemArrayAccess   // Reliability Factor[n]
-    let turboElevatorStationsArrayAccessList: [SystemArrayAccess]
+    let turboElevatorStationsArrayAccessList: SystemArrayAccessList
 
     // Turbo Eleevator Cars
 
-    var turboElevatorCars: SystemArray {
+    var _turboElevatorCars: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: turboElevatorCars, accessList: turboElevatorCarsArrayAccessList)
+            setSystemArrayAccessFor(array: _turboElevatorCars, accessList: turboElevatorCarsArrayAccessList)
         }
     }
+    let turboElevatorCars: SystemArrayAccess
     let EC: SystemArrayAccess   // Functional Status[n]
     let ED: SystemArrayAccess   // Location[n]
     // EE unaccounted for in book
@@ -1065,11 +1123,12 @@ class CommonData: NSObject {
 
     // Transporter Stations
 
-    var transporterStations: SystemArray {
+    var _transporterStations: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: transporterStations, accessList: transporterStationsArrayAccessList)
+            setSystemArrayAccessFor(array: _transporterStations, accessList: transporterStationsArrayAccessList)
         }
     }
+    let transporterStations: SystemArrayAccess
     let EL: SystemArrayAccess
     let EM: SystemArrayAccess
     let EN: SystemArrayAccess
@@ -1250,7 +1309,12 @@ class CommonData: NSObject {
 
     // Enterprise Cummunications Data
 
-    let communicationsStations: SystemArray
+    var _communicationsStations: SystemArray {
+        didSet {
+            setSystemArrayAccessFor(array: _communicationsStations, accessList: communicationsStationsArrayAccessList)
+        }
+    }
+    let communicationsStations: SystemArrayAccess
     let FQ: SystemArrayAccess
     let FR: SystemArrayAccess
     let hasMessages: SystemArrayAccess
@@ -1315,11 +1379,12 @@ class CommonData: NSObject {
         set {maximumEnergyQuantity = newValue}
     }
 
-    var energyStations: SystemArray {
+    var _energyStations: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: energyStations, accessList: energyStationsArrayAccessList)
+            setSystemArrayAccessFor(array: _energyStations, accessList: energyStationsArrayAccessList)
         }
     }
+    let energyStations: SystemArrayAccess
     let F4: SystemArrayAccess
     let F5: SystemArrayAccess
     let F6: SystemArrayAccess
@@ -1402,11 +1467,12 @@ class CommonData: NSObject {
 
     // Enterprise Cargo
 
-    var cargo: SystemArray {
+    var _cargo: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: cargo, accessList: cargoArrayAccessList)
+            setSystemArrayAccessFor(array: _cargo, accessList: cargoArrayAccessList)
         }
     }
+    let cargo: SystemArrayAccess
     let GP: SystemArrayAccess
     let GQ: SystemArrayAccess
     let GR: SystemArrayAccess
@@ -1425,7 +1491,12 @@ class CommonData: NSObject {
 
     // Enemy Ships
 
-    let enemyShips: SystemArray
+    var _enemyShips: SystemArray {
+        didSet {
+            setSystemArrayAccessFor(array: _enemyShips, accessList: enemyShipsAccessList)
+        }
+    }
+    let enemyShips: SystemArrayAccess
     let GU: SystemArrayAccess
     let GV: SystemArrayAccess
     let GW: SystemArrayAccess
@@ -1475,10 +1546,16 @@ class CommonData: NSObject {
     let H6: SystemArrayAccess
     let H7: SystemArrayAccess
     let H8: SystemArrayAccess
+    let enemyShipsAccessList: SystemArrayAccessList
 
     // Federation Ships
 
-    let federationShips: SystemArray
+    var _federationShips: SystemArray {
+        didSet {
+            setSystemArrayAccessFor(array: _federationShips, accessList: federationShipsAccessList)
+        }
+    }
+    let federationShips: SystemArrayAccess
     let IA: SystemArrayAccess
     let IB: SystemArrayAccess
     let IC: SystemArrayAccess
@@ -1526,6 +1603,7 @@ class CommonData: NSObject {
     let JO: SystemArrayAccess
     let JP: SystemArrayAccess
     let JQ: SystemArrayAccess
+    let federationShipsAccessList: SystemArrayAccessList
 
     // Time and run reference information
 

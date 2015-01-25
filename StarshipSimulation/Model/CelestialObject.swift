@@ -35,8 +35,10 @@ class CelestialObject: SystemArrayObject {
     var lifeFormQuantity = 0
     var lifeFormClassification: LifeFormClassification = .None
     dynamic var lifeFormIQ: Int = 100
-    dynamic var defensiveWeapons: SystemArray
-    dynamic var offensiveWeapons: SystemArray
+    dynamic var _defensiveWeapons: SystemArray
+    dynamic var defensiveWeapons: SystemArrayAccess
+    dynamic var _offensiveWeapons: SystemArray
+    dynamic var offensiveWeapons: SystemArrayAccess
     dynamic var firedUpon: Bool = false
     dynamic var peaceTreatyOffer: Int = 0
     dynamic var peaceTreatyRequest: Bool = false
@@ -225,18 +227,20 @@ class CelestialObject: SystemArrayObject {
         self.radius = radius
         self.radiation = radiation
         self.mass = mass
-        defensiveWeapons = SystemArray(num: numDefensiveWeapons, withType: DefensiveWeapon.self)
-        AX = SystemArrayAccess(source: defensiveWeapons, member: "AX")
-        AY = SystemArrayAccess(source: defensiveWeapons, member: "AY")
-        AZ = SystemArrayAccess(source: defensiveWeapons, member: "AZ")
-        A1 = SystemArrayAccess(source: defensiveWeapons, member: "A1")
-        A2 = SystemArrayAccess(source: defensiveWeapons, member: "A2")
-        offensiveWeapons = SystemArray(num: numOffensiveWeapons, withType: OffensiveWeapon.self)
-        A4 = SystemArrayAccess(source: offensiveWeapons, member: "A4")
-        A5 = SystemArrayAccess(source: offensiveWeapons, member: "A5")
-        A6 = SystemArrayAccess(source: offensiveWeapons, member: "A6")
-        A7 = SystemArrayAccess(source: offensiveWeapons, member: "A7")
-        A8 = SystemArrayAccess(source: offensiveWeapons, member: "A8")
+        _defensiveWeapons = SSMakeSystemArray(count: numDefensiveWeapons, withType: DefensiveWeapon.self)
+        defensiveWeapons = SystemArrayAccess(source: _defensiveWeapons)
+        AX = SystemArrayAccess(source: _defensiveWeapons, member: "AX")
+        AY = SystemArrayAccess(source: _defensiveWeapons, member: "AY")
+        AZ = SystemArrayAccess(source: _defensiveWeapons, member: "AZ")
+        A1 = SystemArrayAccess(source: _defensiveWeapons, member: "A1")
+        A2 = SystemArrayAccess(source: _defensiveWeapons, member: "A2")
+        _offensiveWeapons = SSMakeSystemArray(count: numOffensiveWeapons, withType: OffensiveWeapon.self)
+        offensiveWeapons = SystemArrayAccess(source: _offensiveWeapons)
+        A4 = SystemArrayAccess(source: _offensiveWeapons, member: "A4")
+        A5 = SystemArrayAccess(source: _offensiveWeapons, member: "A5")
+        A6 = SystemArrayAccess(source: _offensiveWeapons, member: "A6")
+        A7 = SystemArrayAccess(source: _offensiveWeapons, member: "A7")
+        A8 = SystemArrayAccess(source: _offensiveWeapons, member: "A8")
         super.init()
         mkSOID(.CelestialObject)
     }

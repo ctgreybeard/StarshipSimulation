@@ -126,7 +126,7 @@ class Location: SystemArrayObject, Equatable, Printable {
         }
         get {return _position}
     }
-    var num: Int {
+    dynamic var num: Int {
         get {
             var rVal: Int
             if isCraft {

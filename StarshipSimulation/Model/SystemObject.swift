@@ -150,7 +150,7 @@ func ==(lhs: SOID, rhs: SOID) -> Bool {
 }
 
 /// Base System Object for all simulation objects
-class SystemObject: NSObject, Printable {
+class SystemObject: NSObject, Printable, Equatable {
     // Null common class
     var soID: SOID!
     var soidHistory: [SOID]
@@ -169,58 +169,150 @@ class SystemObject: NSObject, Printable {
     override var description: String {return "\(self.className)(\(soID.description))"}
 }
 
-/// An accessable array of any SystemArrayObject instances
-class SystemArray: SystemObject {
-    private var _array: NSMutableArray
-    var count: Int {return _array.count}
-    var array: NSArray {return NSArray(array: _array)}
+func ==(lhs: SystemObject, rhs: SystemObject) -> Bool {
+    return lhs.soID == rhs.soID
+}
 
-    /// Primary initializer, used most frequently to init a SystemArray
-    convenience init(num: Int, withType with: SystemArrayObject.Type)  {
-        var _array = [SystemArrayObject]()
-        for i in 0..<num {
-            let z = with.self()
-            _array.append(z)
-        }
-        self.init(with: _array)
+/// Contents of SystemArray, subclasses must implement copyWithZone
+class SystemArrayObject: SystemObject, NSCopying {
+
+    func copyWithZone(zone: NSZone) -> AnyObject {
+        logger.verbose("Copying SAO \(soID)")
+        return SystemArrayObject()
     }
 
-    /// Create an empty SystemArray
-    convenience required init() {
-        self.init(with: [SystemArrayObject]())
-    }
-
-    /// Create a new SystemArray with supplied array
-    init(with array: [SystemArrayObject]) {
-        _array = NSMutableArray(array: array)
+    required init() {
         super.init()
-        mkSOID(.SystemArray)
+        mkSOID(.SystemArrayObject)
+    }
+}
 
+typealias SystemArray = NSMutableArray
+
+/// Make a new SystemArray populated with new SystemArrayObjects
+func SSMakeSystemArray(count num: Int, withType with: SystemArrayObject.Type) -> SystemArray {
+    var newArray = SystemArray(capacity: num)
+    for i in 0..<num {
+        newArray.addObject(with.self())
+    }
+    return newArray
+}
+
+/// Make a new SystemArray populated with new SystemArrayObjects
+func SSMakeSystemArray(withArray array: [SystemArrayObject]) -> SystemArray {
+    var newArray = SystemArray(capacity: array.count)
+    newArray.setArray(array)
+    return newArray
+}
+
+/// Key access to SystemArray
+class SystemArrayAccess: SystemObject {
+    private var _array: SystemArray
+    private var _members: [String]?
+    private var _ro: Bool
+
+    dynamic var array: SystemArray {return _array}
+
+    //class func automaticallyNotifiesObserversOfArray() -> Bool {return false}
+
+    convenience init(source: SystemArray, readOnly ro: Bool = true) {
+        self.init(source: source, members: nil, readOnly: ro)
     }
 
-    /// Treat a SystemArray like a regular array
-    subscript(i: Int) -> SystemArrayObject? {
+    convenience init(source: SystemArray, member: String, readOnly ro: Bool = false) {
+        self.init(source: source, members: [member], readOnly: ro)
+    }
+
+    init(source: SystemArray, members: [String]?, readOnly ro: Bool = false) {
+        _array = source
+        _members = members
+        _ro = ro
+        super.init()
+        mkSOID(.SystemArrayAccess)
+    }
+
+    required convenience init() {
+        self.init(source: SystemArray(), members: nil)
+    }
+
+    var count: Int {return _array.count}
+
+    func setSource(newSource: SystemArray) {
+        willChangeValueForKey("array")
+        _array = newSource
+        didChangeValueForKey("array")
+    }
+
+    func objectAtIndex(i: Int) -> SystemArrayObject? {
+        if i >= 0 && i < _array.count {return (_array.objectAtIndex(i) as SystemArrayObject)}
+        else {return nil}
+    }
+
+    func replaceObjectAtIndex(i: Int, withObject object: SystemArrayObject) {
+        if i >= 0 && i < _array.count {
+            willChange(.Replacement, valuesAtIndexes: NSIndexSet(index: i), forKey: "array")   // Handle any KVO
+            _array.replaceObjectAtIndex(i, withObject: object)
+            didChange(.Replacement, valuesAtIndexes: NSIndexSet(index: i), forKey: "array")
+        }
+    }
+
+    subscript(i: Int) -> AnyObject? {
         get {
-            if i >= 0 && i < _array.count {
-                return _array[i] as? SystemArrayObject
-            } else {
-                return nil
+            var value: AnyObject?
+            if let l1sao = self.objectAtIndex(i) {
+                if  _members?.count == 1 {
+                    value = l1sao.valueForKeyPath(_members![0])
+                } else if _members == nil {
+                    value = l1sao
+                } else {
+                    logger.error("Subscript count mismatch")
+                }
             }
+            return value
         }
         set {
-            if i >= 0 && i < _array.count {
-                willChange(.Replacement, valuesAtIndexes: NSIndexSet(index: i), forKey: "array")
-                _array[i] = newValue!
-                didChange(.Replacement, valuesAtIndexes: NSIndexSet(index: i), forKey: "array")
+            if !_ro {
+                if _members?.count == 1 {
+                    objectAtIndex(i)?.setValue(newValue, forKeyPath: _members![0])
+                } else if _members == nil {
+                    replaceObjectAtIndex(i, withObject: newValue as SystemArrayObject)
+                } else {
+                    logger.error("Subscript count mismatch")
+                }
             }
         }
     }
 
-    /// Appends item to the end of the arrsy and returns the index
+    /// TODO: Clean up the code below
+    subscript(i: Int, j: Int) -> AnyObject? {
+        get {
+            var value: AnyObject?
+            if _members != nil && _members!.count == 2 {
+                value = (self[i]?.valueForKeyPath(_members![0])?[j] as? SystemArrayObject)?.valueForKeyPath(_members![1])
+            } else {
+                logger.error("Subscript count mismatch")
+            }
+            return value
+        }
+        set {
+            if !_ro {
+                if _members != nil && _members?.count == 2 {
+                    (objectAtIndex(i)?.valueForKeyPath(_members![0])?[j] as? SystemArrayObject)?.setValue(newValue, forKeyPath: _members![1])
+                } else {
+                    logger.error("Subscript count mismatch")
+                }
+            } else {
+                logger.warning("Trying to update readOnly array")
+            }
+        }
+    }
+
+    /// Appends item to the end of the array and returns the index
     func append(new1: SystemArrayObject) -> Int {
-        willChange(.Insertion, valuesAtIndexes: NSIndexSet(index: _array.count), forKey: "array")
+        let aCount = _array.count
+        willChange(.Insertion, valuesAtIndexes: NSIndexSet(index: aCount), forKey: "array")
         _array.addObject(new1)
-        didChange(.Insertion, valuesAtIndexes: NSIndexSet(index: _array.count - 1), forKey: "array")
+        didChange(.Insertion, valuesAtIndexes: NSIndexSet(index: aCount), forKey: "array")
         return _array.count - 1
     }
 
@@ -238,96 +330,12 @@ class SystemArray: SystemObject {
 
     /// Insert the item at index
     func insertObject(newOne: SystemArrayObject, atIndex index: Int) {
-        if index >= 0 && index < _array.count {
+        if index >= 0 && index <= _array.count {
             willChange(.Insertion, valuesAtIndexes: NSIndexSet(index: index), forKey: "array")
             _array.insertObject(newOne, atIndex: index)
             didChange(.Insertion, valuesAtIndexes: NSIndexSet(index: index), forKey: "array")
-        }
-    }
-}
-
-/// Contents of SystemArray, subclasses must implement copyWithZone
-class SystemArrayObject: SystemObject, NSCopying {
-
-    func copyWithZone(zone: NSZone) -> AnyObject {
-        logger.verbose("Copying SAO \(soID)")
-        return SystemArrayObject()
-    }
-
-    required init() {
-        super.init()
-        mkSOID(.SystemArrayObject)
-    }
-}
-
-/// Key access to SystemArray
-class SystemArrayAccess: SystemObject {
-    private var _source: SystemArray
-    private var _members: [String]?
-    private var _ro: Bool
-
-    convenience init(source: SystemArray) {
-        self.init(source: source, members: nil, readOnly: true)
-    }
-
-    convenience init(source: SystemArray, member: String, readOnly ro: Bool = false) {
-        self.init(source: source, members: [member], readOnly: ro)
-    }
-
-    init(source: SystemArray, members: [String]?, readOnly ro: Bool = false) {
-        _source = source
-        _members = members
-        _ro = ro
-        super.init()
-        mkSOID(.SystemArrayAccess)
-    }
-
-    required convenience init() {
-        self.init(source: SystemArray(), members: nil)
-    }
-
-    func setSource(newSource: SystemArray) {
-        _source = newSource
-    }
-
-    subscript(i: Int) -> AnyObject? {
-        get {
-            var value: AnyObject? = nil
-            if let l1sao = _source[i] {
-                if let mems = _members {
-                    value = l1sao.valueForKeyPath(mems[0])
-                } else {
-                    value = l1sao
-                }
-            }
-            return value
-        }
-        set {
-            if !_ro {
-                if _members != nil {
-                    _source[i]?.setValue(newValue, forKeyPath: _members![0])
-                } else {
-                    _source[i] = (newValue as SystemArrayObject)
-                }
-            }
-        }
-    }
-
-    /// TODO: Clean up the code below
-    subscript(i: Int, j: Int) -> AnyObject? {
-        get {
-            var value: AnyObject?
-            if _members != nil && _members?.count == 2 {
-                value = (_source[i]?.valueForKeyPath(_members![0])?[j] as NSObject).valueForKeyPath(_members![1])
-            }
-            return value
-        }
-        set {
-            if !_ro {
-                if _members != nil && _members?.count == 2 {
-                    (_source[i]?.valueForKeyPath(_members![0])?[j] as NSObject).setValue(newValue, forKeyPath: _members![1])
-                }
-            }
+        } else {
+            logger.warning("Subscript out of range for insertObject")
         }
     }
 }
