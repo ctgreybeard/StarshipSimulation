@@ -31,6 +31,7 @@ enum SOTAG: String {
     case Location = "LOC"
     case MedicalComputer = "MCOMP"
     case MedicalResearchLab = "MLAB"
+    case Name = "NAME"
     case NavigationComputer = "NCOMP"
     case PhaserStation = "PHASER"
     case PhotonTorpedo = "PTORP"
@@ -58,56 +59,8 @@ enum SOTAG: String {
     case Test = "TEST"
 }
 
-/// MARK: This is dumb. I should be able to enumerate the enum ... initializing the array would be much simpler ...
-
 /// SystmObject instance counters
-var numSO: [SOTAG: Int] = [
-    SOTAG.AtmosphericSensor: 0,
-    SOTAG.Cargo: 0,
-    SOTAG.CelestialObject: 0,
-    SOTAG.CloakingDevice: 0,
-    SOTAG.CommunicationsComputer: 0,
-    SOTAG.CommunicationsStation: 0,
-    SOTAG.DeflectorShield: 0,
-    SOTAG.DetentionCell: 0,
-    SOTAG.EnemyShip: 0,
-    SOTAG.EnergyConnectionStation: 0,
-    SOTAG.EnterprisePerson: 0,
-    SOTAG.FederationPerson: 0,
-    SOTAG.FleetShip: 0,
-    SOTAG.GravitySensor: 0,
-    SOTAG.ImpulseEngine: 0,
-    SOTAG.IntensiveCareUnit: 0,
-    SOTAG.LifeFormsSensor: 0,
-    SOTAG.LifeSupport: 0,
-    SOTAG.Location: 0,
-    SOTAG.MedicalComputer: 0,
-    SOTAG.MedicalResearchLab: 0,
-    SOTAG.NavigationComputer: 0,
-    SOTAG.PhaserStation: 0,
-    SOTAG.PhotonTorpedo: 0,
-    SOTAG.PhotonTube: 0,
-    SOTAG.RadiationSensor: 0,
-    SOTAG.Rank: 0,
-    SOTAG.Sensor: 0,
-    SOTAG.ShuttleCraft: 0,
-    SOTAG.SpatialPosition: 0,
-    SOTAG.SpatialVolume: 0,
-    SOTAG.SystemArray: 0,
-    SOTAG.SystemArrayAccess: 0,
-    SOTAG.SystemArrayObject: 0,
-    SOTAG.SystemObject: 0,
-    SOTAG.SystemStatus: 0,
-    SOTAG.TractorBeam: 0,
-    SOTAG.TransporterStation: 0,
-    SOTAG.TurboElevatorCar: 0,
-    SOTAG.TurboElevatorStation: 0,
-    SOTAG.TurboElvatorComputer: 0,
-    SOTAG.Velocity: 0,
-    SOTAG.WarpEngine: 0,
-    SOTAG.Weapon: 0,
-    SOTAG.Test: 0
-]
+var numSO: [SOTAG: Int] = [:]
 
 /// MARK: An alternate idea would be to use .className to index the tag and counter arrays ...
 
@@ -119,11 +72,11 @@ class SOID: NSObject, Printable, DebugPrintable, Equatable, Hashable, NSCopying 
     init(tag: SOTAG) {
         self.tag = tag
         if numSO[tag] != nil {
-            counter = ++numSO[tag]!
+            numSO[tag]! += 1
         } else {
-            logger.error("No place to put \(tag.rawValue)")
-            counter = -1
+            numSO[tag] = 1
         }
+        counter = numSO[tag]!
         super.init()
     }
 
@@ -138,6 +91,14 @@ class SOID: NSObject, Printable, DebugPrintable, Equatable, Hashable, NSCopying 
     override var description: String {return "\(tag.rawValue)\(counter)"}
 
     override var debugDescription: String {return "\(self.className)(tag: \(tag.rawValue), counter: \(counter))"}
+
+    func compare(other: SOID) -> NSComparisonResult {
+        var c1 = tag.rawValue.compare(other.tag.rawValue)
+        if c1 == .OrderedSame {
+            c1 = NSNumber(integer: counter).compare(NSNumber(integer: other.counter))
+        }
+        return c1
+    }
 
     func copyWithZone(zone: NSZone) -> AnyObject {
         let newOne = SOID(id: self)
@@ -156,14 +117,14 @@ class SystemObject: NSObject, Printable, Equatable {
     var soidHistory: [SOID]
 
     required override init() {
-        soID = SOID(tag: .SystemObject)
         soidHistory = []
         super.init()
+        mkSOID(.SystemObject)
     }
 
     func mkSOID(tag: SOTAG) {
-        soidHistory.append(soID)
         soID = SOID(tag: tag)
+        soidHistory.append(soID)
     }
 
     override var description: String {return "\(self.className)(\(soID.description))"}

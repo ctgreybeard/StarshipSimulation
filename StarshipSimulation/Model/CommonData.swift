@@ -106,35 +106,38 @@ class CommonData: NSObject {
         logger.debug("Init Enterprise Personnel")
         // Enterprise Personnel
         let defaultNumEnterprisePersons = 43 + 387
-        _enterprisePersonnel = SSMakeSystemArray(count: defaultNumEnterprisePersons, withType: EnterprisePerson.self)
-        enterprisePersonnel = SystemArrayAccess(source: _enterprisePersonnel, readOnly: false)
+        SSenterprisePersonnel = SSMakeSystemArray(count: defaultNumEnterprisePersons, withType: EnterprisePerson.self)
+        enterprisePersonnelSAA = SystemArrayAccess(source: SSenterprisePersonnel, readOnly: false)
 
-        BL = SystemArrayAccess(source: _enterprisePersonnel, member: "BL")   // Name
-        BLid = SystemArrayAccess(source: _enterprisePersonnel, member: "BLid", readOnly: true)   // soID.description
-        BM = SystemArrayAccess(source: _enterprisePersonnel, member: "BM")   // Rank
-        BN = SystemArrayAccess(source: _enterprisePersonnel, member: "BN")   // IQ
-        BO = SystemArrayAccess(source: _enterprisePersonnel, member: "BO")   // Location
-        BOd = SystemArrayAccess(source: _enterprisePersonnel, member: "BOd") // Location description
-        BP = SystemArrayAccess(source: _enterprisePersonnel, member: "BP")   // X-coordinate
-        BQ = SystemArrayAccess(source: _enterprisePersonnel, member: "BQ")   // Y-coordinate
-        BR = SystemArrayAccess(source: _enterprisePersonnel, member: "BR")   // Z-coordinate
-        BS = SystemArrayAccess(source: _enterprisePersonnel, member: "BS")   // Destination
-        BSd = SystemArrayAccess(source: _enterprisePersonnel, member: "BSd") // Destination description
-        BT = SystemArrayAccess(source: _enterprisePersonnel, member: "BT")   // functionalstatus
-        BU = SystemArrayAccess(source: _enterprisePersonnel, member: "BU")
-        enterprisePersonsArrayAccessList = [enterprisePersonnel, BL, BM, BN, BO, BP, BQ, BR, BS, BT, BU]
+        BL = SystemArrayAccess(source: SSenterprisePersonnel, member: "BL")   // Name
+        BLid = SystemArrayAccess(source: SSenterprisePersonnel, member: "BLid", readOnly: true)   // soID.description
+        BLgiven = SystemArrayAccess(source: SSenterprisePersonnel, member: "BLgiven", readOnly: true)
+        BLsurname = SystemArrayAccess(source: SSenterprisePersonnel, member: "BLsurname", readOnly: true)
+        BM = SystemArrayAccess(source: SSenterprisePersonnel, member: "BM")   // Rank
+        BN = SystemArrayAccess(source: SSenterprisePersonnel, member: "BN")   // IQ
+        BO = SystemArrayAccess(source: SSenterprisePersonnel, member: "BO")   // Location
+        BOd = SystemArrayAccess(source: SSenterprisePersonnel, member: "BOd") // Location description
+        BP = SystemArrayAccess(source: SSenterprisePersonnel, member: "BP")   // X-coordinate
+        BQ = SystemArrayAccess(source: SSenterprisePersonnel, member: "BQ")   // Y-coordinate
+        BR = SystemArrayAccess(source: SSenterprisePersonnel, member: "BR")   // Z-coordinate
+        BS = SystemArrayAccess(source: SSenterprisePersonnel, member: "BS")   // Destination
+        BSd = SystemArrayAccess(source: SSenterprisePersonnel, member: "BSd") // Destination description
+        BT = SystemArrayAccess(source: SSenterprisePersonnel, member: "BT")   // functionalstatus
+        BU = SystemArrayAccess(source: SSenterprisePersonnel, member: "BU")
+        enterprisePersonsArrayAccessList = [enterprisePersonnelSAA, BL, BM, BN, BO, BP, BQ, BR, BS, BT, BU]
 
         foodConsumption = 1.0       // kg/hr
         waterConsumption = 1.0      // l/hr
         oxygenConsumption = 1.0     // l/hr
+        logger.debug("Init Enterprise Personnel complete. \(SSenterprisePersonnel.count) created")
 
         // Enterprise Offensive Weapons Data
 
         logger.debug("Init Photon Tubes")
         // Photon Tubes
         let defaultNumPhotonTubes = 6
-        _photonTubes = SSMakeSystemArray(count: defaultNumPhotonTubes, withType: PhotonTube.self)
-        photonTubes = SystemArrayAccess(source: _photonTubes)
+        SSphotonTubes = SSMakeSystemArray(count: defaultNumPhotonTubes, withType: PhotonTube.self)
+        photonTubes = SystemArrayAccess(source: SSphotonTubes)
         // Set the torpedo locations
         let numTorps = (photonTubes[0] as PhotonTube).torpedos.count
         for p in 0..<photonTubes.count {
@@ -143,36 +146,38 @@ class CommonData: NSObject {
                 tube.B3[t] = LocationCode.PhotonTorpedoTubeStation.rawValue + p
             }
         }
-        BY = SystemArrayAccess(source: _photonTubes, member: "BY")   // functionalstatus
-        BZ = SystemArrayAccess(source: _photonTubes, member: "BZ")   // reliabilityfactor
-        B1 = SystemArrayAccess(source: _photonTubes, member: "B1")   // energyrequirement
-        B2 = SystemArrayAccess(source: _photonTubes, member: "B2", readOnly: true)
-        B3 = SystemArrayAccess(source: _photonTubes, members: ["torpedos", "B3"])
-        B4 = SystemArrayAccess(source: _photonTubes, members: ["torpedos", "B4"])
+        BY = SystemArrayAccess(source: SSphotonTubes, member: "BY")   // functionalstatus
+        BZ = SystemArrayAccess(source: SSphotonTubes, member: "BZ")   // reliabilityfactor
+        B1 = SystemArrayAccess(source: SSphotonTubes, member: "B1")   // energyrequirement
+        B2 = SystemArrayAccess(source: SSphotonTubes, member: "B2", readOnly: true)
+        B3 = SystemArrayAccess(source: SSphotonTubes, members: ["torpedos", "B3"])
+        B4 = SystemArrayAccess(source: SSphotonTubes, members: ["torpedos", "B4"])
         photonTubesArrayAccessList = [photonTubes, BY, BZ, B1, B2, B3, B4]
+        logger.debug("Init Photon Tubes complete. \(SSphotonTubes.count) created")
 
         logger.debug("Init Phaser Stations")
         // Phaser Stations
         let defaultNumPhaserStations = 6
-        _phaserStations = SSMakeSystemArray(count: defaultNumPhaserStations, withType: PhaserStation.self)
-        phaserStations = SystemArrayAccess(source: _phaserStations)
-        B5 = SystemArrayAccess(source: _phaserStations, member: "B5")   // functionalstatus
-        B6 = SystemArrayAccess(source: _phaserStations, member: "B6")   // operationalstatus
-        B7 = SystemArrayAccess(source: _phaserStations, member: "B7")   // reliabilityfactor
-        B8 = SystemArrayAccess(source: _phaserStations, member: "B8")   // energyrequirement
+        SSphaserStations = SSMakeSystemArray(count: defaultNumPhaserStations, withType: PhaserStation.self)
+        phaserStations = SystemArrayAccess(source: SSphaserStations)
+        B5 = SystemArrayAccess(source: SSphaserStations, member: "B5")   // functionalstatus
+        B6 = SystemArrayAccess(source: SSphaserStations, member: "B6")   // operationalstatus
+        B7 = SystemArrayAccess(source: SSphaserStations, member: "B7")   // reliabilityfactor
+        B8 = SystemArrayAccess(source: SSphaserStations, member: "B8")   // energyrequirement
         phaserStationsArrayAccessList = [phaserStations, B5, B6, B7, B8]
+        logger.debug("Init Phaser Stations complete. \(SSphaserStations.count) created")
 
         // Enterprise Defensive Weapons Data
 
         logger.debug("Init Deflector Shields")
         // Deflector Shields
         let defaultNumDeflectorShields = 6
-        _deflectorShields = SSMakeSystemArray(count: defaultNumDeflectorShields, withType: DeflectorShield.self)
-        deflectorShields = SystemArrayAccess(source: _deflectorShields)
-        B9 = SystemArrayAccess(source: _deflectorShields, member: "B9")   // functionalstatus
-        CA = SystemArrayAccess(source: _deflectorShields, member: "CA")   // operationalstatus
-        CB = SystemArrayAccess(source: _deflectorShields, member: "CB")   // reliabilityfactor
-        CD = SystemArrayAccess(source: _deflectorShields, member: "CD")   // energyrequirement
+        SSdeflectorShields = SSMakeSystemArray(count: defaultNumDeflectorShields, withType: DeflectorShield.self)
+        deflectorShields = SystemArrayAccess(source: SSdeflectorShields)
+        B9 = SystemArrayAccess(source: SSdeflectorShields, member: "B9")   // functionalstatus
+        CA = SystemArrayAccess(source: SSdeflectorShields, member: "CA")   // operationalstatus
+        CB = SystemArrayAccess(source: SSdeflectorShields, member: "CB")   // reliabilityfactor
+        CD = SystemArrayAccess(source: SSdeflectorShields, member: "CD")   // energyrequirement
         deflectorShieldsArrayAccessList = [deflectorShields, B9, CA, CB, CD]
 
         logger.debug("Init Cloaking Device")
@@ -184,23 +189,23 @@ class CommonData: NSObject {
         logger.debug("Init Warp Engines")
         // Warp Engines
         let defaultNumWarpEngines = 2
-        _warpEngines = SSMakeSystemArray(count: defaultNumWarpEngines, withType: WarpEngine.self)
-        warpEngines = SystemArrayAccess(source: _warpEngines)
-        CH = SystemArrayAccess(source: _warpEngines, member: "CH")   // functionalstatus
-        CI = SystemArrayAccess(source: _warpEngines, member: "CI")   // operationalstatus
-        CJ = SystemArrayAccess(source: _warpEngines, member: "CJ")   // reliabilityfactor
-        CK = SystemArrayAccess(source: _warpEngines, member: "CK")   // energyrequirement
+        SSwarpEngines = SSMakeSystemArray(count: defaultNumWarpEngines, withType: WarpEngine.self)
+        warpEngines = SystemArrayAccess(source: SSwarpEngines)
+        CH = SystemArrayAccess(source: SSwarpEngines, member: "CH")   // functionalstatus
+        CI = SystemArrayAccess(source: SSwarpEngines, member: "CI")   // operationalstatus
+        CJ = SystemArrayAccess(source: SSwarpEngines, member: "CJ")   // reliabilityfactor
+        CK = SystemArrayAccess(source: SSwarpEngines, member: "CK")   // energyrequirement
         warpEnginesArrayAccessList = [warpEngines, CH, CI, CJ, CK]
 
         logger.debug("Init Impulse Engines")
         // Impulse Engines
         let defaultNumImpulseEngines = 2
-        _impulseEngines = SSMakeSystemArray(count: defaultNumImpulseEngines, withType: ImpulseEngine.self)
-        impulseEngines = SystemArrayAccess(source: _impulseEngines)
-        CL = SystemArrayAccess(source: _impulseEngines, member: "CL")   // functionalstatus
-        CM = SystemArrayAccess(source: _impulseEngines, member: "CM")   // operationalstatus
-        CN = SystemArrayAccess(source: _impulseEngines, member: "CN")   // reliabilityfactor
-        CO = SystemArrayAccess(source: _impulseEngines, member: "CO")   // energyrequirement
+        SSimpulseEngines = SSMakeSystemArray(count: defaultNumImpulseEngines, withType: ImpulseEngine.self)
+        impulseEngines = SystemArrayAccess(source: SSimpulseEngines)
+        CL = SystemArrayAccess(source: SSimpulseEngines, member: "CL")   // functionalstatus
+        CM = SystemArrayAccess(source: SSimpulseEngines, member: "CM")   // operationalstatus
+        CN = SystemArrayAccess(source: SSimpulseEngines, member: "CN")   // reliabilityfactor
+        CO = SystemArrayAccess(source: SSimpulseEngines, member: "CO")   // energyrequirement
         impulseEnginesArrayAccessList = [impulseEngines, CL, CM, CN, CO]
 
         // Enterprise Navigation Data
@@ -602,7 +607,7 @@ class CommonData: NSObject {
     dynamic var zMin: Coordinate
 
     // Var names as defined in the book
-    var AA: BigNum {
+    dynamic var AA: BigNum {
         set {
             xMax = newValue
         }
@@ -610,7 +615,7 @@ class CommonData: NSObject {
             return xMax
         }
     }
-    var AB: BigNum {
+    dynamic var AB: BigNum {
         set {
             xMin = newValue
         }
@@ -618,7 +623,7 @@ class CommonData: NSObject {
             return xMin
         }
     }
-    var AC: BigNum {
+    dynamic var AC: BigNum {
         set {
             yMax = newValue
         }
@@ -626,7 +631,7 @@ class CommonData: NSObject {
             return yMax
         }
     }
-    var AD: BigNum {
+    dynamic var AD: BigNum {
         set {
             yMin = newValue
         }
@@ -634,7 +639,7 @@ class CommonData: NSObject {
             return yMin
         }
     }
-    var AE: BigNum {
+    dynamic var AE: BigNum {
         set {
             zMax = newValue
         }
@@ -642,7 +647,7 @@ class CommonData: NSObject {
             return zMax
         }
     }
-    var AF: BigNum {
+    dynamic var AF: BigNum {
         set {
             zMin = newValue
         }
@@ -653,7 +658,7 @@ class CommonData: NSObject {
 
     /// Celestial Objects
 
-    var _celestialObjects: SystemArray {
+    dynamic var _celestialObjects: SystemArray {
         didSet {
             setSystemArrayAccessFor(array: _celestialObjects, accessList: celestialObjectsAccessList)
         }
@@ -775,16 +780,17 @@ class CommonData: NSObject {
 
     /// Enterprise personnel
 
-    var numEnterprisePersons: Int {return _enterprisePersonnel.count}
-    var _enterprisePersonnel: SystemArray {
+    dynamic var SSenterprisePersonnel: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: _enterprisePersonnel, accessList: enterprisePersonsArrayAccessList)
+            setSystemArrayAccessFor(array: SSenterprisePersonnel, accessList: enterprisePersonsArrayAccessList)
         }
     }
-    let enterprisePersonnel: SystemArrayAccess
-    var BK: Int {return _enterprisePersonnel.count}
+    let enterprisePersonnelSAA: SystemArrayAccess
+    var BK: Int {return SSenterprisePersonnel.count}
     let BL: SystemArrayAccess
     let BLid: SystemArrayAccess
+    let BLgiven: SystemArrayAccess
+    let BLsurname: SystemArrayAccess
     let BM: SystemArrayAccess
     let BN: SystemArrayAccess
     let BO: SystemArrayAccess
@@ -798,23 +804,106 @@ class CommonData: NSObject {
     let BU: SystemArrayAccess
     let enterprisePersonsArrayAccessList: [SystemArrayAccess]
 
-    var foodConsumption: Float      // kg/hr
+    dynamic var foodConsumption: Float      // kg/hr
     dynamic var BV: Float {
         get {return foodConsumption}
         set {foodConsumption = newValue}
     }
+    class func keyPathsForValuesAffectingBV() -> NSSet {
+        return NSSet(array: ["foodConsumption"])
+    }
 
-    var waterConsumption: Float     // l/hr
+    dynamic var waterConsumption: Float     // l/hr
     dynamic var BW: Float {
         get {return waterConsumption}
         set {waterConsumption = newValue}
     }
+    class func keyPathsForValuesAffectingBW() -> NSSet {
+        return NSSet(array: ["waterConsumption"])
+    }
 
-    var oxygenConsumption: Float    // l/hr
+    dynamic var oxygenConsumption: Float    // l/hr
     dynamic var BX: Float {
         get {return oxygenConsumption}
         set {oxygenConsumption = newValue}
     }
+    class func keyPathsForValuesAffectingBX() -> NSSet {
+        return NSSet(array: ["oxygenConsumption"])
+    }
+
+    // KVC methods https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html
+    func countOfEnterprisePersonnel() -> Int {
+        logger.verbose("Entry")
+        bumpCount()
+        return SSenterprisePersonnel.count
+    }
+
+    func objectInEnterprisePersonnelAtIndex(index: Int) -> AnyObject {
+        logger.verbose("Entry")
+        bumpCount()
+        return SSenterprisePersonnel[index]
+    }
+
+    func enterprisePersonnelAtIndexes(indexes: NSIndexSet) -> [AnyObject] {
+        logger.verbose("Entry")
+        bumpCount()
+        return SSenterprisePersonnel.objectsAtIndexes(indexes)
+    }
+
+    func getEnterprisePersonnel(buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>, inRange: NSRange) {
+        logger.verbose("Entry")
+        bumpCount()
+        SSenterprisePersonnel.getObjects(buffer, range: inRange)
+    }
+
+    func insertObject(object: AnyObject, inEnterprisePersonnelAtIndex index: Int) {
+        logger.verbose("Entry")
+        bumpCount()
+        willChange(.Insertion, valuesAtIndexes: NSIndexSet(index: index), forKey: "enterprisePersonnel")
+        SSenterprisePersonnel.insertObject(object, atIndex: index)
+        didChange(.Insertion, valuesAtIndexes: NSIndexSet(index: index), forKey: "enterprisePersonnel")
+    }
+
+    func insertEnterprisePersonnel(enterprisePersonnelArray: NSArray, atIndexes indexes: NSIndexSet) {
+        logger.verbose("Entry")
+        bumpCount()
+        willChange(.Insertion, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
+        SSenterprisePersonnel.insertObjects(enterprisePersonnelArray, atIndexes: indexes)
+        didChange(.Insertion, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
+    }
+
+    func removeObjectFromEnterprisePersonnelAtIndex(index: Int) {
+        logger.verbose("Entry")
+        bumpCount()
+        willChange(.Removal, valuesAtIndexes: NSIndexSet(index: index), forKey: "enterprisePersonnel")
+        SSenterprisePersonnel.removeObjectAtIndex(index)
+        didChange(.Removal, valuesAtIndexes: NSIndexSet(index: index), forKey: "enterprisePersonnel")
+    }
+
+    func removeEnterprisePersonnelAtIndexes(indexes: NSIndexSet) {
+        logger.verbose("Entry")
+        bumpCount()
+        willChange(.Removal, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
+        SSenterprisePersonnel.removeObjectsAtIndexes(indexes)
+        didChange(.Removal, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
+    }
+
+    func replaceObjectInEnterprisePersonnelAtIndex(index: Int, withObject object: AnyObject) {
+        logger.verbose("Entry")
+        bumpCount()
+        willChange(.Replacement, valuesAtIndexes: NSIndexSet(index: index), forKey: "enterprisePersonnel")
+        SSenterprisePersonnel.replaceObjectAtIndex(index, withObject: object)
+        didChange(.Replacement, valuesAtIndexes: NSIndexSet(index: index), forKey: "enterprisePersonnel")
+    }
+
+    func replaceEnterprisePersonnelAtIndexes(indexes: NSIndexSet, withEnterprisePersonnel objects: NSArray) {
+        logger.verbose("Entry")
+        bumpCount()
+        willChange(.Replacement, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
+        SSenterprisePersonnel.replaceObjectsAtIndexes(indexes, withObjects: objects)
+        didChange(.Replacement, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
+    }
+
 
     /// Enterprise Weapons Data
 
@@ -822,9 +911,9 @@ class CommonData: NSObject {
 
     // Photon torpedo tubes (6)
     var numPhotonTubes: Int {return photonTubes.count}
-    var _photonTubes: SystemArray {
+    var SSphotonTubes: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: _photonTubes, accessList: photonTubesArrayAccessList)
+            setSystemArrayAccessFor(array: SSphotonTubes, accessList: photonTubesArrayAccessList)
         }
     }
 
@@ -839,9 +928,9 @@ class CommonData: NSObject {
 
     // Phaser Stations (status only)
     var numPhaserStations: Int {return phaserStations.count}
-    var _phaserStations: SystemArray {
+    var SSphaserStations: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: _phaserStations, accessList: phaserStationsArrayAccessList)
+            setSystemArrayAccessFor(array: SSphaserStations, accessList: phaserStationsArrayAccessList)
         }
     }
     let phaserStations: SystemArrayAccess
@@ -855,9 +944,9 @@ class CommonData: NSObject {
 
     // Deflector Shields
     var numDeflectorShields: Int {return deflectorShields.count}
-    var _deflectorShields: SystemArray {
+    var SSdeflectorShields: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: _deflectorShields, accessList: deflectorShieldsArrayAccessList)
+            setSystemArrayAccessFor(array: SSdeflectorShields, accessList: deflectorShieldsArrayAccessList)
         }
     }
     let deflectorShields: SystemArrayAccess
@@ -887,9 +976,9 @@ class CommonData: NSObject {
 
     // Space/Warp engine
     var numWarpEngines: Int {return warpEngines.count}
-    var _warpEngines: SystemArray {
+    var SSwarpEngines: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: _warpEngines, accessList: warpEnginesArrayAccessList)
+            setSystemArrayAccessFor(array: SSwarpEngines, accessList: warpEnginesArrayAccessList)
         }
     }
     var warpEngines: SystemArrayAccess
@@ -901,9 +990,9 @@ class CommonData: NSObject {
 
     // Impulse Engines
     var numImpulseEngines: Int {return impulseEngines.count}
-    var _impulseEngines: SystemArray {
+    var SSimpulseEngines: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: _impulseEngines, accessList: impulseEnginesArrayAccessList)
+            setSystemArrayAccessFor(array: SSimpulseEngines, accessList: impulseEnginesArrayAccessList)
         }
     }
     let impulseEngines: SystemArrayAccess
@@ -1619,4 +1708,27 @@ class CommonData: NSObject {
         }
         return retDate
     }
+
+    // Possibly overkill in compliance but we can gather info on which methods are actually used
+
+    /// Function entry counters
+    var entryCounts: [String: Int] = [:]
+
+    /// Initiate or increment function counter
+    func bumpCount(funcName: String = __FUNCTION__) {
+        if entryCounts[funcName] != nil {
+            entryCounts[funcName]!++
+        } else {
+            entryCounts[funcName] = 1
+        }
+    }
+
+    func dumpCounts() {
+        logger.debug("KVC counts")
+
+        for k in Array(entryCounts.keys).sorted({ $0 < $1 }) {
+            logger.debug("\(k): \(entryCounts[k]!)")
+        }
+    }
+    
 }

@@ -111,10 +111,10 @@ class SystemArrayTests: XCTestCase {
         XCTAssertEqual(BU[tp2] as Int, 10, "default setting (BU 2) incorrect")
 
         // Test direct access
-        (enterprisePersonnel[tp1]? as EnterprisePerson).name = tp1name
+//        (enterprisePersonnel[tp1]? as EnterprisePerson).name = tp1name
         XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).name, tp1name, "direct setting (name 1) incorrect")
         XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).name, "New Person", "direct setting (name 2) incorrect")
-        (enterprisePersonnel[tp2]? as EnterprisePerson).name = tp2name
+//        (enterprisePersonnel[tp2]? as EnterprisePerson).name = tp2name
         XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).name, tp1name, "direct setting (name 1) incorrect")
         XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).name, tp2name, "direct setting (name 2) incorrect")
         (enterprisePersonnel[tp1]? as EnterprisePerson).healthStatus = tp1health
@@ -123,8 +123,8 @@ class SystemArrayTests: XCTestCase {
         XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).healthStatus, tp2health, "direct setting (healthStatus 2) incorrect")
 
         // Reset the names and health
-        (enterprisePersonnel[tp1]? as EnterprisePerson).name = resetName
-        (enterprisePersonnel[tp2]? as EnterprisePerson).name = resetName
+//        (enterprisePersonnel[tp1]? as EnterprisePerson).name = resetName
+//        (enterprisePersonnel[tp2]? as EnterprisePerson).name = resetName
         XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).name, resetName, "reset (name 1) incorrect")
         XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).name, resetName, "reset (name 2) incorrect")
         (enterprisePersonnel[tp1]? as EnterprisePerson).healthStatus = resetHealth
@@ -136,7 +136,7 @@ class SystemArrayTests: XCTestCase {
         (enterprisePersonnel[tp1]? as EnterprisePerson).BL = tp1name
         XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).BL, tp1name, "direct setting (name 1) incorrect")
         XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).BL, resetName, "direct setting (name 2) incorrect")
-        (enterprisePersonnel[tp2]? as EnterprisePerson).name = tp2name
+//        (enterprisePersonnel[tp2]? as EnterprisePerson).name = tp2name
         XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).BL, tp1name, "direct setting (name 1) incorrect")
         XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).BL, tp2name, "direct setting (name 2) incorrect")
         (enterprisePersonnel[tp1]? as EnterprisePerson).healthStatus = tp1health

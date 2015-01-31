@@ -12,7 +12,7 @@ import Cocoa
 class MasterController: SimController {
 
     override init() {
-        logger.debug("Entry")
+        logger.debug("MasterController")
         super.init()
         masterData.cd.masterRS = simState
     }

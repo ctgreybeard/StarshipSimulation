@@ -50,7 +50,7 @@ class MasterControl: SimViewController {
     ///
     /// Allocates the model if necessary, starts the model and the uview update timers
     func doStart() {
-        logger.debug("Entry")
+        logger.info("doStart")
         if masterData == nil {
             newModel()
         }
@@ -64,7 +64,7 @@ class MasterControl: SimViewController {
     ///
     /// Stops the model, cancels to view update timers
     func doStop() {
-        logger.debug("Entry")
+        logger.info("doStop")
         modelStop()
         runState.subsystemState = "Stopped"
         cancelViewUpdateTimers()
@@ -72,21 +72,21 @@ class MasterControl: SimViewController {
 
     /// Sets the model to Running state
     func doRun() {
-        logger.debug("Entry")
+        logger.info("doRun")
         modelRun()
         runState.subsystemState = "Running"
     }
 
     /// Sets the model to Pausd state
     func doPause() {
-        logger.debug("Entry")
+        logger.info("doPause")
         modelPause()
         runState.subsystemState = "Paused"
     }
 
     /// Allocates a new model (MasterData)
     func newModel() {
-        logger.debug("Entry")
+        logger.info("newModel")
         masterData = MasterData()
         masterData.master = MasterController()
         masterData.comm = Communications()
@@ -99,25 +99,25 @@ class MasterControl: SimViewController {
 
     /// Simulation start
     func modelStart() {
-        logger.debug("Entry")
+        logger.info("modelStart")
         masterData?.master?.simStart()
     }
 
     /// Simulation stop
     func modelStop() {
-        logger.debug("Entry")
+        logger.info("modelStop")
         masterData?.master?.simStop()
     }
 
     /// Simulation start/continue
     func modelRun() {
-        logger.debug("Entry")
+        logger.info("modelRun")
         masterData?.master?.simStart()
     }
 
     /// Simulation Pause
     func modelPause() {
-        logger.debug("Entry")
+        logger.info("modelPause")
         masterData?.master?.simPause()
     }
 
@@ -138,9 +138,16 @@ class MasterControl: SimViewController {
         }
     }
 
+    /// Updates a displayed counter if the value is different
+    func updateDisplayedCount(dField: NSTextField, reference: String) {
+        let dInt = dField.intValue
+        let vInt = Int32(masterData.cd.valueForKey(reference) as Int)
+        if dInt != vInt {dField.intValue = vInt}
+    }
+
     /// Updates equipment and personnel counts (currently only personnel might change)
     func updateCounts(timer: NSTimer) {
-        cntPersonnel.stringValue = String(masterData.cd.valueForKey(cntPersonnelTag) as Int)
+        updateDisplayedCount(cntPersonnel, reference: cntPersonnelTag)
     }
 
     @IBAction func showEquipemnt(sender: NSButton) {

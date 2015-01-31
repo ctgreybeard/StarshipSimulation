@@ -24,15 +24,15 @@ class DataTests: NSObject {
                 }
             case "Remove":
                 logger.debug("Removing \(cd.BLid[pick1]) at \(pick1)")
-                cd.enterprisePersonnel.removeAtIndex(pick1)
+                cd.removeObjectFromEnterprisePersonnelAtIndex(pick1)
             case "Insert":
                 let newOne = EnterprisePerson()
                 logger.debug("Inserting \(newOne.BLid) at \(pick1)")
-                cd.enterprisePersonnel.insertObject(newOne, atIndex: pick1)
+                cd.insertObject(newOne, inEnterprisePersonnelAtIndex: pick1)
             case "Replace":
                 let newOne = EnterprisePerson()
                 logger.debug("Replacing \(cd.BLid[pick1]) with \(newOne.BLid) at \(pick1)")
-                cd.enterprisePersonnel[pick1] = newOne
+                cd.replaceObjectInEnterprisePersonnelAtIndex(pick1, withObject: newOne)
             default:
                 logger.error("Unknown Data Test request: \(action)")
             }

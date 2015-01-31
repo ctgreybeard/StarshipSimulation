@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let infoArrayFP = ["name","rank","iq","location","position","destination","functionalStatus","healthStatus"]
+private let infoArrayFP = ["_name","rank","iq","location","position","destination","functionalStatus","healthStatus"]
 
 /// An officer or crew member
 class FederationPerson: SystemArrayObject {
@@ -16,25 +16,39 @@ class FederationPerson: SystemArrayObject {
     var personInfo: String {
         return "\(name)|\(rank)|\(iq)|\(location)|\(destination)|\(functionalStatus)|\(healthStatus)"
     }
-    var name: String
-    var rank: Rank
-    var iq: Int
-    var location: Location
-    var position: SpatialPosition? {
-        get {return location.position}
-        set {location.position = newValue}
-    }
-    var destination: Location?
-    var functionalStatus: FunctionalStatus
-    var healthStatus: Int
-
     class func keyPathsForValuesAffectingPersonInfo() -> NSSet {
         logger.debug("Entry")
         return NSSet(array: infoArrayFP)
     }
 
+    dynamic var _name: Name
+    var name: String {return _name.asString()}
+    class func keyPathsForValuesAffectingName() -> NSSet {
+        return NSSet(array: ["_name"])
+    }
+
+    dynamic var rank: Rank
+
+    dynamic var iq: Int
+
+    dynamic var location: Location
+
+    dynamic var position: SpatialPosition? {
+        get {return location.position}
+        set {location.position = newValue}
+    }
+    class func keyPathsForValuesAffectingPosition() -> NSSet {
+        return NSSet(array: ["location","location.position"])
+    }
+
+    dynamic var destination: Location?
+
+    dynamic var functionalStatus: FunctionalStatus
+
+    dynamic var healthStatus: Int
+
     required init() {
-        name = Name()?.asString() ?? "No Name"
+        _name = Name()
         let hRank = Rank.randomRank()
         rank = hRank
         iq = Int(ssRandomSND(130.0, 15.0))
@@ -46,8 +60,8 @@ class FederationPerson: SystemArrayObject {
         mkSOID(.FederationPerson)
     }
 
-    init(nname: String, nrank: Rank, niq: Int, nloc: Location, ndest: Location?, nfstat: FunctionalStatus, nhealth: Int) {
-        name = nname
+    init(nname: Name, nrank: Rank, niq: Int, nloc: Location, ndest: Location?, nfstat: FunctionalStatus, nhealth: Int) {
+        _name = nname.copy() as Name
         rank = nrank
         iq = niq
         location = nloc
@@ -59,12 +73,12 @@ class FederationPerson: SystemArrayObject {
     }
 
     override func copyWithZone(zone: NSZone) -> AnyObject {
-        let newOne = FederationPerson(nname: name, nrank: rank, niq: iq, nloc: location.copy() as Location, ndest: destination?.copy() as? Location, nfstat: functionalStatus, nhealth: healthStatus)
+        let newOne = FederationPerson(nname: _name, nrank: rank, niq: iq, nloc: location.copy() as Location, ndest: destination?.copy() as? Location, nfstat: functionalStatus, nhealth: healthStatus)
         return newOne
     }
 }
 
-private let infoArrayEP = ["BL","BLid","BM","BN","BO","BOd","BP","BQ","BR","BS","BSd","BT","BU"]
+private let infoArrayEP = ["BL","BM","BN","BO","BP","BQ","BR","BS","BT","BU"]
 
 class EnterprisePerson: FederationPerson {
 
@@ -72,45 +86,85 @@ class EnterprisePerson: FederationPerson {
         logger.debug("Entry")
         return super.keyPathsForValuesAffectingPersonInfo().setByAddingObjectsFromArray(infoArrayEP)
     }
+
     dynamic var BL: String {
         get {return name}
-        set {name = newValue}
+        set {_name = Name(name: newValue)}
+    }
+    class func keyPathsForValuesAffectingBL() -> NSSet {
+        return super.keyPathsForValuesAffectingName().setByAddingObject("name")
     }
 
-    dynamic var BLid: String {return soID.description}
+    var BLid: String {return soID.description}
+    class func keyPathsForValuesAffectingBLid() -> NSSet {
+        return NSSet(array: ["soID","soID.description"])
+    }
+
+    var BLgiven: String {return _name.given}
+    class func keyPathsForValuesAffectingBLgiven() -> NSSet {
+        return NSSet(array: ["_name","_name.given"])
+    }
+
+    var BLsurname: String {return _name.sur}
+    class func keyPathsForValuesAffectingBLsurname() -> NSSet {
+        return NSSet(array: ["_name","_name.sur"])
+    }
 
     dynamic var BM: String {
-        get {return rank.rank.rawValue}
+        get {return rank.description}
         set {
             if let newRank = FederationRank(rawValue: newValue) {
                 rank.rank = newRank
             }
         }
     }
+    class func keyPathsForValuesAffectingBM() -> NSSet {
+        return NSSet(array: ["rank","rank.rank"])
+    }
 
     dynamic var BN: Int {
         get {return iq}
         set {iq = newValue}
+    }
+    class func keyPathsForValuesAffectingBN() -> NSSet {
+        return NSSet(array: ["iq"])
     }
 
     dynamic var BO: Int {
         get {return location.num}
         set {location.num = newValue}
     }
-    dynamic var BOd: String {return location.description}
+    class func keyPathsForValuesAffectingBO() -> NSSet {
+        return NSSet(array: ["location","location.num"])
+    }
+
+    var BOd: String {return location.description}
+    class func keyPathsForValuesAffectingBOd() -> NSSet {
+        return keyPathsForValuesAffectingBO().setByAddingObject("BO")
+    }
 
     dynamic var BP: Coordinate {
         get {return position?.x ?? Coordinate(0.0)}
         set {position = SpatialPosition(x: newValue, y: BQ, z: BR)}
+    }
+    class func keyPathsForValuesAffectingBP() -> NSSet {
+        return super.keyPathsForValuesAffectingPosition().setByAddingObjectsFromArray(["position","position.x"])
     }
 
     dynamic var BQ: Coordinate {
         get {return position?.y ?? Coordinate(0.0)}
         set {position = SpatialPosition(x: BP, y: newValue, z: BR)}
     }
+    class func keyPathsForValuesAffectingBQ() -> NSSet {
+        return super.keyPathsForValuesAffectingPosition().setByAddingObjectsFromArray(["position","position.y"])
+    }
+
     dynamic var BR: Coordinate {
         get {return position?.z ?? Coordinate(0.0)}
         set {position = SpatialPosition(x: BP, y: BQ, z: newValue)}
+    }
+    class func keyPathsForValuesAffectingBR() -> NSSet {
+        return super.keyPathsForValuesAffectingPosition().setByAddingObjectsFromArray(["position","position.z"])
     }
 
     dynamic var BS: Int {
@@ -123,18 +177,31 @@ class EnterprisePerson: FederationPerson {
             }
         }
     }
+    class func keyPathsForValuesAffectingBS() -> NSSet {
+        return NSSet(array: ["destination","destination.num"])
+    }
 
-    dynamic var BSd: String {return destination?.description ?? ""}
+    var BSd: String {return destination?.description ?? "—"}
+    class func keyPathsForValuesAffectingBSd() -> NSSet {
+        return keyPathsForValuesAffectingBS().setByAddingObject("BS")
+    }
 
     dynamic var BT: FunctionalStatus {
         get {return functionalStatus}
         set {functionalStatus = newValue}
+    }
+    class func keyPathsForValuesAffectingBT() -> NSSet {
+        return NSSet(array: ["functionalStatus"])
     }
 
     dynamic var BU: Int {
         get {return healthStatus}
         set {healthStatus = newValue}
     }
+    class func keyPathsForValuesAffectingBU() -> NSSet {
+        return NSSet(array: ["healthStatus"])
+    }
+
 
     required init() {
         super.init()

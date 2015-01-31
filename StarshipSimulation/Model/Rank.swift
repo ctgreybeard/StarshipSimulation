@@ -20,15 +20,31 @@ enum FederationRank: String {
     RedShirt = "Red Shirt"
 }
 
+let FederationRankOrder: [FederationRank: NSNumber] =
+[   .None: 0,
+    .RedShirt: 10,
+    .GeneralCrew: 20,
+    .MaintenanceCrew: 30,
+    .SecurityOfficer: 40,
+    .ScienceOfficer: 50,
+    .EngineeringOfficer: 60,
+    .MedicalOfficer: 70,
+    .SeniorMedicalOfficer: 80
+]
+
 private let officers: [FederationRank] = [.ScienceOfficer, .EngineeringOfficer, .MedicalOfficer, .SeniorMedicalOfficer, .SecurityOfficer]
 private let crew: [FederationRank] = [.MaintenanceCrew, .GeneralCrew]
 
 let numEnterpriseOfficers = 43
 let numEnterpriseCrew = 387
 
-class Rank: SystemObject, Printable, NSCopying, Hashable, Equatable {
+class Rank: SystemObject, Printable, NSCopying, Hashable, Equatable, Comparable {
 
     var rank: FederationRank
+
+    dynamic override var description: String {
+        return rank.rawValue
+    }
 
     required convenience init() {
         self.init(rank: .None)
@@ -80,10 +96,6 @@ class Rank: SystemObject, Printable, NSCopying, Hashable, Equatable {
         return Rank(rank: rank)
     }
 
-    func description() -> String {
-        return rank.rawValue
-    }
-
     override func isEqual(other: AnyObject?) -> Bool {
         if let oRank = other as? Rank {
             return self == oRank
@@ -92,11 +104,19 @@ class Rank: SystemObject, Printable, NSCopying, Hashable, Equatable {
         }
     }
 
+    func compare(other: Rank) -> NSComparisonResult {
+            return FederationRankOrder[rank]!.compare(FederationRankOrder[other.rank]!)
+    }
+
     override var hash: Int {return hashValue}
 
     override var hashValue: Int {return rank.rawValue.hashValue}
 }
 
 func ==(lhs: Rank, rhs: Rank) -> Bool {
-    return lhs.rank == rhs.rank
+    return lhs == rhs
+}
+
+func <(lhs: Rank, rhs: Rank) -> Bool {
+    return lhs.compare(rhs) == .OrderedAscending
 }
