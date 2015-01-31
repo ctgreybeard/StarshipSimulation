@@ -30,12 +30,31 @@ class MasterControl: SimViewController {
     @IBOutlet weak var cntImpulseEngines: NSTextField!
     let cntImpulseEnginesTag = ""
 
+    private var ourContext = UnsafeMutablePointer<Void>(bitPattern: Int(NSDate.timeIntervalSinceReferenceDate() * 1000.0))  // milliseconds
+    let personnelKey = "enterprisePersonnel"
+
+    /// Observers we registered
+    var observers = [NSObject, String, NSKeyValueObservingOptions]()
+
+    /// Called right after the view is loaded
     override func viewDidLoad() {
         logger.debug("Entry")
         super.viewDidLoad()
-        // Do view setup here.
     }
 
+    /// Called when the view will appear on the screen
+    override func viewWillAppear() {
+        logger.debug("And we're back!")
+        restoreObservers()
+    }
+
+    /// Called right before the view goes away
+    override func viewWillDisappear() {
+        logger.debug("Going away for now")
+        removeObservers()
+    }
+
+    /// Action message sent by the custom MasterControl
     @IBAction func masterControl(sender: RunningStateControl) {
         logger.debug("Received action: \(sender.actionRequest)")
         let actionTable: [String: () -> Void] = ["Start": doStart, "Stop": doStop, "Run": doRun, "Pause": doPause]
@@ -77,7 +96,7 @@ class MasterControl: SimViewController {
         runState.subsystemState = "Running"
     }
 
-    /// Sets the model to Pausd state
+    /// Sets the model to Paused state
     func doPause() {
         logger.info("doPause")
         modelPause()
@@ -95,6 +114,7 @@ class MasterControl: SimViewController {
         masterData.medical = Medical()
         masterData.nav = Navigation()
         masterData.sciences = Sciences()
+        observe(masterData.cd, object: personnelKey)
     }
 
     /// Simulation start
@@ -126,7 +146,6 @@ class MasterControl: SimViewController {
         logger.debug("Entry")
         if viewUpdateTimers.isEmpty {
             viewUpdateTimers.append(NSTimer(timeInterval: updateTimerInterval, target: self, selector: "updateElapsed:", userInfo: nil, repeats: true))
-            viewUpdateTimers.append(NSTimer(timeInterval: updateCountersInterval, target: self, selector: "updateCounts:", userInfo: nil, repeats: true))
         }
         super.createViewUpdateTimers()
     }
@@ -139,17 +158,49 @@ class MasterControl: SimViewController {
     }
 
     /// Updates a displayed counter if the value is different
-    func updateDisplayedCount(dField: NSTextField, reference: String) {
+    func updateDisplayedCount(dField: NSTextField, reference: String, master: NSObject = masterData.cd) {
         let dInt = dField.intValue
-        let vInt = Int32(masterData.cd.valueForKey(reference) as Int)
+        let vInt = Int32(master.valueForKey(reference) as Int)
         if dInt != vInt {dField.intValue = vInt}
     }
 
-    /// Updates equipment and personnel counts (currently only personnel might change)
-    func updateCounts(timer: NSTimer) {
-        updateDisplayedCount(cntPersonnel, reference: cntPersonnelTag)
+    /// Add self as an observer and record it into observers
+    func observe(o: NSObject, object: String, opt: NSKeyValueObservingOptions = .Initial | .New) {
+        o.addObserver(self, forKeyPath: object, options: opt, context: ourContext)
+        observers.append(o, object, opt)
     }
 
-    @IBAction func showEquipemnt(sender: NSButton) {
+    /// Remove any registered observers
+    func removeObservers() {
+        logger.debug("Remove observers")
+        for (o, s, opt) in observers {
+            o.removeObserver(self, forKeyPath: s, context: ourContext)
+        }
+    }
+
+    /// Restore any registered observers
+    func restoreObservers() {
+        logger.debug("Restore observers")
+        for (o, s, opt) in observers {
+            o.addObserver(self, forKeyPath: s, options: opt, context: ourContext)
+        }
+    }
+
+    /// Standard KVO observer
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        let c = ObservedChange(change)
+        if context == ourContext {  // Our change request
+            let indexes = c.indexes?.description ?? "nil"
+            logger.debug("key: \(keyPath), kind: \(c.kindStr), prior: \(c.prior), indexes: \(indexes)")
+            switch keyPath {
+            case personnelKey:
+                updateDisplayedCount(cntPersonnel, reference: cntPersonnelTag)
+            default:
+                logger.error("Unhandled change for keyPath: \(keyPath)")
+            }
+        } else {
+            logger.info("Escalating change for \(keyPath)")
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
     }
 }

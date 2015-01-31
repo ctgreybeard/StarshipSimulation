@@ -63,7 +63,8 @@ class EnterprisePersonnelControl: NSViewController {
             var fld: NSTextField?
             let cd = masterData?.cd
             let c = ObservedChange(change)
-            logger.debug("key: \(keyPath), kind: \(c.kindStr), prior: \(c.prior), indexes: \(c.indexes)")
+            let indexes = c.indexes?.description ?? "nil"
+            logger.debug("key: \(keyPath), kind: \(c.kindStr), prior: \(c.prior), indexes: \(indexes)")
 
             /// Something changed ... what was it?
             switch keyPath {
