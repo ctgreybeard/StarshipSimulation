@@ -29,6 +29,8 @@ class MasterControl: SimViewController {
     let cntWarpEnginesTag = ""
     @IBOutlet weak var cntImpulseEngines: NSTextField!
     let cntImpulseEnginesTag = ""
+    @IBOutlet var soDictController: NSDictionaryController!
+    @IBOutlet weak var soTableView: NSTableView!
 
     private var ourContext = UnsafeMutablePointer<Void>(bitPattern: Int(NSDate.timeIntervalSinceReferenceDate() * 1000.0))  // milliseconds
     let personnelKey = "enterprisePersonnel"
@@ -36,10 +38,17 @@ class MasterControl: SimViewController {
     /// Observers we registered
     var observers = [NSObject, String, NSKeyValueObservingOptions]()
 
+    func initSOTable() {
+        if let myCD = masterData?.cd {
+            soDictController.bind("contentDictionary", toObject: myCD, withKeyPath: "soids", options: nil)
+        }
+    }
+
     /// Called right after the view is loaded
     override func viewDidLoad() {
         logger.debug("Entry")
         super.viewDidLoad()
+        initSOTable()
     }
 
     /// Called when the view will appear on the screen

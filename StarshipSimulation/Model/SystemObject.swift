@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias SystemArray = NSMutableArray
+
 /// Each case is the exact name of the class that it refers to, the value is a unique string
 enum SOTAG: String {
     case AtmosphericSensor = "ASENS"
@@ -59,8 +61,19 @@ enum SOTAG: String {
     case Test = "TEST"
 }
 
-/// SystmObject instance counters
-var numSO: [SOTAG: Int] = [:]
+class SystemData: NSObject {
+
+    /// SystmObject instance counters
+    dynamic var numSO: NSMutableDictionary
+
+    override init() {
+        numSO = NSMutableDictionary()
+        super.init()
+    }
+
+}
+
+let systemData = SystemData()
 
 /// MARK: An alternate idea would be to use .className to index the tag and counter arrays ...
 
@@ -71,12 +84,13 @@ class SOID: NSObject, Printable, DebugPrintable, Equatable, Hashable, NSCopying 
 
     init(tag: SOTAG) {
         self.tag = tag
-        if numSO[tag] != nil {
-            numSO[tag]! += 1
+
+        if var n = systemData.numSO.objectForKey(tag.rawValue) as? Int {
+            n++
         } else {
-            numSO[tag] = 1
+            systemData.numSO.setObject(1, forKey: tag.rawValue)
         }
-        counter = numSO[tag]!
+        counter = systemData.numSO.objectForKey(tag.rawValue) as Int
         super.init()
     }
 
@@ -147,8 +161,6 @@ class SystemArrayObject: SystemObject, NSCopying {
         mkSOID(.SystemArrayObject)
     }
 }
-
-typealias SystemArray = NSMutableArray
 
 /// Make a new SystemArray populated with new SystemArrayObjects
 func SSMakeSystemArray(count num: Int, withType with: SystemArrayObject.Type) -> SystemArray {
