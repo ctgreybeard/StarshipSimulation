@@ -32,16 +32,19 @@ class MasterControl: SimViewController {
     @IBOutlet var soDictController: NSDictionaryController!
     @IBOutlet weak var soTableView: NSTableView!
 
+    /// Contains a bit pattern unlikely to be used by anyone else -- this could be improved --
     private var ourContext = UnsafeMutablePointer<Void>(bitPattern: Int(NSDate.timeIntervalSinceReferenceDate() * 1000.0))  // milliseconds
     let personnelKey = "enterprisePersonnel"
 
     /// Observers we registered
     var observers = [NSObject, String, NSKeyValueObservingOptions]()
 
+    /// Initialize the SOID table display
     func initSOTable() {
-        if let myCD = masterData?.cd {
-            soDictController.bind("contentDictionary", toObject: myCD, withKeyPath: "soids", options: nil)
-        }
+        logger.debug("Entry")
+        soDictController.bind(NSContentDictionaryBinding, toObject: systemData, withKeyPath: systemData.numSOName, options: nil)
+        soDictController.bind(NSSortDescriptorsBinding, toObject: soTableView, withKeyPath: NSSortDescriptorsBinding, options: nil)
+        soTableView.sortDescriptors = [NSSortDescriptor(key: "key", ascending: true)]
     }
 
     /// Called right after the view is loaded
@@ -55,6 +58,7 @@ class MasterControl: SimViewController {
     override func viewWillAppear() {
         logger.debug("And we're back!")
         restoreObservers()
+        soTableView.reloadData()
     }
 
     /// Called right before the view goes away
@@ -197,8 +201,8 @@ class MasterControl: SimViewController {
 
     /// Standard KVO observer
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        let c = ObservedChange(change)
-        if context == ourContext {  // Our change request
+        if context == ourContext {  // Our change request?
+            let c = ObservedChange(change)
             let indexes = c.indexes?.description ?? "nil"
             logger.debug("key: \(keyPath), kind: \(c.kindStr), prior: \(c.prior), indexes: \(indexes)")
             switch keyPath {

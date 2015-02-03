@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6724"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6750"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -1420,7 +1420,6 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="showEquipemnt:" target="dAx-N9-anD" id="XTm-fe-60p"/>
                                     <segue destination="y3M-0x-WUk" kind="show" id="6SV-45-mVg"/>
                                 </connections>
                             </button>
@@ -1433,9 +1432,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="showEquipemnt:" target="dAx-N9-anD" id="Fpe-PC-JoC"/>
-                                </connections>
                             </button>
                             <button identifier="PHAS" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZHT-1A-A2Q">
                                 <rect key="frame" x="180" y="476" width="60" height="32"/>
@@ -1446,22 +1442,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="showEquipemnt:" target="dAx-N9-anD" id="3ME-RJ-v8G"/>
-                                </connections>
-                            </button>
-                            <button identifier="DEFL" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1jn-9U-mWA">
-                                <rect key="frame" x="180" y="451" width="60" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="6Ah-D5-YId"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="View" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0fG-69-aqZ">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="showEquipemnt:" target="dAx-N9-anD" id="T2O-ii-hY5"/>
-                                </connections>
                             </button>
                             <button identifier="CLOAK" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9FJ-ns-Kp5">
                                 <rect key="frame" x="180" y="426" width="60" height="32"/>
@@ -1472,9 +1452,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="showEquipemnt:" target="dAx-N9-anD" id="cc2-gv-TWZ"/>
-                                </connections>
                             </button>
                             <button identifier="IMP" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eBI-OB-0Hc">
                                 <rect key="frame" x="180" y="376" width="60" height="32"/>
@@ -1485,9 +1462,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="showEquipemnt:" target="dAx-N9-anD" id="wGj-0a-SEV"/>
-                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NTz-eg-bHc">
                                 <rect key="frame" x="142" y="535" width="38" height="17"/>
@@ -1575,25 +1549,21 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="showEquipemnt:" target="dAx-N9-anD" id="p96-ml-FLD"/>
-                                </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ko-CK-ud8">
                                 <rect key="frame" x="0.0" y="0.0" width="255" height="348"/>
-                                <clipView key="contentView" id="ObE-aE-ahG">
+                                <clipView key="contentView" misplaced="YES" id="ObE-aE-ahG">
                                     <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="w4i-Bz-MZu" viewBased="YES" id="BGI-j8-Fzf">
-                                            <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="116" minWidth="40" maxWidth="1000" id="c3F-wj-A0u">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Object">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1603,6 +1573,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="key"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="KJ2-Gc-EJ3">
@@ -1616,6 +1587,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="KJ2-Gc-EJ3" name="value" keyPath="objectValue.key" id="pbc-4l-jcH"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -1623,9 +1597,12 @@
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
+                                                    <connections>
+                                                        <binding destination="yqh-QB-ZwV" name="value" keyPath="arrangedObjects.key" id="2U2-LY-aFr"/>
+                                                    </connections>
                                                 </tableColumn>
                                                 <tableColumn width="131" minWidth="40" maxWidth="1000" id="KxT-dQ-UeY">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Count">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1635,6 +1612,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="value"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="ott-j1-jCF">
@@ -1648,6 +1626,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="ott-j1-jCF" name="value" keyPath="objectValue.value" id="see-iV-JT0"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -1655,6 +1636,9 @@
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
+                                                    <connections>
+                                                        <binding destination="yqh-QB-ZwV" name="value" keyPath="arrangedObjects.value" id="56i-9s-JLP"/>
+                                                    </connections>
                                                 </tableColumn>
                                             </tableColumns>
                                         </tableView>
@@ -1689,6 +1673,16 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button identifier="DEFL" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1jn-9U-mWA">
+                                <rect key="frame" x="180" y="451" width="60" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="6Ah-D5-YId"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="View" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0fG-69-aqZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="2ko-CK-ud8" secondAttribute="bottom" id="1oK-mX-ln3"/>

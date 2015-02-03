@@ -64,11 +64,46 @@ enum SOTAG: String {
 class SystemData: NSObject {
 
     /// SystmObject instance counters
+    let numSOName = "numSO"
     dynamic var numSO: NSMutableDictionary
 
     override init() {
         numSO = NSMutableDictionary()
         super.init()
+    }
+
+    func newSO(tag: SOTAG) -> Int {
+        var currCount: Int
+        let tagStr = tag.rawValue
+
+        currCount = numSO.objectForKey(tagStr) as? Int ?? 0
+        willChangeValueForKey(numSOName)
+        numSO.setObject(++currCount, forKey: tagStr)
+        didChangeValueForKey(numSOName)
+        return currCount
+    }
+
+    func displayTable(title: String, keys: [String]) {
+        logger.info("SOID Counts (\(title))")
+        for key in keys {
+            logger.info("\(key):\(numSO[key]!)")
+        }
+    }
+
+    func dumpCounts() {
+        var keys = (numSO.allKeys as [String]).sorted {$0 < $1}
+        displayTable("by ID", keys: keys)
+        keys = numSO.keysSortedByValueUsingComparator({(lhs: AnyObject!, rhs: AnyObject!) -> NSComparisonResult in
+            if lhs.integerValue > rhs.integerValue {
+                return .OrderedAscending;
+            }
+
+            if lhs.integerValue < rhs.integerValue {
+                return .OrderedDescending;
+            }
+            return .OrderedSame;
+        }) as [String]
+        displayTable("by Count", keys: keys)
     }
 
 }
@@ -84,13 +119,7 @@ class SOID: NSObject, Printable, DebugPrintable, Equatable, Hashable, NSCopying 
 
     init(tag: SOTAG) {
         self.tag = tag
-
-        if var n = systemData.numSO.objectForKey(tag.rawValue) as? Int {
-            n++
-        } else {
-            systemData.numSO.setObject(1, forKey: tag.rawValue)
-        }
-        counter = systemData.numSO.objectForKey(tag.rawValue) as Int
+        counter = systemData.newSO(tag)
         super.init()
     }
 
