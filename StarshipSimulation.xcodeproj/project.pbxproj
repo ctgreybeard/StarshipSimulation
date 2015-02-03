@@ -55,10 +55,10 @@
 		0F8F96F11A6985A700E8F605 /* MasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96F01A6985A700E8F605 /* MasterController.swift */; };
 		0F8F96F31A6985C000E8F605 /* Communications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96F21A6985C000E8F605 /* Communications.swift */; };
 		0FA948661A698FDB00EE88B5 /* SimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA948651A698FDB00EE88B5 /* SimViewController.swift */; };
-		0FAB8E501A6C315300E784B2 /* EnterprisePresonnelControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB8E4F1A6C315300E784B2 /* EnterprisePresonnelControl.swift */; };
+		0FAB8E501A6C315300E784B2 /* EnterprisePersonnelControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB8E4F1A6C315300E784B2 /* EnterprisePersonnelControl.swift */; };
 		0FB0742E1A715DD2006F3CA5 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0742D1A715DD2006F3CA5 /* DataTests.swift */; };
-		0FB2315D1A7C32E200988930 /* ObservedChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2315C1A7C32E200988930 /* ObservedChange.swift */; };
-		0FB2315E1A7C32E200988930 /* ObservedChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2315C1A7C32E200988930 /* ObservedChange.swift */; };
+		0FB2315D1A7C32E200988930 /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2315C1A7C32E200988930 /* Observers.swift */; };
+		0FB2315E1A7C32E200988930 /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2315C1A7C32E200988930 /* Observers.swift */; };
 		0FC3ACAC1A6987C000A9F544 /* Engineering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACAB1A6987C000A9F544 /* Engineering.swift */; };
 		0FC3ACAE1A698A3300A9F544 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACAD1A698A3300A9F544 /* Helm.swift */; };
 		0FC3ACB01A698A4C00A9F544 /* Medical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3ACAF1A698A4C00A9F544 /* Medical.swift */; };
@@ -160,9 +160,9 @@
 		0FA948631A698F0900EE88B5 /* app512x512x2.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = app512x512x2.xcf; sourceTree = "<group>"; };
 		0FA948641A698F0900EE88B5 /* Cover-squar.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cover-squar.xcf"; sourceTree = "<group>"; };
 		0FA948651A698FDB00EE88B5 /* SimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SimViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0FAB8E4F1A6C315300E784B2 /* EnterprisePresonnelControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterprisePresonnelControl.swift; sourceTree = "<group>"; };
+		0FAB8E4F1A6C315300E784B2 /* EnterprisePersonnelControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterprisePersonnelControl.swift; sourceTree = "<group>"; };
 		0FB0742D1A715DD2006F3CA5 /* DataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
-		0FB2315C1A7C32E200988930 /* ObservedChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservedChange.swift; sourceTree = "<group>"; };
+		0FB2315C1A7C32E200988930 /* Observers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
 		0FC3ACAB1A6987C000A9F544 /* Engineering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Engineering.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0FC3ACAD1A698A3300A9F544 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Helm.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0FC3ACAF1A698A4C00A9F544 /* Medical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Medical.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -297,7 +297,6 @@
 		0F8F96AE1A697D3F00E8F605 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				0FB2315C1A7C32E200988930 /* ObservedChange.swift */,
 				0F8F96C01A69858700E8F605 /* Cargo.swift */,
 				0F8F96C11A69858700E8F605 /* CelestialObject.swift */,
 				0F8F96C21A69858700E8F605 /* Common.swift */,
@@ -310,6 +309,7 @@
 				0F8F96C91A69858700E8F605 /* Location.swift */,
 				0F8F96CA1A69858700E8F605 /* MasterData.swift */,
 				0F8F96CB1A69858700E8F605 /* Name.swift */,
+				0FB2315C1A7C32E200988930 /* Observers.swift */,
 				0F8F96CC1A69858700E8F605 /* PhotonTube.swift */,
 				0F8F96CD1A69858700E8F605 /* Rank.swift */,
 				0F8F96CE1A69858700E8F605 /* RunningState.swift */,
@@ -385,7 +385,7 @@
 		0F8F96B61A697E3900E8F605 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				0FAB8E4F1A6C315300E784B2 /* EnterprisePresonnelControl.swift */,
+				0FAB8E4F1A6C315300E784B2 /* EnterprisePersonnelControl.swift */,
 				0F6BADD61A69C7A50018B475 /* MasterControl.swift */,
 				0FC3ACB51A698BF400A9F544 /* MasterTabView.swift */,
 			);
@@ -628,10 +628,10 @@
 				0F8F96E31A69858700E8F605 /* Name.swift in Sources */,
 				0F8F96D81A69858700E8F605 /* Cargo.swift in Sources */,
 				0F8F96EF1A69858700E8F605 /* Weapons.swift in Sources */,
-				0FB2315D1A7C32E200988930 /* ObservedChange.swift in Sources */,
+				0FB2315D1A7C32E200988930 /* Observers.swift in Sources */,
 				0FA948661A698FDB00EE88B5 /* SimViewController.swift in Sources */,
 				0F8F96EC1A69858700E8F605 /* SystemStatus.swift in Sources */,
-				0FAB8E501A6C315300E784B2 /* EnterprisePresonnelControl.swift in Sources */,
+				0FAB8E501A6C315300E784B2 /* EnterprisePersonnelControl.swift in Sources */,
 				0F8F96DA1A69858700E8F605 /* Common.swift in Sources */,
 				0F8F96E81A69858700E8F605 /* ShuttleCraft.swift in Sources */,
 				0FC3ACBA1A698C1200A9F544 /* EngControl.swift in Sources */,
@@ -654,7 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F594BF61A69EE7C00B10050 /* LocationTests.swift in Sources */,
-				0FB2315E1A7C32E200988930 /* ObservedChange.swift in Sources */,
+				0FB2315E1A7C32E200988930 /* Observers.swift in Sources */,
 				0F594BFC1A69EF9000B10050 /* Rank.swift in Sources */,
 				0F594BFA1A69EF3400B10050 /* FederationPerson.swift in Sources */,
 				0F594BF71A69EE9500B10050 /* Location.swift in Sources */,
