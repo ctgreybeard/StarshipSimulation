@@ -16,10 +16,10 @@ typealias UsefulChangeDict = [String: AnyObject]
 
 /// A collection of registered observers with methods to register and remove them all at once
 class Observers: NSObject {
-    let observersBag: NSMutableSet
+    let observerBag: NSMutableSet
 
     override init() {
-        observersBag = NSMutableSet()
+        observerBag = NSMutableSet()
         super.init()
         logger.debug("New \(self.className)")
     }
@@ -36,14 +36,14 @@ class Observers: NSObject {
 
     /// Register all observers in the Bag
     func registerAllObservers() {
-        for o in observersBag {
+        for o in observerBag {
             registerObserver(o as Observer)
         }
     }
 
     /// deRegister all observers in the Bag
     func deRegisterAllObservers() {
-        for o in observersBag {
+        for o in observerBag {
             deRegisterObserver(o as Observer)
         }
     }
@@ -57,7 +57,7 @@ class Observers: NSObject {
 
     /// Add an Observer to the Bag and register it with the Target
     func addObserver(observer: Observer) {
-        observersBag.addObject(observer)
+        observerBag.addObject(observer)
         registerObserver(observer)
     }
 
@@ -66,7 +66,7 @@ class Observers: NSObject {
         if deRegister {
             deRegisterObserver(oldO)
         }
-        observersBag.removeObject(oldO)
+        observerBag.removeObject(oldO)
     }
 
     func dropObserver(observer: NSObject, target: NSObject, forKeyPath keyPath: String, context: UnsafeMutablePointer<Void>, deRegister: Bool = true) {
@@ -76,11 +76,11 @@ class Observers: NSObject {
 
     func dropAllObservers(deRegister: Bool = true) {
         if deRegister {
-            for o in observersBag {
+            for o in observerBag {
                 deRegisterObserver(o as Observer)
             }
         }
-        observersBag.removeAllObjects()
+        observerBag.removeAllObjects()
     }
 }
 
