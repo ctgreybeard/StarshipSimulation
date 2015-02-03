@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias SystemArray = NSMutableArray
+
 /// Each case is the exact name of the class that it refers to, the value is a unique string
 enum SOTAG: String {
     case AtmosphericSensor = "ASENS"
@@ -59,8 +61,54 @@ enum SOTAG: String {
     case Test = "TEST"
 }
 
-/// SystmObject instance counters
-var numSO: [SOTAG: Int] = [:]
+class SystemData: NSObject {
+
+    /// SystmObject instance counters
+    let numSOName = "numSO"
+    dynamic var numSO: NSMutableDictionary
+
+    override init() {
+        numSO = NSMutableDictionary()
+        super.init()
+    }
+
+    func newSO(tag: SOTAG) -> Int {
+        var currCount: Int
+        let tagStr = tag.rawValue
+
+        currCount = numSO.objectForKey(tagStr) as? Int ?? 0
+        willChangeValueForKey(numSOName)
+        numSO.setObject(++currCount, forKey: tagStr)
+        didChangeValueForKey(numSOName)
+        return currCount
+    }
+
+    func displayTable(title: String, keys: [String]) {
+        logger.info("SOID Counts (\(title))")
+        for key in keys {
+            logger.info("\(key):\(numSO[key]!)")
+        }
+    }
+
+    func dumpCounts() {
+        var keys = (numSO.allKeys as [String]).sorted {$0 < $1}
+        displayTable("by ID", keys: keys)
+        keys = numSO.keysSortedByValueUsingComparator({(lhs: AnyObject!, rhs: AnyObject!) -> NSComparisonResult in
+            if lhs.integerValue > rhs.integerValue {
+                return .OrderedAscending;
+            }
+
+            if lhs.integerValue < rhs.integerValue {
+                return .OrderedDescending;
+            }
+            return .OrderedSame;
+        }) as [String]
+        displayTable("by Count", keys: keys)
+    }
+
+}
+
+let systemData = SystemData()
 
 /// MARK: An alternate idea would be to use .className to index the tag and counter arrays ...
 
@@ -71,12 +119,7 @@ class SOID: NSObject, Printable, DebugPrintable, Equatable, Hashable, NSCopying 
 
     init(tag: SOTAG) {
         self.tag = tag
-        if numSO[tag] != nil {
-            numSO[tag]! += 1
-        } else {
-            numSO[tag] = 1
-        }
-        counter = numSO[tag]!
+        counter = systemData.newSO(tag)
         super.init()
     }
 
@@ -147,8 +190,6 @@ class SystemArrayObject: SystemObject, NSCopying {
         mkSOID(.SystemArrayObject)
     }
 }
-
-typealias SystemArray = NSMutableArray
 
 /// Make a new SystemArray populated with new SystemArrayObjects
 func SSMakeSystemArray(count num: Int, withType with: SystemArrayObject.Type) -> SystemArray {
