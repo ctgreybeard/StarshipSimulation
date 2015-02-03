@@ -21,8 +21,6 @@ enum ShuttleCraftMission: Int {
     case SeekShuttleBay
 }
 
-var numShuttlCraft = 0
-
 class ShuttleCraft: SystemArrayObject {
     var operationalStatus: ShuttleCraftOperationalStatus
     var DI: Int {
@@ -154,7 +152,7 @@ class ShuttleCraft: SystemArrayObject {
         mission = .None
         destination = Location()
         let defaultNumPropulsionTubes = 2
-        propulsionTubes = SystemArray(num: defaultNumPropulsionTubes, withType: ShuttleCraftPropulsionTube.self)
+        propulsionTubes = SSMakeSystemArray(count: defaultNumPropulsionTubes, withType: ShuttleCraftPropulsionTube.self)
         DR = SystemArrayAccess(source: propulsionTubes, member: "DR")
         DS = SystemArrayAccess(source: propulsionTubes, member: "DS")
         DT = SystemArrayAccess(source: propulsionTubes, member: "DT")

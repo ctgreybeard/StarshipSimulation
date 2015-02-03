@@ -10,7 +10,7 @@ import Cocoa
 // import XCGLogger
 
 /// Global logger object
-let logger = XCGLogger()
+//let logger = XCGLogger()
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -25,6 +25,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+        masterData?.cd.dumpCounts()
+        systemData.dumpCounts()
         logger.info("Bye, bye!")
     }
 
@@ -188,6 +190,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             logger.severe("Illegal log level: \(sender.title)")
         }
+    }
+
+    lazy var dataTests = DataTests()
+
+    /// Data tests for Enterprise Person
+    @IBAction func dataTestsEP(sender: NSMenuItem) {
+        logger.debug("Entry: \(sender.title)")
+        dataTests.dataTestsEP(action: sender.title)
     }
 }
 

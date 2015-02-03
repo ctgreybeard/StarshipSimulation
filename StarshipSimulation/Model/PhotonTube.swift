@@ -10,11 +10,12 @@ import Foundation
 
 class PhotonTube: SystemArrayObject {
     dynamic var tubeStatus: SystemStatus
-    dynamic var torpedos: SystemArray {
+    dynamic var _torpedos: SystemArray {
         didSet {
             setTorpedosAccess()
         }
     }
+    let torpedos: SystemArrayAccess
     dynamic var BY: Int {
         get {return tubeStatus.functionalStatus}
         set {tubeStatus.functionalStatus = newValue}
@@ -38,22 +39,25 @@ class PhotonTube: SystemArrayObject {
         for i in 0..<torpedos.count {
             newTorps.append((torpedos[i] as PhotonTorpedo).copy() as PhotonTorpedo)
         }
-        newTube.torpedos = SystemArray(with: newTorps)
+        newTube._torpedos = SSMakeSystemArray(withArray: newTorps)
         return newTube
     }
 
     required init() {
+        logger.debug("PhotonTube")
         tubeStatus = SystemStatus()
-        torpedos = SystemArray(num: 20, withType: PhotonTorpedo.self)
-        B3 = SystemArrayAccess(source: torpedos, member: "location.num")
-        B4 = SystemArrayAccess(source: torpedos, member: "destination.num")
+        _torpedos = SSMakeSystemArray(count: 20, withType: PhotonTorpedo.self)
+        torpedos = SystemArrayAccess(source: _torpedos)
+        B3 = SystemArrayAccess(source: _torpedos, member: "location.num")
+        B4 = SystemArrayAccess(source: _torpedos, member: "destination.num")
         super.init()
         mkSOID(.PhotonTube)
+        logger.debug("SOID \(soID)")
     }
 
     func setTorpedosAccess() {
-        B3.setSource(torpedos)
-        B4.setSource(torpedos)
+        B3.setSource(_torpedos)
+        B4.setSource(_torpedos)
     }
 }
 
@@ -62,6 +66,7 @@ class PhotonTorpedo: SystemArrayObject {
     dynamic var destination: Location
 
     required init() {
+        logger.debug("PhotonTorpedo")
         location = Location()
         destination = Location()
         super.init()

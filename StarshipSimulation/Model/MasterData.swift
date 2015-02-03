@@ -26,32 +26,32 @@ struct MasterData {
     }
     var eng: Engineering? {
         didSet {
-            allModels[2] = comm
-            funcModels[1] = comm
+            allModels[2] = eng
+            funcModels[1] = eng
         }
     }
     var helm: Helm? {
         didSet {
-            allModels[3] = comm
-            funcModels[2] = comm
+            allModels[3] = helm
+            funcModels[2] = helm
         }
     }
     var medical: Medical? {
         didSet {
-            allModels[4] = comm
-            funcModels[3] = comm
+            allModels[4] = medical
+            funcModels[3] = medical
         }
     }
     var nav: Navigation? {
         didSet {
-            allModels[5] = comm
-            funcModels[4] = comm
+            allModels[5] = nav
+            funcModels[4] = nav
         }
     }
     var sciences: Sciences? {
         didSet {
-            allModels[6] = comm
-            funcModels[5] = comm
+            allModels[6] = sciences
+            funcModels[5] = sciences
         }
     }
 
@@ -59,6 +59,7 @@ struct MasterData {
     var funcModels = [SimController?](count: 6, repeatedValue: nil)
 
     init() {
+        logger.debug("Entry")
         cd = CommonData()
     }
 }

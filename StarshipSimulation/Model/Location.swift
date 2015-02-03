@@ -58,13 +58,58 @@ private let hintLocation: [FederationRank: [LocationCode]] =
 [.ScienceOfficer: [.Bridge, .SciencesLaboratory, .MedicalResearchLaboratory],
     .EngineeringOfficer: [.Bridge, .Engineering, .TurboElevatorComputer, .TractorBeam, .OxygenDistributionAndRecycling, .WaterDistributionAndRecycling, .EnergySupply],
     .MedicalOfficer: [.MedicalResearchLaboratory, .MedicalComputer, .IntensiveCareUnit],
-    .ChiefMedicalOfficer: [.Bridge, .MedicalResearchLaboratory, .MedicalComputer, .IntensiveCareUnit],
+    .SeniorMedicalOfficer: [.Bridge, .MedicalResearchLaboratory, .MedicalComputer, .IntensiveCareUnit],
     .SecurityOfficer: [.Brig, .Security, .Shuttlebay],
     .MaintenanceCrew: [.Engineering, .TractorBeam, .FoodProcessingPlant, .OxygenDistributionAndRecycling, .WaterDistributionAndRecycling, .EnergySupply, .PhaserStationPort, .PhaserStationStarboard, .PhaserStationTop, .PhaserStationBottom, .PhaserStationFore, .PhaserStationAft, .Shuttlebay, .SensorStations],
     .GeneralCrew: [.Bridge, .Brig, .EnergySupply, .Engineering, .FoodProcessingPlant, .MedicalResearchLaboratory, .OxygenDistributionAndRecycling, .PhaserStationAft, .PhaserStationBottom, .PhaserStationFore, .PhaserStationPort, .PhaserStationStarboard, .PhaserStationTop, .SciencesLaboratory, .Security, .SensorStations, .Shuttlebay, .TractorBeam, .TurboElevatorComputer, .WaterDistributionAndRecycling],
-    .RedShirt: [.Bridge, .Brig, .EnergySupply, .Engineering, .FoodProcessingPlant, .MedicalResearchLaboratory, .OxygenDistributionAndRecycling, .PhaserStationAft, .PhaserStationBottom, .PhaserStationFore, .PhaserStationPort, .PhaserStationStarboard, .PhaserStationTop, .SciencesLaboratory, .Security, .SensorStations, .Shuttlebay, .TractorBeam, .TurboElevatorComputer, .WaterDistributionAndRecycling]]
+    .RedShirt: [.Bridge, .Brig, .EnergySupply, .Engineering, .FoodProcessingPlant, .MedicalResearchLaboratory, .OxygenDistributionAndRecycling, .PhaserStationAft, .PhaserStationBottom, .PhaserStationFore, .PhaserStationPort, .PhaserStationStarboard, .PhaserStationTop, .SciencesLaboratory, .Security, .SensorStations, .Shuttlebay, .TractorBeam, .TurboElevatorComputer, .WaterDistributionAndRecycling]
+]
 
-class Location: SystemArrayObject, Equatable {
+private let locDescription: [LocationCode: String] = [
+    .Spatial: "Spatial",
+    .Bridge: "Bridge",
+    .SciencesLaboratory: "Sciences Lab",
+    .Engineering: "Engineering",
+    .Brig: "Brig",
+    .Security: "Security",
+    .NavigationComputer: "Navigation Computer",
+    .MedicalResearchLaboratory: "Medical Research Laboratory",
+    .MedicalComputer: "Medical Computer",
+    .TurboElevatorComputer: "Turbo Elevator Computer",
+    .TractorBeam: "Tractor Beam",
+    .FoodProcessingPlant: "Food Processing Plant",
+    .OxygenDistributionAndRecycling: "Oxygen Distribution And Recycling",
+    .WaterDistributionAndRecycling: "Water Distribution And Recycling",
+    .EnergySupply: "Energy Supply",
+    .IntensiveCareUnit: "Intensive Care Unit",
+    .SensorStations: "Sensor Stations",
+    .CrewsQuarters: "Crews Quarters",
+    .Shuttlebay: "Shuttlebay",
+    .TransporterStation: "Transporter Station",
+    .TurboElevatorStation: "Turbo Elevator Station",
+    .TurboElevator: "Turbo Elevator",
+    .ShuttleCraft: "Shuttle Craft",
+    .PhotonTorpedoTubeStation: "Photon Torpedo Tube Station",
+    .PhaserStationPort: "Phaser Station-Port",
+    .PhaserStationStarboard: "Phaser Station-Starboard",
+    .PhaserStationTop: "Phaser Station-Top",
+    .PhaserStationBottom: "Phaser Station-Bottom",
+    .PhaserStationFore: "Phaser Station-Fore",
+    .PhaserStationAft: "Phaser Station-Aft",
+    .DeflectorShieldPort: "Deflector Shield-Port",
+    .DeflectorShieldStarboard: "Deflector Shield-Starboard",
+    .DeflectorShieldTop: "Deflector Shield-Top",
+    .DeflectorShieldBottom: "Deflector Shield-Bottom",
+    .DeflectorShieldFore: "Deflector Shield-Fore",
+    .DeflectorShieldAft: "Deflector Shield-Aft",
+    .CelestialObject: "Celestial Object",
+    .EnemyCraft: "Enemy Craft",
+    .FederationCraft: "Federation Craft",
+    .Enterprise: "Enterprise",
+    .None: "None"
+]
+
+class Location: SystemArrayObject, Equatable, Printable {
     private var _code: LocationCode
     var code: LocationCode {
         return _code
@@ -81,7 +126,7 @@ class Location: SystemArrayObject, Equatable {
         }
         get {return _position}
     }
-    var num: Int {
+    dynamic var num: Int {
         get {
             var rVal: Int
             if isCraft {
@@ -99,6 +144,15 @@ class Location: SystemArrayObject, Equatable {
 
     var isCraft: Bool {
         return _crafts.filter({$0 == self._code}).count > 0
+    }
+
+    override var description: String {
+        var ans: String
+        ans = locDescription[_code] ?? "?"
+        if isCraft {
+            ans += "(\(craftOrObjectNum))"
+        }
+        return ans
     }
 
     /// null initializer
@@ -134,9 +188,9 @@ class Location: SystemArrayObject, Equatable {
     }
 
     convenience init(hint: Rank) {
-        if random() % 4 == 0 {      // 1 in 4 chance that they are at work
+        if ssRandom(4) == 0 {      // 1 in 4 chance that they are at work
             if let possibles = hintLocation[hint.rank] {
-                self.init(code: possibles[random() % possibles.count], craft: -1, position: nil)
+                self.init(code: possibles[ssRandom(possibles.count)], craft: -1, position: nil)
             } else {
                 self.init(code: .CrewsQuarters, craft: -1, position: nil)   // We don't know who they are so they are probably sleeping
             }
@@ -192,6 +246,7 @@ class Location: SystemArrayObject, Equatable {
         let newOne = Location(code: _code, craft: craftOrObjectNum, position: position)
         return newOne
     }
+
 }
 
 func ==(lhs: Location, rhs: Location) -> Bool {

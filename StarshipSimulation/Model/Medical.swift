@@ -13,6 +13,7 @@ import Cocoa
 class Medical: SimController {
 
     override init() {
+        logger.debug("Entry")
         super.init()
     }
     override var whoAmI: String {
