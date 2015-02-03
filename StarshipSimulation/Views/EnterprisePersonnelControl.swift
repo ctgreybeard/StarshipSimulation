@@ -18,6 +18,7 @@ class EnterprisePersonnelControl: NSViewController {
     @IBOutlet weak var tv: NSTableView!
 
     var floatFormatter: NSNumberFormatter!
+    var oBag: Observers!
 
     private var ourContext = UnsafeMutablePointer<Void>(bitPattern: Int(NSDate.timeIntervalSinceReferenceDate() * 1000.0))  // milliseconds
 
@@ -25,28 +26,31 @@ class EnterprisePersonnelControl: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         logger.debug("Entry")
-        floatFormatter = NSNumberFormatter()
-        floatFormatter.format = "#0.0"
-        fldFoodConsumption.formatter = floatFormatter
-        fldFoodConsumption?.floatValue = masterData?.cd.foodConsumption ?? 0.0
-        fldWaterConsumption.formatter = floatFormatter
-        fldWaterConsumption?.floatValue = masterData?.cd.waterConsumption ?? 0.0
-        fldO2Consumption.formatter = floatFormatter
-        fldO2Consumption?.floatValue = masterData?.cd.oxygenConsumption ?? 0.0
-        masterData?.cd.addObserver(self, forKeyPath: "foodConsumption", options: .New, context: ourContext)
-        masterData?.cd.addObserver(self, forKeyPath: "waterConsumption", options: .New, context: ourContext)
-        masterData?.cd.addObserver(self, forKeyPath: "oxygenConsumption", options: .New, context: ourContext)
-        ac.bind("contentArray", toObject: masterData.cd, withKeyPath: "enterprisePersonnel", options: nil)
-        ac.bind("sortDescriptors", toObject: tv, withKeyPath: "sortDescriptors", options: nil)
-        tv.sortDescriptors = [NSSortDescriptor(key: "soID", ascending: true)]
+        oBag = Observers()
+        if let cd = masterData?.cd {
+            floatFormatter = NSNumberFormatter()
+            floatFormatter.format = "#0.0"
+            fldFoodConsumption.formatter = floatFormatter
+            fldFoodConsumption?.floatValue = cd.foodConsumption ?? 0.0
+            fldWaterConsumption.formatter = floatFormatter
+            fldWaterConsumption?.floatValue = cd.waterConsumption ?? 0.0
+            fldO2Consumption.formatter = floatFormatter
+            fldO2Consumption?.floatValue = cd.oxygenConsumption ?? 0.0
+            oBag.addObserver(self, target: cd, forKeyPath: "foodConsumption", options: .New, context: ourContext)
+            oBag.addObserver(self, target: cd, forKeyPath: "waterConsumption", options: .New, context: ourContext)
+            oBag.addObserver(self, target: cd, forKeyPath: "oxygenConsumption", options: .New, context: ourContext)
+            ac.bind("contentArray", toObject: cd, withKeyPath: "enterprisePersonnel", options: nil)
+            ac.bind("sortDescriptors", toObject: tv, withKeyPath: "sortDescriptors", options: nil)
+            tv.sortDescriptors = [NSSortDescriptor(key: "soID", ascending: true)]
+        }
     }
 
     override func viewWillDisappear() {
         logger.debug("Entry")
-        masterData?.cd.removeObserver(self, forKeyPath: "foodConsumption")
-        masterData?.cd.removeObserver(self, forKeyPath: "waterConsumption")
-        masterData?.cd.removeObserver(self, forKeyPath: "oxygenConsumption")
+        oBag.dropAllObservers(deRegister: true)
+        oBag = nil
         floatFormatter = nil
+        ac = nil
 
         super.viewWillDisappear()
     }

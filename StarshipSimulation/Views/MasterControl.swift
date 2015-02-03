@@ -37,7 +37,7 @@ class MasterControl: SimViewController {
     let personnelKey = "enterprisePersonnel"
 
     /// Observers we registered
-    var observers = [NSObject, String, NSKeyValueObservingOptions]()
+    let observers = Observers()
 
     /// Initialize the SOID table display
     func initSOTable() {
@@ -57,14 +57,14 @@ class MasterControl: SimViewController {
     /// Called when the view will appear on the screen
     override func viewWillAppear() {
         logger.debug("And we're back!")
-        restoreObservers()
+        observers.registerAllObservers()
         soTableView.reloadData()
     }
 
     /// Called right before the view goes away
     override func viewWillDisappear() {
         logger.debug("Going away for now")
-        removeObservers()
+        observers.deRegisterAllObservers()
     }
 
     /// Action message sent by the custom MasterControl
@@ -127,7 +127,7 @@ class MasterControl: SimViewController {
         masterData.medical = Medical()
         masterData.nav = Navigation()
         masterData.sciences = Sciences()
-        observe(masterData.cd, object: personnelKey)
+        observers.addObserver(self, target: masterData.cd, forKeyPath: personnelKey, options: .Initial | .New, context: ourContext)
     }
 
     /// Simulation start
@@ -175,28 +175,6 @@ class MasterControl: SimViewController {
         let dInt = dField.intValue
         let vInt = Int32(master.valueForKey(reference) as Int)
         if dInt != vInt {dField.intValue = vInt}
-    }
-
-    /// Add self as an observer and record it into observers
-    func observe(o: NSObject, object: String, opt: NSKeyValueObservingOptions = .Initial | .New) {
-        o.addObserver(self, forKeyPath: object, options: opt, context: ourContext)
-        observers.append(o, object, opt)
-    }
-
-    /// Remove any registered observers
-    func removeObservers() {
-        logger.debug("Remove observers")
-        for (o, s, opt) in observers {
-            o.removeObserver(self, forKeyPath: s, context: ourContext)
-        }
-    }
-
-    /// Restore any registered observers
-    func restoreObservers() {
-        logger.debug("Restore observers")
-        for (o, s, opt) in observers {
-            o.addObserver(self, forKeyPath: s, options: opt, context: ourContext)
-        }
     }
 
     /// Standard KVO observer
