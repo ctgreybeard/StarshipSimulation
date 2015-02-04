@@ -50,6 +50,20 @@ enum AlertStatus: Int {
     case Red
 }
 
+enum ShipLocation: Int {
+    case None = -1, Port = 0, Starboard, Top, Bottom, Fore, Aft
+}
+
+let ShipLocationName: [ShipLocation: String] = [
+    .None: "None",
+    .Port: "Port",
+    .Starboard: "Starboard",
+    .Top: "Top",
+    .Bottom: "Bottom",
+    .Fore: "Foreward",
+    .Aft: "Aft"
+]
+
 /// Returns an Int in 0..<limit
 func ssRandom(limit: Int) -> Int {
     return Int(arc4random_uniform(UInt32(limit)))

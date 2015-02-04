@@ -55,7 +55,6 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="sequential" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="q3R-mn-79o" viewBased="YES" id="IRg-cC-F5z">
-                                            <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,6 +71,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="locationRaw"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="awV-Gq-OYr">
@@ -86,7 +86,11 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="awV-Gq-OYr" name="value" keyPath="objectValue.location" id="b1i-zW-AiL"/>
+                                                                        <binding destination="awV-Gq-OYr" name="value" keyPath="objectValue.locationRaw" id="z44-FS-U6H">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">EnterpriseEquipmentLocationTransformer</string>
+                                                                            </dictionary>
+                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -100,7 +104,11 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                     <connections>
-                                                        <binding destination="je9-1y-oyw" name="value" keyPath="arrangedObjects.location" id="aoE-LP-oXS"/>
+                                                        <binding destination="je9-1y-oyw" name="value" keyPath="arrangedObjects.locationRaw" id="sNc-05-vh1">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">EnterpriseEquipmentLocationTransformer</string>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </tableColumn>
                                                 <tableColumn width="60" minWidth="10" maxWidth="100" id="t4K-0W-89u">
@@ -229,7 +237,7 @@
                                                         <binding destination="je9-1y-oyw" name="value" keyPath="arrangedObjects.B1" id="OTv-hT-EYG"/>
                                                     </connections>
                                                 </tableColumn>
-                                                <tableColumn width="60" minWidth="10" maxWidth="100" id="tAa-Xw-913">
+                                                <tableColumn width="61" minWidth="10" maxWidth="100" id="tAa-Xw-913">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="# Torps">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -246,7 +254,7 @@
                                                             <rect key="frame" x="263" y="1" width="60" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydx-mt-KbH">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydx-mt-KbH">
                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Table View Cell" id="W6v-Yp-yzi">
                                                                         <font key="font" metaFont="system"/>
@@ -280,7 +288,7 @@
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Ygq-zc-aHf">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Ygq-zc-aHf">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

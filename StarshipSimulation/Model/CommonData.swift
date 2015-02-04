@@ -136,14 +136,13 @@ class CommonData: NSObject {
         logger.debug("Init Photon Tubes")
         // Photon Tubes
         let defaultNumPhotonTubes = 6
-        let photonTubeLocations = ["Port","Starboard","Fore","Aft","Top","Bottom"]
         SSPhotonTubes = SSMakeSystemArray(count: defaultNumPhotonTubes, withType: PhotonTube.self)
         photonTubes = SystemArrayAccess(source: SSPhotonTubes)
         // Set the torpedo locations
         let numTorps = (photonTubes[0] as PhotonTube).torpedos.count
         for p in 0..<photonTubes.count {
             let tube = photonTubes[p] as PhotonTube
-            tube.location = photonTubeLocations[p] ?? "Lost?"
+            tube.location = ShipLocation(rawValue: p) ?? ShipLocation.None
             for t in 0..<numTorps {
                 tube.B3[t] = LocationCode.PhotonTorpedoTubeStation.rawValue + p
             }

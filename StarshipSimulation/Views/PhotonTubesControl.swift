@@ -21,7 +21,7 @@ class PhotonTubesControl: NSViewController {
         if let cd = masterData?.cd {
             tubeAC.bind(NSContentArrayBinding, toObject: cd, withKeyPath: "SSPhotonTubes", options: nil)
             tubeAC.bind(NSSortDescriptorsBinding, toObject: tubeTV, withKeyPath: NSSortDescriptorsBinding, options: nil)
-            tubeTV.sortDescriptors = [NSSortDescriptor(key: "location", ascending: true)]
+            tubeTV.sortDescriptors = [NSSortDescriptor(key: "locationRaw", ascending: true)]
         } else {
             logger.error("Could not locate CommonData")
         }

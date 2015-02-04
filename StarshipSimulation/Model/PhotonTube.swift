@@ -9,7 +9,9 @@
 import Foundation
 
 class PhotonTube: SystemArrayObject {
-    dynamic var location: String
+    var location: ShipLocation
+    dynamic var locationRaw: Int {return location.rawValue}
+    class func keyPathsForValuesAffectingLocationRaw() -> [String] {return ["location"]}
     dynamic var tubeStatus: SystemStatus
     dynamic var _torpedos: SystemArray {
         didSet {
@@ -46,7 +48,7 @@ class PhotonTube: SystemArrayObject {
 
     required init() {
         logger.debug("Init PhotonTube")
-        location = "?"
+        location = .None
         tubeStatus = SystemStatus()
         _torpedos = SSMakeSystemArray(count: 20, withType: PhotonTorpedo.self)
         torpedos = SystemArrayAccess(source: _torpedos)

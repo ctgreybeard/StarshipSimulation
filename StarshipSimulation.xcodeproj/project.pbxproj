@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F312FCC1A81926B00578FA2 /* PhotonTubesControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F312FCB1A81926B00578FA2 /* PhotonTubesControl.swift */; };
+		0F312FCE1A81B97700578FA2 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F312FCD1A81B97700578FA2 /* Transformers.swift */; };
 		0F594BF61A69EE7C00B10050 /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F594BF51A69EE7C00B10050 /* LocationTests.swift */; };
 		0F594BF71A69EE9500B10050 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96C91A69858700E8F605 /* Location.swift */; };
 		0F594BF81A69EEAD00B10050 /* SpatialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96D21A69858700E8F605 /* SpatialPosition.swift */; };
@@ -87,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		0F312FCB1A81926B00578FA2 /* PhotonTubesControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotonTubesControl.swift; sourceTree = "<group>"; };
+		0F312FCD1A81B97700578FA2 /* Transformers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transformers.swift; path = StarshipSimulation/Views/Transformers.swift; sourceTree = SOURCE_ROOT; };
 		0F594BF51A69EE7C00B10050 /* LocationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		0F594BFF1A69FD3400B10050 /* SystemArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemArrayTests.swift; sourceTree = "<group>"; };
 		0F6BADD61A69C7A50018B475 /* MasterControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -322,6 +324,7 @@
 				0F8F96D31A69858700E8F605 /* SystemObject.swift */,
 				0F8F96D41A69858700E8F605 /* SystemStatus.swift */,
 				0F8F96D51A69858700E8F605 /* TractorBeam.swift */,
+				0F312FCD1A81B97700578FA2 /* Transformers.swift */,
 				0F8F96D61A69858700E8F605 /* TurboElevatorCar.swift */,
 				0F8F96D71A69858700E8F605 /* Weapons.swift */,
 			);
@@ -637,6 +640,7 @@
 				0F8F96EC1A69858700E8F605 /* SystemStatus.swift in Sources */,
 				0FAB8E501A6C315300E784B2 /* EnterprisePersonnelControl.swift in Sources */,
 				0F8F96DA1A69858700E8F605 /* Common.swift in Sources */,
+				0F312FCE1A81B97700578FA2 /* Transformers.swift in Sources */,
 				0F8F96E81A69858700E8F605 /* ShuttleCraft.swift in Sources */,
 				0FC3ACBA1A698C1200A9F544 /* EngControl.swift in Sources */,
 				0FC3ACB01A698A4C00A9F544 /* Medical.swift in Sources */,
