@@ -136,24 +136,26 @@ class CommonData: NSObject {
         logger.debug("Init Photon Tubes")
         // Photon Tubes
         let defaultNumPhotonTubes = 6
-        SSphotonTubes = SSMakeSystemArray(count: defaultNumPhotonTubes, withType: PhotonTube.self)
-        photonTubes = SystemArrayAccess(source: SSphotonTubes)
+        let photonTubeLocations = ["Port","Starboard","Fore","Aft","Top","Bottom"]
+        SSPhotonTubes = SSMakeSystemArray(count: defaultNumPhotonTubes, withType: PhotonTube.self)
+        photonTubes = SystemArrayAccess(source: SSPhotonTubes)
         // Set the torpedo locations
         let numTorps = (photonTubes[0] as PhotonTube).torpedos.count
         for p in 0..<photonTubes.count {
             let tube = photonTubes[p] as PhotonTube
+            tube.location = photonTubeLocations[p] ?? "Lost?"
             for t in 0..<numTorps {
                 tube.B3[t] = LocationCode.PhotonTorpedoTubeStation.rawValue + p
             }
         }
-        BY = SystemArrayAccess(source: SSphotonTubes, member: "BY")   // functionalstatus
-        BZ = SystemArrayAccess(source: SSphotonTubes, member: "BZ")   // reliabilityfactor
-        B1 = SystemArrayAccess(source: SSphotonTubes, member: "B1")   // energyrequirement
-        B2 = SystemArrayAccess(source: SSphotonTubes, member: "B2", readOnly: true)
-        B3 = SystemArrayAccess(source: SSphotonTubes, members: ["torpedos", "B3"])
-        B4 = SystemArrayAccess(source: SSphotonTubes, members: ["torpedos", "B4"])
+        BY = SystemArrayAccess(source: SSPhotonTubes, member: "BY")   // functionalstatus
+        BZ = SystemArrayAccess(source: SSPhotonTubes, member: "BZ")   // reliabilityfactor
+        B1 = SystemArrayAccess(source: SSPhotonTubes, member: "B1")   // energyrequirement
+        B2 = SystemArrayAccess(source: SSPhotonTubes, member: "B2", readOnly: true)
+        B3 = SystemArrayAccess(source: SSPhotonTubes, members: ["torpedos", "B3"])
+        B4 = SystemArrayAccess(source: SSPhotonTubes, members: ["torpedos", "B4"])
         photonTubesArrayAccessList = [photonTubes, BY, BZ, B1, B2, B3, B4]
-        logger.debug("Init Photon Tubes complete. \(SSphotonTubes.count) created")
+        logger.debug("Init Photon Tubes complete. \(SSPhotonTubes.count) created")
 
         logger.debug("Init Phaser Stations")
         // Phaser Stations
@@ -911,9 +913,9 @@ class CommonData: NSObject {
 
     // Photon torpedo tubes (6)
     var numPhotonTubes: Int {return photonTubes.count}
-    var SSphotonTubes: SystemArray {
+    dynamic var SSPhotonTubes: SystemArray {
         didSet {
-            setSystemArrayAccessFor(array: SSphotonTubes, accessList: photonTubesArrayAccessList)
+            setSystemArrayAccessFor(array: SSPhotonTubes, accessList: photonTubesArrayAccessList)
         }
     }
 

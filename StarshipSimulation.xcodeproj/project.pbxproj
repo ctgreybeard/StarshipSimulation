@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F312FCC1A81926B00578FA2 /* PhotonTubesControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F312FCB1A81926B00578FA2 /* PhotonTubesControl.swift */; };
 		0F594BF61A69EE7C00B10050 /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F594BF51A69EE7C00B10050 /* LocationTests.swift */; };
 		0F594BF71A69EE9500B10050 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96C91A69858700E8F605 /* Location.swift */; };
 		0F594BF81A69EEAD00B10050 /* SpatialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96D21A69858700E8F605 /* SpatialPosition.swift */; };
@@ -85,6 +86,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F312FCB1A81926B00578FA2 /* PhotonTubesControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotonTubesControl.swift; sourceTree = "<group>"; };
 		0F594BF51A69EE7C00B10050 /* LocationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		0F594BFF1A69FD3400B10050 /* SystemArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemArrayTests.swift; sourceTree = "<group>"; };
 		0F6BADD61A69C7A50018B475 /* MasterControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -385,6 +387,7 @@
 		0F8F96B61A697E3900E8F605 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0F312FCB1A81926B00578FA2 /* PhotonTubesControl.swift */,
 				0FAB8E4F1A6C315300E784B2 /* EnterprisePersonnelControl.swift */,
 				0F6BADD61A69C7A50018B475 /* MasterControl.swift */,
 				0FC3ACB51A698BF400A9F544 /* MasterTabView.swift */,
@@ -614,6 +617,7 @@
 				0F8F96DC1A69858700E8F605 /* CommunicationsStation.swift in Sources */,
 				0F8F96E71A69858700E8F605 /* Sensors.swift in Sources */,
 				0F8F96E41A69858700E8F605 /* PhotonTube.swift in Sources */,
+				0F312FCC1A81926B00578FA2 /* PhotonTubesControl.swift in Sources */,
 				0F8F96DB1A69858700E8F605 /* CommonData.swift in Sources */,
 				0F8F96EE1A69858700E8F605 /* TurboElevatorCar.swift in Sources */,
 				0F8F968D1A697CDF00E8F605 /* AppDelegate.swift in Sources */,
