@@ -10,45 +10,31 @@ import Cocoa
 
 @IBDesignable class ColoredTextField: NSTextField {
 
-    @IBInspectable dynamic var lowValue: Int
-    @IBInspectable dynamic var hiValue: Int
-    @IBInspectable dynamic var lowColor: NSColor
-    @IBInspectable dynamic var hiColor: NSColor
+    @IBInspectable dynamic var lowValue: Int = 0
+    @IBInspectable dynamic var hiValue: Int = 100
+    @IBInspectable dynamic var lowColor: NSColor = NSColor(SRGBRed: 0.95, green: 0.77, blue: 0.77, alpha: 1.0)
+    @IBInspectable dynamic var hiColor: NSColor = NSColor(SRGBRed: 0.77, green: 0.95, blue: 0.77, alpha: 1.0)
 
+    /// Respond to changes by setting the background color
     override var integerValue: Int {
         didSet {
             bgFromValue()
         }
     }
 
-    required init?(coder: NSCoder) {
-        lowColor = NSColor(SRGBRed: 0.95, green: 0.77, blue: 0.77, alpha: 1.0)
-        hiColor = NSColor(SRGBRed: 0.77, green: 0.95, blue: 0.77, alpha: 1.0)
-        lowValue = 0
-        hiValue = 100
-        super.init(coder: coder)
-        drawsBackground = true
-        logger.verbose("lowC=\(lowColor), hiC=\(hiColor), lowV=\(lowValue), hiV=\(hiValue)")
-    }
-
+    /// Ensure that we actually affect the background
     override func awakeFromNib() {
-        logger.verbose("lowC=\(lowColor), hiC=\(hiColor), lowV=\(lowValue), hiV=\(hiValue)")
+        drawsBackground = true
     }
 
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
-
-        // Drawing code here.
-    }
-
+    /// Set the backgroundColor from the integerValue
     func bgFromValue() {
-        let normInt = max(lowValue, min(hiValue, integerValue)) - lowValue
-        let vFraction = Float(normInt) / Float(hiValue - lowValue)
-        backgroundColor = lowColor.blendedColorWithFraction(CGFloat(vFraction), ofColor: hiColor)
+        let vFraction = CGFloat(Float(max(lowValue, min(hiValue, integerValue)) - lowValue) / Float(min(1, hiValue - lowValue)))
+        backgroundColor = lowColor.blendedColorWithFraction(vFraction, ofColor: hiColor)
     }
 
+    /// Make sure we know what the backgroundColor is
     override func viewWillDraw() {
-        let vFraction: CGFloat = 0.5
         bgFromValue()
         super.viewWillDraw()
     }
