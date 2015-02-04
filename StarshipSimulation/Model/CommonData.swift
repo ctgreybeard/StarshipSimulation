@@ -918,6 +918,7 @@ class CommonData: NSObject {
         }
     }
 
+    var SSPhotonTubesCount: Int {return SSPhotonTubes.count}
     let photonTubes: SystemArrayAccess
     let BY: SystemArrayAccess
     let BZ: SystemArrayAccess
