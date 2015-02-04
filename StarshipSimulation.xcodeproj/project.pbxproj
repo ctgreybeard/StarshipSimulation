@@ -56,6 +56,7 @@
 		0F8F96EF1A69858700E8F605 /* Weapons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96D71A69858700E8F605 /* Weapons.swift */; };
 		0F8F96F11A6985A700E8F605 /* MasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96F01A6985A700E8F605 /* MasterController.swift */; };
 		0F8F96F31A6985C000E8F605 /* Communications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96F21A6985C000E8F605 /* Communications.swift */; };
+		0FA24DE01A824DFE0066FB39 /* ColoredTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA24DDF1A824DFE0066FB39 /* ColoredTextField.swift */; };
 		0FA948661A698FDB00EE88B5 /* SimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA948651A698FDB00EE88B5 /* SimViewController.swift */; };
 		0FAB8E501A6C315300E784B2 /* EnterprisePersonnelControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB8E4F1A6C315300E784B2 /* EnterprisePersonnelControl.swift */; };
 		0FB0742E1A715DD2006F3CA5 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0742D1A715DD2006F3CA5 /* DataTests.swift */; };
@@ -132,6 +133,7 @@
 		0F8F96D71A69858700E8F605 /* Weapons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Weapons.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0F8F96F01A6985A700E8F605 /* MasterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0F8F96F21A6985C000E8F605 /* Communications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Communications.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FA24DDF1A824DFE0066FB39 /* ColoredTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTextField.swift; sourceTree = "<group>"; };
 		0FA948461A698F0900EE88B5 /* app128x128x1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = app128x128x1.jpg; sourceTree = "<group>"; };
 		0FA948471A698F0900EE88B5 /* app128x128x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app128x128x1.png; sourceTree = "<group>"; };
 		0FA948481A698F0900EE88B5 /* app128x128x1.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = app128x128x1.xcf; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				0F6BADD81A69C7EA0018B475 /* RunningStateControl.swift */,
 				0FA948651A698FDB00EE88B5 /* SimViewController.swift */,
 				0F8F96951A697CDF00E8F605 /* Main.storyboard */,
+				0FA24DDF1A824DFE0066FB39 /* ColoredTextField.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				0F8F96E61A69858700E8F605 /* RunningState.swift in Sources */,
 				0F6BADD91A69C7EA0018B475 /* RunningStateControl.swift in Sources */,
 				0F8F96E01A69858700E8F605 /* LifeSupport.swift in Sources */,
+				0FA24DE01A824DFE0066FB39 /* ColoredTextField.swift in Sources */,
 				0F8F96E51A69858700E8F605 /* Rank.swift in Sources */,
 				0F8F96EB1A69858700E8F605 /* SystemObject.swift in Sources */,
 				0F8F96921A697CDF00E8F605 /* StarshipSimulation.xcdatamodeld in Sources */,
