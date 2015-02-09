@@ -14,27 +14,38 @@ import Cocoa
     @IBInspectable dynamic var hiValue: Int = 100
     @IBInspectable dynamic var lowColor: NSColor = NSColor(SRGBRed: 0.95, green: 0.77, blue: 0.77, alpha: 1.0)
     @IBInspectable dynamic var hiColor: NSColor = NSColor(SRGBRed: 0.77, green: 0.95, blue: 0.77, alpha: 1.0)
+    var oldFraction: Float = -1.0   // An impossible value, forces first background setting
 
     /// Respond to changes by setting the background color
     override var integerValue: Int {
         didSet {
-            bgFromValue()
+            if oldValue != integerValue {
+                logger.debug("didSet")
+                bgFromValue()
+            }
         }
     }
 
     /// Ensure that we actually affect the background
     override func awakeFromNib() {
+        logger.verbose("awakeFromNib, Lo=\(lowValue), Hi=\(hiValue), lowColor=\(lowColor), hiColor=\(hiColor)")
         drawsBackground = true
     }
 
     /// Set the backgroundColor from the integerValue
     func bgFromValue() {
-        let vFraction = CGFloat(Float(max(lowValue, min(hiValue, integerValue)) - lowValue) / Float(min(1, hiValue - lowValue)))
-        backgroundColor = lowColor.blendedColorWithFraction(vFraction, ofColor: hiColor)
+        let vFraction = Float(max(lowValue, min(hiValue, integerValue)) - lowValue) / Float(max(1, hiValue - lowValue))
+        if abs(vFraction - oldFraction) > 0.1 {
+            let newBackgroundColor = lowColor.blendedColorWithFraction(CGFloat(vFraction), ofColor: hiColor)
+            oldFraction = vFraction
+            backgroundColor = newBackgroundColor
+            logger.verbose("Value=\(integerValue), Fraction=\(vFraction)")
+        }
     }
 
     /// Make sure we know what the backgroundColor is
     override func viewWillDraw() {
+        logger.verbose("viewWillDraw")
         bgFromValue()
         super.viewWillDraw()
     }
