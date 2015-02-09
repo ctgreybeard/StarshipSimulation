@@ -110,7 +110,7 @@ class DefensiveWeapon: Weapon {
     }
 
     override func copyWithZone(zone: NSZone) -> AnyObject {
-        let newOne = super.copyWithZone(zone) as DefensiveWeapon
+        let newOne = super.copyWithZone(zone) as! DefensiveWeapon
         newOne.type = type
         return newOne
     }
@@ -129,7 +129,7 @@ class OffensiveWeapon: Weapon {
     }
 
     override func copyWithZone(zone: NSZone) -> AnyObject {
-        let newOne = super.copyWithZone(zone) as OffensiveWeapon
+        let newOne = super.copyWithZone(zone) as! OffensiveWeapon
         newOne.type = type
         return newOne
     }

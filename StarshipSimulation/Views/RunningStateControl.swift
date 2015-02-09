@@ -34,7 +34,7 @@ import Cocoa
     @IBInspectable var subsystemName: NSString! {
         didSet {
             if subsystemNameField != nil {
-                subsystemNameField.stringValue = subsystemName ?? "Unknown"
+                subsystemNameField.stringValue = (subsystemName as? String) ?? "Unknown"
             }
         }
     }
@@ -42,11 +42,11 @@ import Cocoa
     @IBInspectable var subsystemState: NSString! {
         didSet {
             if subsystemStateField != nil {
-                subsystemStateField.stringValue = subsystemState ?? "Unknown"
-                subsystemStateField.backgroundColor = colors[subsystemState] ?? unknownColor
-                subsystemRunPauseButton.title = runOrPause[subsystemState] ?? "Run?"
-                subsystemRunPauseButton.enabled = runPauseEnabled[subsystemState] ?? true
-                subsystemStartStopButton.title = startOrStop[subsystemState] ?? "Start?"
+                subsystemStateField.stringValue = (subsystemState as? String) ?? "Unknown"
+                subsystemStateField.backgroundColor = colors[subsystemState as! String] ?? unknownColor
+                subsystemRunPauseButton.title = runOrPause[subsystemState as! String] ?? "Run?"
+                subsystemRunPauseButton.enabled = runPauseEnabled[subsystemState as! String] ?? true
+                subsystemStartStopButton.title = startOrStop[subsystemState as! String] ?? "Start?"
                 layer?.borderColor = subsystemStateField.backgroundColor?.CGColor
             }
         }
@@ -60,7 +60,7 @@ import Cocoa
                 let m = et / 60 - h * 60
                 let s = et - h * 3600 - m * 60
                 logger.verbose("Elapsed: \(subsystemElapsed)")
-                etField.stringValue = NSString(format: "Time: %2d:%02d:%02d", h, m, s)
+                etField.stringValue = NSString(format: "Time: %2d:%02d:%02d", h, m, s) as! String
             }
         }
     }
@@ -137,7 +137,7 @@ import Cocoa
             subsystemNameField.font = NSFont.boldSystemFontOfSize(12.0)
             addSubview(subsystemNameField)
         }
-        subsystemNameField.stringValue = subsystemName ?? "Unknown"
+        subsystemNameField.stringValue = (subsystemName as? String) ?? "Unknown"
 
         let textFields = [subsystemNameField, subsystemStateField, subsystemElapsedField]
         for textField in textFields {

@@ -37,10 +37,10 @@ class PhotonTube: SystemArrayObject {
 
     override func copyWithZone(zone: NSZone) -> AnyObject {
         let newTube = PhotonTube()
-        newTube.tubeStatus = tubeStatus.copy() as SystemStatus
+        newTube.tubeStatus = tubeStatus.copy() as! SystemStatus
         var newTorps = [PhotonTorpedo]()
         for i in 0..<torpedos.count {
-            newTorps.append((torpedos[i] as PhotonTorpedo).copy() as PhotonTorpedo)
+            newTorps.append((torpedos[i] as! PhotonTorpedo).copy() as! PhotonTorpedo)
         }
         newTube._torpedos = SSMakeSystemArray(withArray: newTorps)
         return newTube
@@ -79,8 +79,8 @@ class PhotonTorpedo: SystemArrayObject {
 
     override func copyWithZone(zone: NSZone) -> AnyObject {
         let newTorpedo = PhotonTorpedo()
-        newTorpedo.location = location.copy() as Location
-        newTorpedo.destination = destination.copy() as Location
+        newTorpedo.location = location.copy() as! Location
+        newTorpedo.destination = destination.copy() as! Location
         return newTorpedo
     }
 }

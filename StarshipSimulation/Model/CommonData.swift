@@ -139,9 +139,9 @@ class CommonData: NSObject {
         SSPhotonTubes = SSMakeSystemArray(count: defaultNumPhotonTubes, withType: PhotonTube.self)
         photonTubes = SystemArrayAccess(source: SSPhotonTubes)
         // Set the torpedo locations
-        let numTorps = (photonTubes[0] as PhotonTube).torpedos.count
+        let numTorps = (photonTubes[0] as! PhotonTube).torpedos.count
         for p in 0..<photonTubes.count {
-            let tube = photonTubes[p] as PhotonTube
+            let tube = photonTubes[p] as! PhotonTube
             tube.location = ShipLocation(rawValue: p) ?? ShipLocation.None
             for t in 0..<numTorps {
                 tube.B3[t] = LocationCode.PhotonTorpedoTubeStation.rawValue + p
@@ -869,7 +869,7 @@ class CommonData: NSObject {
         logger.verbose("Entry")
         bumpCount()
         willChange(.Insertion, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
-        SSenterprisePersonnel.insertObjects(enterprisePersonnelArray, atIndexes: indexes)
+        SSenterprisePersonnel.insertObjects(enterprisePersonnelArray as! [AnyObject], atIndexes: indexes)
         didChange(.Insertion, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
     }
 
@@ -901,7 +901,7 @@ class CommonData: NSObject {
         logger.verbose("Entry")
         bumpCount()
         willChange(.Replacement, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
-        SSenterprisePersonnel.replaceObjectsAtIndexes(indexes, withObjects: objects)
+        SSenterprisePersonnel.replaceObjectsAtIndexes(indexes, withObjects: objects as! [AnyObject])
         didChange(.Replacement, valuesAtIndexes: indexes, forKey: "enterprisePersonnel")
     }
 

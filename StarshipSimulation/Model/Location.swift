@@ -138,7 +138,42 @@ class Location: SystemArrayObject, Equatable, Printable {
             return rVal
         }
         set {
-            setNum(newValue)
+            switch newValue {
+                // Test first for one of the ranges values, set the base code and Object number
+            case LocationCode.TransporterStation.rawValue..<LocationCode.TurboElevatorStation.rawValue:
+                _code = .TransporterStation
+                craftOrObjectNum = newValue - LocationCode.TransporterStation.rawValue
+            case LocationCode.TurboElevatorStation.rawValue..<LocationCode.TurboElevator.rawValue:
+                _code = .TurboElevatorStation
+                craftOrObjectNum = newValue - LocationCode.TurboElevatorStation.rawValue
+            case LocationCode.TurboElevator.rawValue..<LocationCode.ShuttleCraft.rawValue:
+                _code = .TurboElevator
+                craftOrObjectNum = newValue - LocationCode.TurboElevator.rawValue
+            case LocationCode.ShuttleCraft.rawValue..<LocationCode.PhotonTorpedoTubeStation.rawValue:
+                _code = .ShuttleCraft
+                craftOrObjectNum = newValue - LocationCode.ShuttleCraft.rawValue
+            case LocationCode.PhotonTorpedoTubeStation.rawValue..<LocationCode.PhaserStationPort.rawValue:
+                _code = .PhotonTorpedoTubeStation
+                craftOrObjectNum = newValue - LocationCode.PhotonTorpedoTubeStation.rawValue
+            case LocationCode.CelestialObject.rawValue...LocationCode.EnemyCraft.rawValue:
+                _code = .CelestialObject
+                craftOrObjectNum = newValue - LocationCode.CelestialObject.rawValue
+            case LocationCode.EnemyCraft.rawValue...LocationCode.FederationCraft.rawValue:
+                _code = .EnemyCraft
+                craftOrObjectNum = newValue - LocationCode.EnemyCraft.rawValue
+            case LocationCode.FederationCraft.rawValue...LocationCode.Enterprise.rawValue:
+                _code = .FederationCraft
+                craftOrObjectNum = newValue - LocationCode.FederationCraft.rawValue
+            default:
+                if let newCode = LocationCode(rawValue: newValue) {
+                    _code = newCode
+                    craftOrObjectNum = -1
+                } else {
+                    _code = .None
+                    craftOrObjectNum = -1
+                }
+            }
+            position = nil
         }
     }
 
@@ -168,12 +203,12 @@ class Location: SystemArrayObject, Equatable, Printable {
         mkSOID(.Location)
     }
 
-    convenience init(_ num: Int) {
+    convenience init(num: Int) {
         self.init()
-        self.setNum(num)
+        self.num = num
     }
 
-    convenience init(_ newPos: SpatialPosition) {
+    convenience init(newPos: SpatialPosition) {
         self.init()
         setPos(newPos)
     }
@@ -201,45 +236,6 @@ class Location: SystemArrayObject, Equatable, Printable {
 
     func setPos(newValue: SpatialPosition) {
         position = newValue
-    }
-
-    func setNum(newValue: Int) {
-        switch newValue {
-            // Test first for one of the ranges values, set the base code and Object number
-        case LocationCode.TransporterStation.rawValue..<LocationCode.TurboElevatorStation.rawValue:
-            _code = .TransporterStation
-            craftOrObjectNum = newValue - LocationCode.TransporterStation.rawValue
-        case LocationCode.TurboElevatorStation.rawValue..<LocationCode.TurboElevator.rawValue:
-            _code = .TurboElevatorStation
-            craftOrObjectNum = newValue - LocationCode.TurboElevatorStation.rawValue
-        case LocationCode.TurboElevator.rawValue..<LocationCode.ShuttleCraft.rawValue:
-            _code = .TurboElevator
-            craftOrObjectNum = newValue - LocationCode.TurboElevator.rawValue
-        case LocationCode.ShuttleCraft.rawValue..<LocationCode.PhotonTorpedoTubeStation.rawValue:
-            _code = .ShuttleCraft
-            craftOrObjectNum = newValue - LocationCode.ShuttleCraft.rawValue
-        case LocationCode.PhotonTorpedoTubeStation.rawValue..<LocationCode.PhaserStationPort.rawValue:
-            _code = .PhotonTorpedoTubeStation
-            craftOrObjectNum = newValue - LocationCode.PhotonTorpedoTubeStation.rawValue
-        case LocationCode.CelestialObject.rawValue...LocationCode.EnemyCraft.rawValue:
-            _code = .CelestialObject
-            craftOrObjectNum = newValue - LocationCode.CelestialObject.rawValue
-        case LocationCode.EnemyCraft.rawValue...LocationCode.FederationCraft.rawValue:
-            _code = .EnemyCraft
-            craftOrObjectNum = newValue - LocationCode.EnemyCraft.rawValue
-        case LocationCode.FederationCraft.rawValue...LocationCode.Enterprise.rawValue:
-            _code = .FederationCraft
-            craftOrObjectNum = newValue - LocationCode.FederationCraft.rawValue
-        default:
-            if let newCode = LocationCode(rawValue: newValue) {
-                _code = newCode
-                craftOrObjectNum = -1
-            } else {
-                _code = .None
-                craftOrObjectNum = -1
-            }
-        }
-        position = nil
     }
 
     override func copyWithZone(zone: NSZone) -> AnyObject {

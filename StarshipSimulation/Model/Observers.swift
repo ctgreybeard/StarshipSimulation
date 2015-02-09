@@ -37,14 +37,14 @@ class Observers: NSObject {
     /// Register all observers in the Bag
     func registerAllObservers() {
         for o in observerBag {
-            registerObserver(o as Observer)
+            registerObserver(o as! Observer)
         }
     }
 
     /// deRegister all observers in the Bag
     func deRegisterAllObservers() {
         for o in observerBag {
-            deRegisterObserver(o as Observer)
+            deRegisterObserver(o as! Observer)
         }
     }
 
@@ -77,7 +77,7 @@ class Observers: NSObject {
     func dropAllObservers(deRegister: Bool = true) {
         if deRegister {
             for o in observerBag {
-                deRegisterObserver(o as Observer)
+                deRegisterObserver(o as! Observer)
             }
         }
         observerBag.removeAllObjects()
@@ -125,8 +125,8 @@ class ObservedChange: NSObject {
     let changeOld: AnyObject?
 
     init(_ change: ChangeDict) {
-        cdict = change as UsefulChangeDict
-        kind = NSKeyValueChange(rawValue: UInt(cdict[NSKeyValueChangeKindKey] as NSNumber))!
+        cdict = change as! UsefulChangeDict
+        kind = NSKeyValueChange(rawValue: UInt(cdict[NSKeyValueChangeKindKey] as! NSNumber))!
         kindStr = kindString[kind] ?? ".???"
         prior = (cdict[NSKeyValueChangeNotificationIsPriorKey] as? NSNumber) == NSNumber(bool: true)
         indexes = cdict[NSKeyValueChangeIndexesKey] as? NSIndexSet

@@ -35,7 +35,7 @@ enum RadiationType: Int {
 }
 
 struct Radiation {
-    var type: RadiationType = .None
+    let type: RadiationType = .None
     var intensity = 0
 }
 

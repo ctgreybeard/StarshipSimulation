@@ -104,9 +104,9 @@ class EnterprisePersonnelControl: NSViewController {
 
     @IBAction func updateConsumption(sender: NSTextField) {
         logger.debug("Entry")
-        if sender.floatValue != masterData.cd.valueForKey(sender.identifier) as? Float {
+        if sender.floatValue != masterData.cd.valueForKey(sender.identifier!) as? Float {
             logger.debug("Setting value \(sender.stringValue) for \(sender.identifier)")
-            masterData?.cd.setValue(sender.floatValue, forKey: sender.identifier)
+            masterData?.cd.setValue(sender.floatValue, forKey: sender.identifier!)
         } else {
             logger.debug("No change for \(sender.identifier)")
         }

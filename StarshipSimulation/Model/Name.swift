@@ -38,7 +38,7 @@ class Name: SystemObject, NSCopying {
             logger.info("Loading \(file).txt from \(goodURL)")
             let nameFile = NSString(contentsOfURL: goodURL, encoding: NSUTF8StringEncoding, error: nil)
             if let names = nameFile {
-                into = names.componentsSeparatedByString("\n") as [String]
+                into = names.componentsSeparatedByString("\n") as! [String]
             }
         } else {
             logger.error("Unable to load \(file).txt")

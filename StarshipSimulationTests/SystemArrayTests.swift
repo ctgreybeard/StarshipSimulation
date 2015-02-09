@@ -105,50 +105,50 @@ class SystemArrayTests: XCTestCase {
 //        XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).BU, 10, "default setting (BU alias for healthStatus) incorrect")
 
         // Check SystemArray access
-        XCTAssertEqual(BL[tp1] as String, "New Person", "default setting (BL 1) incorrect")
-        XCTAssertEqual(BL[tp2] as String, "New Person", "default setting (BL 2) incorrect")
-        XCTAssertEqual(BU[tp1] as Int, 10, "default setting (BU 1) incorrect")
-        XCTAssertEqual(BU[tp2] as Int, 10, "default setting (BU 2) incorrect")
+        XCTAssertEqual(BL[tp1] as! String, "New Person", "default setting (BL 1) incorrect")
+        XCTAssertEqual(BL[tp2] as! String, "New Person", "default setting (BL 2) incorrect")
+        XCTAssertEqual(BU[tp1] as! Int, 10, "default setting (BU 1) incorrect")
+        XCTAssertEqual(BU[tp2] as! Int, 10, "default setting (BU 2) incorrect")
 
         // Test direct access
 //        (enterprisePersonnel[tp1]? as EnterprisePerson).name = tp1name
-        XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).name, tp1name, "direct setting (name 1) incorrect")
-        XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).name, "New Person", "direct setting (name 2) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp1] as! EnterprisePerson).name, tp1name, "direct setting (name 1) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp2] as! EnterprisePerson).name, "New Person", "direct setting (name 2) incorrect")
 //        (enterprisePersonnel[tp2]? as EnterprisePerson).name = tp2name
-        XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).name, tp1name, "direct setting (name 1) incorrect")
-        XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).name, tp2name, "direct setting (name 2) incorrect")
-        (enterprisePersonnel[tp1]? as EnterprisePerson).healthStatus = tp1health
-        (enterprisePersonnel[tp2]? as EnterprisePerson).healthStatus = tp2health
-        XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).healthStatus, tp1health, "direct setting (healthStatus 1) incorrect")
-        XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).healthStatus, tp2health, "direct setting (healthStatus 2) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp1] as! EnterprisePerson).name, tp1name, "direct setting (name 1) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp2] as! EnterprisePerson).name, tp2name, "direct setting (name 2) incorrect")
+        (enterprisePersonnel[tp1] as! EnterprisePerson).healthStatus = tp1health
+        (enterprisePersonnel[tp2] as! EnterprisePerson).healthStatus = tp2health
+        XCTAssertEqual((enterprisePersonnel[tp1] as! EnterprisePerson).healthStatus, tp1health, "direct setting (healthStatus 1) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp2] as! EnterprisePerson).healthStatus, tp2health, "direct setting (healthStatus 2) incorrect")
 
         // Reset the names and health
 //        (enterprisePersonnel[tp1]? as EnterprisePerson).name = resetName
 //        (enterprisePersonnel[tp2]? as EnterprisePerson).name = resetName
-        XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).name, resetName, "reset (name 1) incorrect")
-        XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).name, resetName, "reset (name 2) incorrect")
-        (enterprisePersonnel[tp1]? as EnterprisePerson).healthStatus = resetHealth
-        (enterprisePersonnel[tp2]? as EnterprisePerson).healthStatus = resetHealth
-        XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).healthStatus, resetHealth, "resetting (healthStatus 1) incorrect")
-        XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).healthStatus, resetHealth, "resetting (healthStatus 2) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp1] as! EnterprisePerson).name, resetName, "reset (name 1) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp2] as! EnterprisePerson).name, resetName, "reset (name 2) incorrect")
+        (enterprisePersonnel[tp1] as! EnterprisePerson).healthStatus = resetHealth
+        (enterprisePersonnel[tp2] as! EnterprisePerson).healthStatus = resetHealth
+        XCTAssertEqual((enterprisePersonnel[tp1] as! EnterprisePerson).healthStatus, resetHealth, "resetting (healthStatus 1) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp2] as! EnterprisePerson).healthStatus, resetHealth, "resetting (healthStatus 2) incorrect")
 
         // Test alias access
-        (enterprisePersonnel[tp1]? as EnterprisePerson).BL = tp1name
-        XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).BL, tp1name, "direct setting (name 1) incorrect")
-        XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).BL, resetName, "direct setting (name 2) incorrect")
+        (enterprisePersonnel[tp1] as! EnterprisePerson).BL = tp1name
+        XCTAssertEqual((enterprisePersonnel[tp1] as! EnterprisePerson).BL, tp1name, "direct setting (name 1) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp2] as! EnterprisePerson).BL, resetName, "direct setting (name 2) incorrect")
 //        (enterprisePersonnel[tp2]? as EnterprisePerson).name = tp2name
-        XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).BL, tp1name, "direct setting (name 1) incorrect")
-        XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).BL, tp2name, "direct setting (name 2) incorrect")
-        (enterprisePersonnel[tp1]? as EnterprisePerson).healthStatus = tp1health
-        (enterprisePersonnel[tp2]? as EnterprisePerson).healthStatus = tp2health
-        XCTAssertEqual((enterprisePersonnel[tp1]? as EnterprisePerson).BU, tp1health, "direct setting (healthStatus 1) incorrect")
-        XCTAssertEqual((enterprisePersonnel[tp2]? as EnterprisePerson).BU, tp2health, "direct setting (healthStatus 2) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp1] as! EnterprisePerson).BL, tp1name, "direct setting (name 1) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp2] as! EnterprisePerson).BL, tp2name, "direct setting (name 2) incorrect")
+        (enterprisePersonnel[tp1] as! EnterprisePerson).healthStatus = tp1health
+        (enterprisePersonnel[tp2] as! EnterprisePerson).healthStatus = tp2health
+        XCTAssertEqual((enterprisePersonnel[tp1] as! EnterprisePerson).BU, tp1health, "direct setting (healthStatus 1) incorrect")
+        XCTAssertEqual((enterprisePersonnel[tp2] as! EnterprisePerson).BU, tp2health, "direct setting (healthStatus 2) incorrect")
 
         // Check SystemArray access
-        XCTAssertEqual(BL[tp1] as String, tp1name, "BL[tp1] incorrect")
-        XCTAssertEqual(BL[tp2] as String, tp2name, "BL[tp2] incorrect")
-        XCTAssertEqual(BU[tp1] as Int, tp1health, "BU[tp1] incorrect")
-        XCTAssertEqual(BU[tp2] as Int, tp2health, "BU[tp2] incorrect")
+        XCTAssertEqual(BL[tp1] as! String, tp1name, "BL[tp1] incorrect")
+        XCTAssertEqual(BL[tp2] as! String, tp2name, "BL[tp2] incorrect")
+        XCTAssertEqual(BU[tp1] as! Int, tp1health, "BU[tp1] incorrect")
+        XCTAssertEqual(BU[tp2] as! Int, tp2health, "BU[tp2] incorrect")
 
     }
 
@@ -157,21 +157,21 @@ class SystemArrayTests: XCTestCase {
         // Initialize the Photon Tubes
         let numPhotonTubes = 6
         let photonTubes = SSMakeSystemArray(count: numPhotonTubes, withType: PhotonTube.self)
-        let numTorps = (photonTubes[0] as PhotonTube).B2
+        let numTorps = (photonTubes[0] as! PhotonTube).B2
         XCTAssertEqual(photonTubes.count, numPhotonTubes, "Missing Photon Tubes")
         XCTAssertEqual(numTorps, 20, "Not enough Photon Torpedos, Captain!")
         for p in 0..<numPhotonTubes {
-            let tube = photonTubes[p] as PhotonTube
+            let tube = photonTubes[p] as! PhotonTube
             for t in 0..<numTorps {
                 tube.B3[t] = 80 + p
                 println("Setting tube \(p) torpedo \(t) to \(80 + p)")
-                XCTAssertEqual(tube.B3[t] as Int, 80 + p, "Didn't set")
+                XCTAssertEqual(tube.B3[t] as! Int, 80 + p, "Didn't set")
             }
         }
         for p in 0..<numPhotonTubes {
-            let tube = photonTubes[p] as PhotonTube
+            let tube = photonTubes[p] as! PhotonTube
             for t in 0..<numTorps {
-                XCTAssertEqual(tube.B3[t] as Int, 80 + p, "Didn't verify")
+                XCTAssertEqual(tube.B3[t] as! Int, 80 + p, "Didn't verify")
             }
         }
         let BY = SystemArrayAccess(source: photonTubes, member: "tubeStatus.functionalStatus")
@@ -193,15 +193,15 @@ class SystemArrayTests: XCTestCase {
         let testFS = 67
         println("Checking tubes: \(testTubes)")
         for n in testTubes {
-            (photonTubes[n] as PhotonTube).BY = testFS
-            XCTAssertEqual((photonTubes[n] as PhotonTube).BY as Int, testFS, "functionalStatus access incorrect for photonTube#\(n)")
-            XCTAssertEqual((photonTubes[n] as PhotonTube).B2 as Int, numTorps, "number of torpedos incorrect for photonTube#\(n)")
-            XCTAssertEqual(BY[n] as Int, testFS, "functionalStatus access incorrect for photonTube#\(n)")
-            XCTAssertEqual(B2[n] as Int, numTorps, "number of torpedos incorrect for photonTube#\(n)")
-            XCTAssertEqual((photonTubes[n] as PhotonTube).B3[0] as Int, LocationCode.PhotonTorpedoTubeStation.rawValue + n, "location incorrect for photonTube#\(n), torpedo#0")
+            (photonTubes[n] as! PhotonTube).BY = testFS
+            XCTAssertEqual((photonTubes[n] as! PhotonTube).BY as Int, testFS, "functionalStatus access incorrect for photonTube#\(n)")
+            XCTAssertEqual((photonTubes[n] as! PhotonTube).B2 as Int, numTorps, "number of torpedos incorrect for photonTube#\(n)")
+            XCTAssertEqual(BY[n] as! Int, testFS, "functionalStatus access incorrect for photonTube#\(n)")
+            XCTAssertEqual(B2[n] as! Int, numTorps, "number of torpedos incorrect for photonTube#\(n)")
+            XCTAssertEqual((photonTubes[n] as! PhotonTube).B3[0] as! Int, LocationCode.PhotonTorpedoTubeStation.rawValue + n, "location incorrect for photonTube#\(n), torpedo#0")
             var locNum: AnyObject? = B3[n, 0]   // Check first torpedo
             println("Found \(locNum)")
-            let locI = locNum as Int
+            let locI = locNum as! Int
             XCTAssertEqual(locI, LocationCode.PhotonTorpedoTubeStation.rawValue + n, "Captain! The torpedo is missing!")
         }
     }

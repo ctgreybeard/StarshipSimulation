@@ -20,7 +20,7 @@ enum CelestialObjectClassification: Int {
 /// Diversions from the book are taken where it is expedient.
 class CelestialObject: SystemArrayObject {
 
-    var coClass: CelestialObjectClassification
+    let coClass: CelestialObjectClassification
     dynamic var name: String
     dynamic var charted: Bool
     dynamic var x: Coordinate
@@ -43,18 +43,8 @@ class CelestialObject: SystemArrayObject {
     dynamic var peaceTreatyOffer: Int = 0
     dynamic var peaceTreatyRequest: Bool = false
 
-    var AH: Int {
-        set {
-            if let newClass = CelestialObjectClassification(rawValue: newValue) {
-                coClass = newClass
-            } else {
-                coClass = .None
-            }
-        }
-        get {
-            return coClass.rawValue
-        }
-    }
+    var AH: Int {return coClass.rawValue}
+
     dynamic var AI: String {
         set {
             name = newValue
@@ -127,16 +117,7 @@ class CelestialObject: SystemArrayObject {
             return radius
         }
     }
-    var AQ: Int {
-        set {
-            if let newRad = RadiationType(rawValue: newValue) {
-                radiation.type = newRad
-            }
-        }
-        get {
-            return radiation.type.rawValue
-        }
-    }
+    var AQ: Int {return radiation.type.rawValue}
     dynamic var AR: Int {
         set {
             radiation.intensity = newValue

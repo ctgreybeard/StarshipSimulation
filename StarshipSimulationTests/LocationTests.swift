@@ -50,13 +50,13 @@ class LocationTests: XCTestCase {
         XCTAssertNil(testLoc2.position, "default Location position not nil")
 
         // Initialize with a numeric location (72 == Shuttlecraft2)
-        let testLoc3 = Location(7)
+        let testLoc3 = Location(num: 72)
         XCTAssertEqual(testLoc3.code, LocationCode.MedicalComputer, "Location code not correct")
         XCTAssertEqual(testLoc3.craftOrObjectNum, -1, "set Location craftOrObject not -1")
         XCTAssertNil(testLoc3.position, "set Location position not nil")
 
         // Initialize with a position
-        let testLoc4 = Location(testPos)
+        let testLoc4 = Location(newPos: testPos)
         XCTAssertEqual(testLoc4.num, -1, "Positional Location num not correct")
         XCTAssertEqual(testLoc4.code, LocationCode.Spatial, "Positional Location code not correct")
         XCTAssertEqual(testLoc4.craftOrObjectNum, -1, "Positional Location craftOrObject not -1")

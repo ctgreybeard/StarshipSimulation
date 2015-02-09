@@ -76,7 +76,9 @@ class SystemData: NSObject {
         var currCount: Int
         let tagStr = tag.rawValue
 
-        currCount = numSO.objectForKey(tagStr) as? Int ?? 0
+        let cc = (numSO.objectForKey(tagStr)?.integerValue)
+        currCount = cc ?? 0
+        currCount = (numSO.objectForKey(tagStr)?.integerValue) ?? 0
         willChangeValueForKey(numSOName)
         numSO.setObject(++currCount, forKey: tagStr)
         didChangeValueForKey(numSOName)
@@ -91,7 +93,7 @@ class SystemData: NSObject {
     }
 
     func dumpCounts() {
-        var keys = (numSO.allKeys as [String]).sorted {$0 < $1}
+        var keys = (numSO.allKeys as! [String]).sorted {$0 < $1}
         displayTable("by ID", keys: keys)
         keys = numSO.keysSortedByValueUsingComparator({(lhs: AnyObject!, rhs: AnyObject!) -> NSComparisonResult in
             if lhs.integerValue > rhs.integerValue {
@@ -102,7 +104,7 @@ class SystemData: NSObject {
                 return .OrderedDescending;
             }
             return .OrderedSame;
-        }) as [String]
+        }) as! [String]
         displayTable("by Count", keys: keys)
     }
 
@@ -246,7 +248,7 @@ class SystemArrayAccess: SystemObject {
     }
 
     func objectAtIndex(i: Int) -> SystemArrayObject? {
-        if i >= 0 && i < _array.count {return (_array.objectAtIndex(i) as SystemArrayObject)}
+        if i >= 0 && i < _array.count {return (_array.objectAtIndex(i) as! SystemArrayObject)}
         else {return nil}
     }
 
@@ -277,7 +279,7 @@ class SystemArrayAccess: SystemObject {
                 if _members?.count == 1 {
                     objectAtIndex(i)?.setValue(newValue, forKeyPath: _members![0])
                 } else if _members == nil {
-                    replaceObjectAtIndex(i, withObject: newValue as SystemArrayObject)
+                    replaceObjectAtIndex(i, withObject: newValue as! SystemArrayObject)
                 } else {
                     logger.error("Subscript count mismatch")
                 }

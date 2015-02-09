@@ -18,7 +18,7 @@ enum CargoType: Int {
 }
 
 class Cargo: SystemArrayObject {
-    var type: CargoType
+    let type: CargoType
     var quantity: Int
     var location: Location
 
@@ -29,7 +29,7 @@ class Cargo: SystemArrayObject {
     init(type: CargoType, quantity: Int, location: Int) {
         self.type = type
         self.quantity = quantity
-        self.location = Location(location)
+        self.location = Location(num: location)
         super.init()
         mkSOID(.Cargo)
     }
@@ -41,14 +41,8 @@ class Cargo: SystemArrayObject {
 }
 
 class EnterpriseCargo: Cargo {
-    var GP: Int {
-        get {return type.rawValue}
-        set {
-            if let newType = CargoType(rawValue: newValue) {
-                type = newType
-            }
-        }
-    }
+    var GP: Int {return type.rawValue}
+
     var GQ: Int {
         get {return quantity}
         set {quantity = newValue}
@@ -63,14 +57,8 @@ class EnterpriseCargo: Cargo {
 }
 
 class FleetShipCargo: Cargo {
-    var HX: Int {
-        get {return type.rawValue}
-        set {
-            if let newType = CargoType(rawValue: newValue) {
-                type = newType
-            }
-        }
-    }
+    var HX: Int {return type.rawValue}
+
     var HY: Int {
         get {return quantity}
         set {quantity = newValue}

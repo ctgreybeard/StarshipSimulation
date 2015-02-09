@@ -61,7 +61,7 @@ class FederationPerson: SystemArrayObject {
     }
 
     init(nname: Name, nrank: Rank, niq: Int, nloc: Location, ndest: Location?, nfstat: FunctionalStatus, nhealth: Int) {
-        _name = nname.copy() as Name
+        _name = nname.copy() as! Name
         rank = nrank
         iq = niq
         location = nloc
@@ -73,7 +73,7 @@ class FederationPerson: SystemArrayObject {
     }
 
     override func copyWithZone(zone: NSZone) -> AnyObject {
-        let newOne = FederationPerson(nname: _name, nrank: rank, niq: iq, nloc: location.copy() as Location, ndest: destination?.copy() as? Location, nfstat: functionalStatus, nhealth: healthStatus)
+        let newOne = FederationPerson(nname: _name, nrank: rank, niq: iq, nloc: location.copy() as! Location, ndest: destination?.copy() as? Location, nfstat: functionalStatus, nhealth: healthStatus)
         return newOne
     }
 }
@@ -173,7 +173,7 @@ class EnterprisePerson: FederationPerson {
             if newValue == LocationCode.None.rawValue {
                 destination = nil
             } else {
-                destination = Location(newValue)
+                destination = Location(num: newValue)
             }
         }
     }
@@ -209,7 +209,7 @@ class EnterprisePerson: FederationPerson {
     }
 
     override func copyWithZone(zone: NSZone) -> AnyObject {
-        let newOne = super.copyWithZone(zone) as EnterprisePerson
+        let newOne = super.copyWithZone(zone) as! EnterprisePerson
         newOne.mkSOID(.EnterprisePerson)
         return newOne
     }
