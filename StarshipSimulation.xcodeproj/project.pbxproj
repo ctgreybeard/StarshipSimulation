@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F312FCC1A81926B00578FA2 /* PhotonTubesControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F312FCB1A81926B00578FA2 /* PhotonTubesControl.swift */; };
+		0F312FCE1A81B97700578FA2 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F312FCD1A81B97700578FA2 /* Transformers.swift */; };
 		0F594BF61A69EE7C00B10050 /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F594BF51A69EE7C00B10050 /* LocationTests.swift */; };
 		0F594BF71A69EE9500B10050 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96C91A69858700E8F605 /* Location.swift */; };
 		0F594BF81A69EEAD00B10050 /* SpatialPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96D21A69858700E8F605 /* SpatialPosition.swift */; };
@@ -54,6 +56,7 @@
 		0F8F96EF1A69858700E8F605 /* Weapons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96D71A69858700E8F605 /* Weapons.swift */; };
 		0F8F96F11A6985A700E8F605 /* MasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96F01A6985A700E8F605 /* MasterController.swift */; };
 		0F8F96F31A6985C000E8F605 /* Communications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8F96F21A6985C000E8F605 /* Communications.swift */; };
+		0FA24DE01A824DFE0066FB39 /* ColoredTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA24DDF1A824DFE0066FB39 /* ColoredTextField.swift */; };
 		0FA948661A698FDB00EE88B5 /* SimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA948651A698FDB00EE88B5 /* SimViewController.swift */; };
 		0FAB8E501A6C315300E784B2 /* EnterprisePersonnelControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB8E4F1A6C315300E784B2 /* EnterprisePersonnelControl.swift */; };
 		0FB0742E1A715DD2006F3CA5 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0742D1A715DD2006F3CA5 /* DataTests.swift */; };
@@ -85,6 +88,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F312FCB1A81926B00578FA2 /* PhotonTubesControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotonTubesControl.swift; sourceTree = "<group>"; };
+		0F312FCD1A81B97700578FA2 /* Transformers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transformers.swift; path = StarshipSimulation/Views/Transformers.swift; sourceTree = SOURCE_ROOT; };
 		0F594BF51A69EE7C00B10050 /* LocationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		0F594BFF1A69FD3400B10050 /* SystemArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemArrayTests.swift; sourceTree = "<group>"; };
 		0F6BADD61A69C7A50018B475 /* MasterControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterControl.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -128,6 +133,7 @@
 		0F8F96D71A69858700E8F605 /* Weapons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Weapons.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0F8F96F01A6985A700E8F605 /* MasterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0F8F96F21A6985C000E8F605 /* Communications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Communications.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0FA24DDF1A824DFE0066FB39 /* ColoredTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTextField.swift; sourceTree = "<group>"; };
 		0FA948461A698F0900EE88B5 /* app128x128x1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = app128x128x1.jpg; sourceTree = "<group>"; };
 		0FA948471A698F0900EE88B5 /* app128x128x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app128x128x1.png; sourceTree = "<group>"; };
 		0FA948481A698F0900EE88B5 /* app128x128x1.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = app128x128x1.xcf; sourceTree = "<group>"; };
@@ -320,6 +326,7 @@
 				0F8F96D31A69858700E8F605 /* SystemObject.swift */,
 				0F8F96D41A69858700E8F605 /* SystemStatus.swift */,
 				0F8F96D51A69858700E8F605 /* TractorBeam.swift */,
+				0F312FCD1A81B97700578FA2 /* Transformers.swift */,
 				0F8F96D61A69858700E8F605 /* TurboElevatorCar.swift */,
 				0F8F96D71A69858700E8F605 /* Weapons.swift */,
 			);
@@ -385,6 +392,7 @@
 		0F8F96B61A697E3900E8F605 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0F312FCB1A81926B00578FA2 /* PhotonTubesControl.swift */,
 				0FAB8E4F1A6C315300E784B2 /* EnterprisePersonnelControl.swift */,
 				0F6BADD61A69C7A50018B475 /* MasterControl.swift */,
 				0FC3ACB51A698BF400A9F544 /* MasterTabView.swift */,
@@ -446,6 +454,7 @@
 				0F6BADD81A69C7EA0018B475 /* RunningStateControl.swift */,
 				0FA948651A698FDB00EE88B5 /* SimViewController.swift */,
 				0F8F96951A697CDF00E8F605 /* Main.storyboard */,
+				0FA24DDF1A824DFE0066FB39 /* ColoredTextField.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -614,6 +623,7 @@
 				0F8F96DC1A69858700E8F605 /* CommunicationsStation.swift in Sources */,
 				0F8F96E71A69858700E8F605 /* Sensors.swift in Sources */,
 				0F8F96E41A69858700E8F605 /* PhotonTube.swift in Sources */,
+				0F312FCC1A81926B00578FA2 /* PhotonTubesControl.swift in Sources */,
 				0F8F96DB1A69858700E8F605 /* CommonData.swift in Sources */,
 				0F8F96EE1A69858700E8F605 /* TurboElevatorCar.swift in Sources */,
 				0F8F968D1A697CDF00E8F605 /* AppDelegate.swift in Sources */,
@@ -633,12 +643,14 @@
 				0F8F96EC1A69858700E8F605 /* SystemStatus.swift in Sources */,
 				0FAB8E501A6C315300E784B2 /* EnterprisePersonnelControl.swift in Sources */,
 				0F8F96DA1A69858700E8F605 /* Common.swift in Sources */,
+				0F312FCE1A81B97700578FA2 /* Transformers.swift in Sources */,
 				0F8F96E81A69858700E8F605 /* ShuttleCraft.swift in Sources */,
 				0FC3ACBA1A698C1200A9F544 /* EngControl.swift in Sources */,
 				0FC3ACB01A698A4C00A9F544 /* Medical.swift in Sources */,
 				0F8F96E61A69858700E8F605 /* RunningState.swift in Sources */,
 				0F6BADD91A69C7EA0018B475 /* RunningStateControl.swift in Sources */,
 				0F8F96E01A69858700E8F605 /* LifeSupport.swift in Sources */,
+				0FA24DE01A824DFE0066FB39 /* ColoredTextField.swift in Sources */,
 				0F8F96E51A69858700E8F605 /* Rank.swift in Sources */,
 				0F8F96EB1A69858700E8F605 /* SystemObject.swift in Sources */,
 				0F8F96921A697CDF00E8F605 /* StarshipSimulation.xcdatamodeld in Sources */,

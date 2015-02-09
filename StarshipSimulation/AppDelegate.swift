@@ -15,7 +15,11 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    override class func initialize() {
+        logger.debug("App initialize")
+        registerTransformers()
+        super.initialize()
+    }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
@@ -198,6 +202,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func dataTestsEP(sender: NSMenuItem) {
         logger.debug("Entry: \(sender.title)")
         dataTests.dataTestsEP(action: sender.title)
+    }
+
+    /// Register value transformers
+    class func registerTransformers() {
+        var st = EnterpriseEquipmentLocationTransformer()
+
+        NSValueTransformer.setValueTransformer(st, forName: "EnterpriseEquipmentLocationTransformer")
     }
 }
 

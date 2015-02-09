@@ -18,7 +18,7 @@ class MasterControl: SimViewController {
     @IBOutlet weak var cntPersonnel: NSTextField!
     let cntPersonnelTag = "BK"
     @IBOutlet weak var cntPhotonTubes: NSTextField!
-    let cntPhotonTubesTag = ""
+    let cntPhotonTubesTag = "SSPhotonTubesCount"
     @IBOutlet weak var cntPhaserStations: NSTextField!
     let cntPhaserStationsTag = ""
     @IBOutlet weak var cntDeflectorShields: NSTextField!
@@ -35,6 +35,7 @@ class MasterControl: SimViewController {
     /// Contains a bit pattern unlikely to be used by anyone else -- this could be improved --
     private var ourContext = UnsafeMutablePointer<Void>(bitPattern: Int(NSDate.timeIntervalSinceReferenceDate() * 1000.0))  // milliseconds
     let personnelKey = "enterprisePersonnel"
+    let photonTubesKey = "SSPhotonTubes"
 
     /// Observers we registered
     let observers = Observers()
@@ -128,6 +129,7 @@ class MasterControl: SimViewController {
         masterData.nav = Navigation()
         masterData.sciences = Sciences()
         observers.addObserver(self, target: masterData.cd, forKeyPath: personnelKey, options: .Initial | .New, context: ourContext)
+        observers.addObserver(self, target: masterData.cd, forKeyPath: photonTubesKey, options: .Initial | .New, context: ourContext)
     }
 
     /// Simulation start
@@ -173,8 +175,12 @@ class MasterControl: SimViewController {
     /// Updates a displayed counter if the value is different
     func updateDisplayedCount(dField: NSTextField, reference: String, master: NSObject = masterData.cd) {
         let dInt = dField.intValue
-        let vInt = Int32(master.valueForKey(reference) as Int)
-        if dInt != vInt {dField.intValue = vInt}
+        if let vInt = master.valueForKey(reference) as? Int {
+            let v32Int = Int32(vInt)
+            if dInt != v32Int {dField.intValue = v32Int}
+        } else {
+            logger.error("Error getting value for \(reference): not an Int?")
+        }
     }
 
     /// Standard KVO observer
@@ -186,6 +192,8 @@ class MasterControl: SimViewController {
             switch keyPath {
             case personnelKey:
                 updateDisplayedCount(cntPersonnel, reference: cntPersonnelTag)
+            case photonTubesKey:
+                updateDisplayedCount(cntPhotonTubes, reference: cntPhotonTubesTag)
             default:
                 logger.error("Unhandled change for keyPath: \(keyPath)")
             }
